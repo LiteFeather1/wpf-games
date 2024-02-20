@@ -1,4 +1,4 @@
-﻿namespace Snake.Scripts
+﻿namespace Snake.Source
 {
     public enum GridValue
     {
