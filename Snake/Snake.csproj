@@ -8,4 +8,22 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Assests\Sprites\all_sprites-Body.png" />
+    <None Remove="Assests\Sprites\all_sprites-Body_Dead.png" />
+    <None Remove="Assests\Sprites\all_sprites-Empty.png" />
+    <None Remove="Assests\Sprites\all_sprites-Food.png" />
+    <None Remove="Assests\Sprites\all_sprites-Head.png" />
+    <None Remove="Assests\Sprites\all_sprites-Head_Dead.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assests\Sprites\all_sprites-Body.png" />
+    <Resource Include="Assests\Sprites\all_sprites-Body_Dead.png" />
+    <Resource Include="Assests\Sprites\all_sprites-Empty.png" />
+    <Resource Include="Assests\Sprites\all_sprites-Food.png" />
+    <Resource Include="Assests\Sprites\all_sprites-Head.png" />
+    <Resource Include="Assests\Sprites\all_sprites-Head_Dead.png" />
+  </ItemGroup>
+
 </Project>

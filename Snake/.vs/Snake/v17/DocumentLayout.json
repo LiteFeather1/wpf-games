@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Snake\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{CA41EA9B-4D81-470B-B467-8DA8FE28FEDD}|Snake.csproj|c:\\users\\vange\\onedrive\\documents\\github\\wpf-games\\wpf-games\\snake\\scripts\\gridvalue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA41EA9B-4D81-470B-B467-8DA8FE28FEDD}|Snake.csproj|solutionrelative:scripts\\gridvalue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CA41EA9B-4D81-470B-B467-8DA8FE28FEDD}|Snake.csproj|c:\\users\\vange\\onedrive\\documents\\github\\wpf-games\\wpf-games\\snake\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{CA41EA9B-4D81-470B-B467-8DA8FE28FEDD}|Snake.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
@@ -14,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -25,8 +29,25 @@
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "GridValue.cs",
+              "DocumentMoniker": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Snake\\Scripts\\GridValue.cs",
+              "RelativeDocumentMoniker": "Scripts\\GridValue.cs",
+              "ToolTip": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Snake\\Scripts\\GridValue.cs",
+              "RelativeToolTip": "Scripts\\GridValue.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-20T13:03:12.57Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Snake\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
