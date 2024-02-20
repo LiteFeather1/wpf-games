@@ -22,6 +22,18 @@
 
             SnakeDirection = Direction.Right;
 
+            AddSnake();
+        }
+
+        public void AddSnake()
+        {
+            var r = Rows / 2;
+
+            for (var c = 1; c <= 3; c++)
+            {
+                Grid[r, c] = GridValue.Snake;
+                r_snakePositions.AddFirst(new Position(r, c));   
+            }
         }
     }
 }
