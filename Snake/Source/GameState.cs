@@ -37,6 +37,12 @@
             }
         }
 
+        public Position HeadPosition() =>  r_snakePositions.First.Value;
+
+        public Position TailPosition() =>  r_snakePositions.Last.Value;
+
+        public IEnumerable<Position> SnakePositions() => r_snakePositions;
+
         private IEnumerable<Position> EmptyPositions()
         {
             for (var r = 0; r < Rows; r++)
