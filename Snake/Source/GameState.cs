@@ -51,14 +51,48 @@
 
         private void RemoveTail()
         {
-            var tail = r_snakePositions.Last.Value;
+            var tail = TailPosition();
             Grid[tail.Row, tail.Col] = GridValue.Empty;
             r_snakePositions.RemoveLast();
         }
 
-        public void ChangeDirection(Direction dir)
+        public void ChangeDirection(Direction dir) => SnakeDirection = dir;
+
+        private bool OutsideGrid(Position pos) 
+            => pos.Row < 0 || pos.Row >= Rows || pos.Col < 0 || pos.Col >= Cols;
+
+        private GridValue WillHit(Position newHeadPos)
         {
-            SnakeDirection = dir;
+            if (OutsideGrid(newHeadPos))
+                return GridValue.Outside;
+
+            // Especial case if the next tile the snake will hit is the tail
+            if (newHeadPos == TailPosition())
+                return GridValue.Empty;
+
+            return Grid[newHeadPos.Row, newHeadPos.Col];
+        }
+
+        public void MoveMethod()
+        {
+            var newHeadPos = HeadPosition().Translate(SnakeDirection);
+            var hit = WillHit(newHeadPos);
+
+            switch (hit)
+            {
+                case GridValue.Empty:
+                    RemoveTail();
+                    AddHead(newHeadPos);
+                    break;
+                case GridValue.Food:
+                    AddHead(newHeadPos);
+                    Score++;
+                    AddFood();
+                    break;
+                case GridValue.Outside or GridValue.Snake:
+                    GameOver = true;
+                    break;
+            }
         }
 
         private IEnumerable<Position> EmptyPositions()
