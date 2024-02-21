@@ -43,6 +43,24 @@
 
         public IEnumerable<Position> SnakePositions() => r_snakePositions;
 
+        private void AddHead(Position pos)
+        {
+            r_snakePositions.AddFirst(pos);
+            Grid[pos.Row, pos.Col] = GridValue.Snake;
+        }
+
+        private void RemoveTail()
+        {
+            var tail = r_snakePositions.Last.Value;
+            Grid[tail.Row, tail.Col] = GridValue.Empty;
+            r_snakePositions.RemoveLast();
+        }
+
+        public void ChangeDirection(Direction dir)
+        {
+            SnakeDirection = dir;
+        }
+
         private IEnumerable<Position> EmptyPositions()
         {
             for (var r = 0; r < Rows; r++)
