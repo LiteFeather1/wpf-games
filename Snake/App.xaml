@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:Snake"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <SolidColorBrush x:Key="BackgroundColour">#211E2B</SolidColorBrush>
+        <SolidColorBrush x:Key="GridBackgroundColour">#322C40</SolidColorBrush>
+        <SolidColorBrush x:Key="GridLineColour">#4F4867</SolidColorBrush>
+        <SolidColorBrush x:Key="TextColour">#EBEBEB</SolidColorBrush>
+        <SolidColorBrush x:Key="OverlayColour">#7F000000</SolidColorBrush>
+        <FontFamily x:Key="MainFont">Assets/#Qdbettercomicsansalternates-z8823</FontFamily>
     </Application.Resources>
 </Application>
