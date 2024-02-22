@@ -1,13 +1,7 @@
-﻿using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Snake.Source;
 
 namespace Snake
@@ -27,7 +21,7 @@ namespace Snake
         private readonly int r_rows = 16, r_cols = 16;
         private readonly Image[,] r_gridImages;
 
-        private readonly GameState r_gameState;
+        private GameState _gameState;
 
         private bool _gameRunning;
 
@@ -37,16 +31,16 @@ namespace Snake
 
             r_gridImages = SetUpGrid();
 
-            r_gameState = new(r_rows, r_cols);
+            _gameState = new(r_rows, r_cols);
         }
 
         private async Task GameLoop()
         {
-            while (!r_gameState.GameOver)
+            while (!_gameState.GameOver)
             {
                 // TODO: Make the delay speed up with the the score (lerp)
                 await Task.Delay(128);
-                r_gameState.Move();
+                _gameState.Move();
                 Draw();
             }
         }
@@ -57,8 +51,11 @@ namespace Snake
 
             await ShowCountDown();
 
-            Overlay.Visibility = Visibility.Hidden;
             await GameLoop();
+
+            await ShowGameOver();
+
+            _gameState = new(r_rows, r_cols);
         }
 
         private async void Window_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -78,10 +75,10 @@ namespace Snake
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (r_gameState.GameOver)
+            if (_gameState.GameOver)
                 return;
 
-            r_gameState.ChangeDirection(e.Key switch
+            _gameState.ChangeDirection(e.Key switch
             {
                 Key.A or Key.Left => Direction.Left,
                 Key.D or Key.Right => Direction.Right,
@@ -112,7 +109,7 @@ namespace Snake
             for (var r = 0; r < r_rows; r++)
                 for (var c = 0;c < r_cols; c++)
                 {
-                    var gridValue = r_gameState.Grid[r, c];
+                    var gridValue = _gameState.Grid[r, c];
                     r_gridImages[r, c].Source = r_gridValToImage[gridValue];
                 }
         }
@@ -120,7 +117,7 @@ namespace Snake
         private void Draw()
         {
             DrawGrid();
-            ScoreText.Text = $"SCORE {r_gameState.Score}";
+            ScoreText.Text = $"SCORE {_gameState.Score}";
         }
 
         private async Task ShowCountDown()
@@ -130,6 +127,15 @@ namespace Snake
                 OverlayText.Text = i.ToString();
                 await Task.Delay(500);
             }
+
+            Overlay.Visibility = Visibility.Hidden;
+        }
+
+        private async Task ShowGameOver()
+        {
+            await Task.Delay(500);
+            Overlay.Visibility = Visibility.Visible;
+            OverlayText.Text = "PRESS ANY KEY TO START";
         }
     }
 }
