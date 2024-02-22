@@ -73,7 +73,7 @@
             return Grid[newHeadPos.Row, newHeadPos.Col];
         }
 
-        public void MoveMethod()
+        public void Move()
         {
             var newHeadPos = HeadPosition().Translate(SnakeDirection);
             var hit = WillHit(newHeadPos);
