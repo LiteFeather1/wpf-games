@@ -17,7 +17,7 @@ namespace Snake
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly int r_rows = 15, r_cols = 15;
+        private readonly int r_rows = 4, r_cols = 4;
         private readonly Image[,] r_gridImages;
 
         public MainWindow()

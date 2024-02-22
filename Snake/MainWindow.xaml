@@ -29,11 +29,14 @@
                 BorderBrush="{StaticResource GridLineColour}"
                 BorderThickness="1.5"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center">
+                VerticalAlignment="Center"
+                RenderOptions.EdgeMode="Aliased">
             <UniformGrid x:Name="GameGrid"
                          Width="512"
                          Height="512"
-                         Background="{StaticResource GridBackgroundColour}">
+                         Background="{StaticResource GridBackgroundColour}"
+                         SnapsToDevicePixels="True"
+                         RenderOptions.BitmapScalingMode="NearestNeighbor">
             </UniformGrid>
         </Border>
     </Grid>

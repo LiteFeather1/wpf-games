@@ -9,7 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Assets\Qdbettercomicsansalternates-z8823.ttf" />
     <None Remove="Assets\Sprites\all_sprites-Body.png" />
     <None Remove="Assets\Sprites\all_sprites-Body_Dead.png" />
     <None Remove="Assets\Sprites\all_sprites-Empty.png" />
@@ -20,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\Qdbettercomicsansalternates-z8823.ttf" />
     <Resource Include="Assets\Sprites\all_sprites-Body.png" />
     <Resource Include="Assets\Sprites\all_sprites-Body_Dead.png" />
     <Resource Include="Assets\Sprites\all_sprites-Empty.png" />

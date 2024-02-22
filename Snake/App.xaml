@@ -9,6 +9,6 @@
         <SolidColorBrush x:Key="GridLineColour">#4F4867</SolidColorBrush>
         <SolidColorBrush x:Key="TextColour">#EBEBEB</SolidColorBrush>
         <SolidColorBrush x:Key="OverlayColour">#7F000000</SolidColorBrush>
-        <FontFamily x:Key="MainFont">Assets/#Qdbettercomicsansalternates-z8823</FontFamily>
+        <FontFamily x:Key="MainFont">Assets/#Droid Sans Mono</FontFamily>
     </Application.Resources>
 </Application>
