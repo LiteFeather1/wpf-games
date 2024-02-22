@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Snake.Source;
 
@@ -16,6 +17,14 @@ namespace Snake
             { GridValue.Empty, Images.Empty },
             { GridValue.Snake, Images.Body },
             { GridValue.Food, Images.Food },
+        };
+
+        private readonly Dictionary<Direction, int> r_directionToRotation = new()
+        {
+            { Direction.Up, 0 },
+            { Direction.Right, 90 },
+            { Direction.Down, 180 },
+            { Direction.Left, 270 },
         };
 
         private readonly int r_rows = 16, r_cols = 16;
@@ -96,7 +105,11 @@ namespace Snake
             for (var r = 0; r < r_rows; r++)
                 for (var c = 0; c < r_cols; c++)
                 {
-                    var image = new Image() { Source = Images.Empty };
+                    var image = new Image()
+                    {
+                        Source = Images.Empty,
+                        RenderTransformOrigin = new(0.5, 0.5),
+                    };
                     images[r, c] = image;
                     GameGrid.Children.Add(image);
                 }
@@ -117,7 +130,18 @@ namespace Snake
         private void Draw()
         {
             DrawGrid();
+            DrawSnakeHead();
             ScoreText.Text = $"SCORE {_gameState.Score}";
+        }
+
+        private void DrawSnakeHead()
+        {
+            var snakeHeadPos = _gameState.HeadPosition();
+            var image = r_gridImages[snakeHeadPos.Row, snakeHeadPos.Col];
+            image.Source = Images.Head;
+
+            var degrees = r_directionToRotation[_gameState.SnakeDirection];
+            image.RenderTransform = new RotateTransform(degrees);
         }
 
         private async Task ShowCountDown()
