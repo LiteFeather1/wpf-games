@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Snake")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3481ec37ba9d6c945f9844d4c021347564cd8d93")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5c6ac946a7f7e3c6ad8aeaca23095a30ac6763fd")]
 [assembly: System.Reflection.AssemblyProductAttribute("Snake")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Snake")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

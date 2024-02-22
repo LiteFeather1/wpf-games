@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Snake"
         mc:Ignorable="d"
         Title="Snake" Height="720" Width="1280"
+        MinHeight="180" MinWidth="320"
         Background="{StaticResource BackgroundColour}"
         Foreground="{StaticResource TextColour}"
         FontFamily="{StaticResource MainFont}"
@@ -13,33 +14,36 @@
         Icon="Assets/Sprites/all_sprites-Icon.ico"
         Loaded="Window_Loaded"
         KeyDown="Window_KeyDown">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <Viewbox>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <TextBlock x:Name="ScoreText"
+            <TextBlock x:Name="ScoreText"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    Text="SCORE 0"
                    FontSize="42"
                    Margin="16"/>
 
-        <Border x:Name="GridBorder"
+            <Border x:Name="GridBorder"
                 Grid.Row="1"
                 BorderBrush="{StaticResource GridLineColour}"
                 BorderThickness="1.5"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                RenderOptions.EdgeMode="Aliased">
-            <UniformGrid x:Name="GameGrid"
+                RenderOptions.EdgeMode="Aliased"
+                Margin="20, 0, 20, 20">
+                <UniformGrid x:Name="GameGrid"
                          Width="512"
                          Height="512"
                          Background="{StaticResource GridBackgroundColour}"
                          SnapsToDevicePixels="True"
                          RenderOptions.BitmapScalingMode="NearestNeighbor">
-            </UniformGrid>
-        </Border>
-    </Grid>
+                </UniformGrid>
+            </Border>
+        </Grid>
+    </Viewbox>
 </Window>
