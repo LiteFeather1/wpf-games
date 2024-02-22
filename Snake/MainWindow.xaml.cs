@@ -42,6 +42,7 @@ namespace Snake
         {
             while (!r_gameState.GameOver)
             {
+                // TODO: Make the delay speed up with the the score (lerp)
                 await Task.Delay(128);
                 r_gameState.Move();
                 Draw();
@@ -102,6 +103,7 @@ namespace Snake
         private void Draw()
         {
             DrawGrid();
+            ScoreText.Text = $"SCORE {r_gameState.Score}";
         }
     }
 }
