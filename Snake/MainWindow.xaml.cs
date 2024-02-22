@@ -29,6 +29,8 @@ namespace Snake
 
         private readonly GameState r_gameState;
 
+        private bool _gameRunning;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -49,10 +51,29 @@ namespace Snake
             }
         }
 
-        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        private async Task RunGame()
         {
             Draw();
+
+            await ShowCountDown();
+
+            Overlay.Visibility = Visibility.Hidden;
             await GameLoop();
+        }
+
+        private async void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (Overlay.Visibility == Visibility.Visible)
+            {
+                e.Handled = true;
+            }
+
+            if (!_gameRunning)
+            {
+                _gameRunning = true;
+                await RunGame();
+                _gameRunning = false;
+            }
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -100,6 +121,15 @@ namespace Snake
         {
             DrawGrid();
             ScoreText.Text = $"SCORE {r_gameState.Score}";
+        }
+
+        private async Task ShowCountDown()
+        {
+            for (var i = 3; i >= 1; i--)
+            {
+                OverlayText.Text = i.ToString();
+                await Task.Delay(500);
+            }
         }
     }
 }
