@@ -27,7 +27,7 @@ namespace Snake
             { Direction.Left, 270 },
         };
 
-        private readonly int r_rows = 16, r_cols = 16;
+        private readonly int r_rows = 16, r_cols = 32;
         private readonly Image[,] r_gridImages;
 
         private GameState _gameState;
@@ -102,6 +102,9 @@ namespace Snake
             var images = new Image[r_rows, r_cols];
             GameGrid.Rows = r_rows;
             GameGrid.Columns = r_cols;
+
+            GameGrid.Width = GameGrid.Height * (r_cols / (double)r_rows);
+
             for (var r = 0; r < r_rows; r++)
                 for (var c = 0; c < r_cols; c++)
                 {
