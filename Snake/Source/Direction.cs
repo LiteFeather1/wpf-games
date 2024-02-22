@@ -5,7 +5,7 @@ namespace Snake.Source
     {
         public readonly static Direction Left = new(0, -1);
         public readonly static Direction Right = new(0, 1);
-        public readonly static Direction UP = new(-1, 0);
+        public readonly static Direction Up = new(-1, 0);
         public readonly static Direction Down = new(1, 0);
 
         public int RowOffset { get; }

@@ -45,8 +45,18 @@ namespace Snake
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
+            if (r_gameState.GameOver)
+                return;
 
+            r_gameState.ChangeDirection(e.Key switch
+            {
+                Key.A or Key.Left => Direction.Left,
+                Key.D or Key.Right => Direction.Right,
+                Key.W or Key.Up => Direction.Up,
+                _ or Key.S or Key.Down => Direction.Down
+            });
         }
+
 
         private Image[,] SetUpGrid()
         {
