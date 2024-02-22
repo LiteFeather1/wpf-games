@@ -27,7 +27,7 @@ namespace Snake
             { Direction.Left, 270 },
         };
 
-        private readonly int r_rows = 16, r_cols = 32;
+        private readonly int r_rows = 32, r_cols = 32;
         private readonly Image[,] r_gridImages;
 
         private GameState _gameState;
@@ -47,8 +47,7 @@ namespace Snake
         {
             while (!_gameState.GameOver)
             {
-                // TODO: Make the delay speed up with the the score (lerp)
-                await Task.Delay(128);
+                await Task.Delay((int)(128f + (32f - 128f) * (_gameState.Score / 64f)));
                 _gameState.Move();
                 Draw();
             }
