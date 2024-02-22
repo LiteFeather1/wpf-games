@@ -124,14 +124,8 @@ namespace Snake
                 {
                     var gridValue = _gameState.Grid[r, c];
                     r_gridImages[r, c].Source = r_gridValToImage[gridValue];
+                    r_gridImages[r, c].RenderTransform = Transform.Identity;
                 }
-        }
-
-        private void Draw()
-        {
-            DrawGrid();
-            DrawSnakeHead();
-            ScoreText.Text = $"SCORE {_gameState.Score}";
         }
 
         private void DrawSnakeHead()
@@ -142,6 +136,28 @@ namespace Snake
 
             var degrees = r_directionToRotation[_gameState.SnakeDirection];
             image.RenderTransform = new RotateTransform(degrees);
+        }
+
+        private void Draw()
+        {
+            DrawGrid();
+            DrawSnakeHead();
+            ScoreText.Text = $"SCORE {_gameState.Score}";
+        }
+
+        private async Task DrawDeadSnake()
+        {
+            var positions = _gameState.SnakePositions().ToArray();
+
+            await PlacePart(positions[0], Images.HeadDead);
+            for (var i = 1; i < positions.Length; i++)
+                await PlacePart(positions[i], Images.BodyDead);
+
+            async Task PlacePart(Position pos, BitmapImage source)
+            {
+                r_gridImages[pos.Row, pos.Col].Source = source;
+                await Task.Delay(50);
+            }
         }
 
         private async Task ShowCountDown()
@@ -157,7 +173,9 @@ namespace Snake
 
         private async Task ShowGameOver()
         {
-            await Task.Delay(500);
+            await DrawDeadSnake();
+
+            await Task.Delay(333);
             Overlay.Visibility = Visibility.Visible;
             OverlayText.Text = "PRESS ANY KEY TO START";
         }
