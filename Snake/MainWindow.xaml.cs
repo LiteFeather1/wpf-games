@@ -76,14 +76,12 @@ namespace Snake
             GameGrid.Rows = r_rows;
             GameGrid.Columns = r_cols;
             for (var r = 0; r < r_rows; r++)
-            {
                 for (var c = 0; c < r_cols; c++)
                 {
                     var image = new Image() { Source = Images.Empty };
                     images[r, c] = image;
                     GameGrid.Children.Add(image);
                 }
-            }
 
             return images;
         }
@@ -91,13 +89,11 @@ namespace Snake
         private void DrawGrid()
         {
             for (var r = 0; r < r_rows; r++)
-            {
                 for (var c = 0;c < r_cols; c++)
                 {
                     var gridValue = r_gameState.Grid[r, c];
                     r_gridImages[r, c].Source = r_gridValToImage[gridValue];
                 }
-            }
         }
 
         private void Draw()

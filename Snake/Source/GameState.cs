@@ -7,8 +7,11 @@
         public GridValue[,] Grid { get; }
 
         public Direction SnakeDirection { get; private set; }
+
         public int Score { get; private set; }  
         public bool GameOver { get; private set; }
+
+        private readonly LinkedList<Direction> r_directionChangesBuffer = new();
 
         private readonly LinkedList<Position> r_snakePositions = new();
 
@@ -56,7 +59,29 @@
             r_snakePositions.RemoveLast();
         }
 
-        public void ChangeDirection(Direction dir) => SnakeDirection = dir;
+        private Direction GetLastDirection()
+        {
+            if (r_directionChangesBuffer.Count == 0)
+                return SnakeDirection;
+
+            return r_directionChangesBuffer.Last.Value;
+        }
+
+        private bool CanChangeDirection(Direction newDirection)
+        {
+            if (r_directionChangesBuffer.Count == 2)
+                return false;
+
+            var lastDir = GetLastDirection();
+            return newDirection != lastDir && newDirection != lastDir.Opposite();
+        }
+
+        public void ChangeDirection(Direction dir)
+        {
+            if (CanChangeDirection(dir))
+                r_directionChangesBuffer.AddLast(dir);
+
+        }
 
         private bool OutsideGrid(Position pos) 
             => pos.Row < 0 || pos.Row >= Rows || pos.Col < 0 || pos.Col >= Cols;
@@ -75,6 +100,12 @@
 
         public void Move()
         {
+            if (r_directionChangesBuffer.Count > 0)
+            {
+                SnakeDirection = r_directionChangesBuffer.First.Value;
+                r_directionChangesBuffer.RemoveFirst();
+            }
+
             var newHeadPos = HeadPosition().Translate(SnakeDirection);
             var hit = WillHit(newHeadPos);
 
