@@ -10,7 +10,9 @@
         Foreground="{StaticResource TextColour}"
         FontFamily="{StaticResource MainFont}"
         WindowStartupLocation="CenterScreen"
-        Icon="Assets/Sprites/all_sprites-Icon.ico">
+        Icon="Assets/Sprites/all_sprites-Icon.ico"
+        Loaded="Window_Loaded"
+        KeyDown="Window_KeyDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>

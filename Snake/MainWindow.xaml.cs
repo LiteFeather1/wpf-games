@@ -17,14 +17,35 @@ namespace Snake
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly int r_rows = 4, r_cols = 4;
+        private readonly Dictionary<GridValue, BitmapSource> r_gridValToImage = new()
+        {
+            { GridValue.Empty, Images.Empty },
+            { GridValue.Snake, Images.Body },
+            { GridValue.Food, Images.Food },
+        };
+
+        private readonly int r_rows = 16, r_cols = 16;
         private readonly Image[,] r_gridImages;
+
+        private readonly GameState r_gameState;
 
         public MainWindow()
         {
             InitializeComponent();
 
             r_gridImages = SetUpGrid();
+
+            r_gameState = new(r_rows, r_cols);
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Draw();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+
         }
 
         private Image[,] SetUpGrid()
@@ -43,6 +64,23 @@ namespace Snake
             }
 
             return images;
+        }
+
+        private void DrawGrid()
+        {
+            for (var r = 0; r < r_rows; r++)
+            {
+                for (var c = 0;c < r_cols; c++)
+                {
+                    var gridValue = r_gameState.Grid[r, c];
+                    r_gridImages[r, c].Source = r_gridValToImage[gridValue];
+                }
+            }
+        }
+
+        private void Draw()
+        {
+            DrawGrid();
         }
     }
 }
