@@ -14,9 +14,9 @@ namespace Snake
     {
         private readonly Dictionary<GridValue, BitmapSource> r_gridValToImage = new()
         {
+            { GridValue.Food, Images.Empty },
             { GridValue.Empty, Images.Empty },
             { GridValue.Snake, Images.Body },
-            { GridValue.Food, Images.Apple },
         };
 
         private readonly Dictionary<GridCoordinate, int> r_directionToRotation = new()
@@ -127,11 +127,17 @@ namespace Snake
 
                 // Draw Snake Head
                 var snakeHeadPos = _gameState.HeadPosition();
-                var image = r_gridImages[snakeHeadPos.Y, snakeHeadPos.X];
-                image.Source = Images.Head;
+                var snakeHeadImage = r_gridImages[snakeHeadPos.Y, snakeHeadPos.X];
+                snakeHeadImage.Source = Images.Head;
 
+                // Rotate snake head
                 var degrees = r_directionToRotation[_gameState.SnakeDirection];
-                image.RenderTransform = new RotateTransform(degrees);
+                snakeHeadImage.RenderTransform = new RotateTransform(degrees);
+
+                // Draw Food
+                var foodPos = _gameState.Food.Position;
+                var foodImage = r_gridImages[foodPos.Y, foodPos.X];
+                foodImage.Source = _gameState.Food.Image;
 
                 ScoreText.Text = $"SCORE {_gameState.Score}";
             }

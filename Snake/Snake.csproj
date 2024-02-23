@@ -15,6 +15,9 @@
     <None Remove="Assets\Sprites\all_sprites-Head.png" />
     <None Remove="Assets\Sprites\all_sprites-Head_Dead.png" />
     <None Remove="Assets\Sprites\all_sprites-Icon.ico" />
+    <None Remove="Assets\Sprites\Foods\Foods-Apple.png" />
+    <None Remove="Assets\Sprites\Foods\Foods-Banana.png" />
+    <None Remove="Assets\Sprites\Foods\Foods-Cherry.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +27,9 @@
     <Resource Include="Assets\Sprites\all_sprites-Head.png" />
     <Resource Include="Assets\Sprites\all_sprites-Head_Dead.png" />
     <Resource Include="Assets\Sprites\all_sprites-Icon.ico" />
+    <Resource Include="Assets\Sprites\Foods\Foods-Apple.png" />
+    <Resource Include="Assets\Sprites\Foods\Foods-Banana.png" />
+    <Resource Include="Assets\Sprites\Foods\Foods-Cherry.png" />
   </ItemGroup>
 
 </Project>

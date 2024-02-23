@@ -3,22 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Snake\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CA41EA9B-4D81-470B-B467-8DA8FE28FEDD}|Snake.csproj|c:\\users\\vange\\onedrive\\documents\\github\\wpf-games\\wpf-games\\snake\\source\\gridcoordinate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA41EA9B-4D81-470B-B467-8DA8FE28FEDD}|Snake.csproj|solutionrelative:source\\gridcoordinate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA41EA9B-4D81-470B-B467-8DA8FE28FEDD}|Snake.csproj|c:\\users\\vange\\onedrive\\documents\\github\\wpf-games\\wpf-games\\snake\\source\\gamestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA41EA9B-4D81-470B-B467-8DA8FE28FEDD}|Snake.csproj|solutionrelative:source\\gamestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA41EA9B-4D81-470B-B467-8DA8FE28FEDD}|Snake.csproj|c:\\users\\vange\\onedrive\\documents\\github\\wpf-games\\wpf-games\\snake\\source\\images.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA41EA9B-4D81-470B-B467-8DA8FE28FEDD}|Snake.csproj|solutionrelative:source\\images.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA41EA9B-4D81-470B-B467-8DA8FE28FEDD}|Snake.csproj|c:\\users\\vange\\onedrive\\documents\\github\\wpf-games\\wpf-games\\snake\\source\\gridvalue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA41EA9B-4D81-470B-B467-8DA8FE28FEDD}|Snake.csproj|solutionrelative:source\\gridvalue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{CA41EA9B-4D81-470B-B467-8DA8FE28FEDD}|Snake.csproj|c:\\users\\vange\\onedrive\\documents\\github\\wpf-games\\wpf-games\\snake\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA41EA9B-4D81-470B-B467-8DA8FE28FEDD}|Snake.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -27,12 +11,20 @@
       "RelativeMoniker": "D:0:0:{CA41EA9B-4D81-470B-B467-8DA8FE28FEDD}|Snake.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CA41EA9B-4D81-470B-B467-8DA8FE28FEDD}|Snake.csproj|c:\\users\\vange\\onedrive\\documents\\github\\wpf-games\\wpf-games\\snake\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA41EA9B-4D81-470B-B467-8DA8FE28FEDD}|Snake.csproj|solutionrelative:app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CA41EA9B-4D81-470B-B467-8DA8FE28FEDD}|Snake.csproj|c:\\users\\vange\\onedrive\\documents\\github\\wpf-games\\wpf-games\\snake\\source\\food.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA41EA9B-4D81-470B-B467-8DA8FE28FEDD}|Snake.csproj|solutionrelative:source\\food.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CA41EA9B-4D81-470B-B467-8DA8FE28FEDD}|Snake.csproj|c:\\users\\vange\\onedrive\\documents\\github\\wpf-games\\wpf-games\\snake\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{CA41EA9B-4D81-470B-B467-8DA8FE28FEDD}|Snake.csproj|solutionrelative:app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{CA41EA9B-4D81-470B-B467-8DA8FE28FEDD}|Snake.csproj|c:\\users\\vange\\onedrive\\documents\\github\\wpf-games\\wpf-games\\snake\\source\\images.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA41EA9B-4D81-470B-B467-8DA8FE28FEDD}|Snake.csproj|solutionrelative:source\\images.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA41EA9B-4D81-470B-B467-8DA8FE28FEDD}|Snake.csproj|c:\\users\\vange\\onedrive\\documents\\github\\wpf-games\\wpf-games\\snake\\source\\gridcoordinate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA41EA9B-4D81-470B-B467-8DA8FE28FEDD}|Snake.csproj|solutionrelative:source\\gridcoordinate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA41EA9B-4D81-470B-B467-8DA8FE28FEDD}|Snake.csproj|c:\\users\\vange\\onedrive\\documents\\github\\wpf-games\\wpf-games\\snake\\source\\gamestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA41EA9B-4D81-470B-B467-8DA8FE28FEDD}|Snake.csproj|solutionrelative:source\\gamestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -41,8 +33,8 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 192,
-          "SelectedChildIndex": 2,
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,124 +46,79 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "GridCoordinate.cs",
-              "DocumentMoniker": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Snake\\Source\\GridCoordinate.cs",
-              "RelativeDocumentMoniker": "Source\\GridCoordinate.cs",
-              "ToolTip": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Snake\\Source\\GridCoordinate.cs",
-              "RelativeToolTip": "Source\\GridCoordinate.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
+              "DocumentIndex": 2,
+              "Title": "Food.cs",
+              "DocumentMoniker": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Snake\\Source\\Food.cs",
+              "RelativeDocumentMoniker": "Source\\Food.cs",
+              "ToolTip": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Snake\\Source\\Food.cs",
+              "RelativeToolTip": "Source\\Food.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-23T12:42:43.039Z",
+              "WhenOpened": "2024-02-23T16:06:11.001Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Snake\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Snake\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AQIAAIMAAAAAAAAAAAAjwJMAAAAJAAAA",
+              "ViewState": "AQIAAGIAAAAAAAAAAAAtwIsAAAA5AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-22T11:41:59.849Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "App.xaml",
-              "DocumentMoniker": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Snake\\App.xaml",
-              "RelativeDocumentMoniker": "App.xaml",
-              "ToolTip": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Snake\\App.xaml",
-              "RelativeToolTip": "App.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-02-21T13:05:35.201Z",
+              "WhenOpened": "2024-02-23T14:36:06.119Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "GameState.cs",
-              "DocumentMoniker": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Snake\\Source\\GameState.cs",
-              "RelativeDocumentMoniker": "Source\\GameState.cs",
-              "ToolTip": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Snake\\Source\\GameState.cs",
-              "RelativeToolTip": "Source\\GameState.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAlwC4AAABQAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-20T13:54:02.202Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Images.cs",
-              "DocumentMoniker": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Snake\\Source\\Images.cs",
-              "RelativeDocumentMoniker": "Source\\Images.cs",
-              "ToolTip": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Snake\\Source\\Images.cs",
-              "RelativeToolTip": "Source\\Images.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-21T12:56:42.793Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "GridValue.cs",
-              "DocumentMoniker": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Snake\\Source\\GridValue.cs",
-              "RelativeDocumentMoniker": "Source\\GridValue.cs",
-              "ToolTip": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Snake\\Source\\GridValue.cs",
-              "RelativeToolTip": "Source\\GridValue.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAARAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-20T13:06:09.212Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "App.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Snake\\App.xaml.cs",
-              "RelativeDocumentMoniker": "App.xaml.cs",
-              "ToolTip": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Snake\\App.xaml.cs",
-              "RelativeToolTip": "App.xaml.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-21T14:05:54.996Z"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "f7cf88f2-2d1e-4da6-9442-d4565ddceda0",
-        "Display": 0,
-        "X": 370,
-        "Y": 74,
-        "Width": 749,
-        "Height": 780,
-        "WindowState": 0
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Snake\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
               "ToolTip": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Snake\\MainWindow.xaml",
               "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-02-21T13:13:59.722Z",
+              "WhenOpened": "2024-02-23T14:28:06.292Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Images.cs",
+              "DocumentMoniker": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Snake\\Source\\Images.cs",
+              "RelativeDocumentMoniker": "Source\\Images.cs",
+              "ToolTip": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Snake\\Source\\Images.cs",
+              "RelativeToolTip": "Source\\Images.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-23T14:23:11.392Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GridCoordinate.cs",
+              "DocumentMoniker": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Snake\\Source\\GridCoordinate.cs",
+              "RelativeDocumentMoniker": "Source\\GridCoordinate.cs",
+              "ToolTip": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Snake\\Source\\GridCoordinate.cs",
+              "RelativeToolTip": "Source\\GridCoordinate.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-23T14:10:25.529Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "GameState.cs",
+              "DocumentMoniker": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Snake\\Source\\GameState.cs",
+              "RelativeDocumentMoniker": "Source\\GameState.cs",
+              "ToolTip": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Snake\\Source\\GameState.cs",
+              "RelativeToolTip": "Source\\GameState.cs",
+              "ViewState": "AQIAAFAAAAAAAAAAAADwv3MAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-23T14:05:35.851Z",
               "EditorCaption": ""
             }
           ]

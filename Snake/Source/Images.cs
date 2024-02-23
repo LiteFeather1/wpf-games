@@ -12,6 +12,8 @@ namespace Snake.Source
         public static readonly BitmapImage HeadDead = LoadImage("all_sprites-Head_Dead.png");
 
         public static readonly BitmapImage Apple = LoadImage("Foods/Foods-Apple.png");
+        public static readonly BitmapImage Cherry = LoadImage("Foods/Foods-Cherry.png");
+        public static readonly BitmapImage Banana = LoadImage("Foods/Foods-Banana.png");
 
         private static BitmapImage LoadImage(string fileName)
             => new(new($"Assets/Sprites/{fileName}", UriKind.Relative));

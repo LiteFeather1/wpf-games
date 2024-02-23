@@ -10,10 +10,12 @@
 
         public GridCoordinate SnakeDirection { get; private set; }
 
+        public Food Food { get; private set; }
+
         public int Score { get; private set; }  
         public bool GameOver { get; private set; }
 
-        private readonly List<GridCoordinate> r_directionChangesBuffer = [];
+        private readonly List<GridCoordinate> r_directionChangesBuffer = [];    
 
         private readonly LinkedList<GridCoordinate> r_snakePositions = new();
 
@@ -92,7 +94,7 @@
                     break;
                 case GridValue.Food:
                     AddHead(newHeadPos);
-                    Score++;
+                    Score += Food.Score;
                     AddFood();
                     break;
                 case GridValue.Outside or GridValue.Snake:
@@ -115,6 +117,7 @@
 
             var pos = emptyPositions[r_random.Next(emptyPositions.Length)];
             Grid[pos.Y, pos.X] = GridValue.Food;
+            Food = new(r_random, pos);
 
             IEnumerable<GridCoordinate> EmptyPositions()
             {
