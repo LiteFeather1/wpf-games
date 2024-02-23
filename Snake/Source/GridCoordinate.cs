@@ -18,9 +18,9 @@ namespace Snake.Source
         public readonly GridCoordinate Opposite() => new(-X, -Y);
 
         public override readonly bool Equals(object obj)
-            => obj is GridCoordinate direction &&
-                   Y == direction.Y &&
-                   X == direction.X;
+            => obj is GridCoordinate gridCord &&
+                   Y == gridCord.Y &&
+                   X == gridCord.X;
 
         public override readonly int GetHashCode() => HashCode.Combine(X, Y);
 

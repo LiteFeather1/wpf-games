@@ -27,7 +27,7 @@ namespace Snake
             { GridCoordinate.Left, 270 },
         };
 
-        private readonly int r_rows = 32, r_cols = 32;
+        private readonly int r_rows = 16, r_cols = 16;
         private readonly Image[,] r_gridImages;
 
         private GameState _gameState;
@@ -47,7 +47,10 @@ namespace Snake
         {
             while (!_gameState.GameOver)
             {
-                await Task.Delay((int)(128f + (32f - 128f) * (_gameState.Score / 64f)));
+                var delay = (int)(128f + (32f - 128f) * (_gameState.Score / 64f));
+                if (delay < 32)
+                    delay = 32;
+                await Task.Delay(delay);
                 _gameState.Move();
                 Draw();
             }

@@ -131,7 +131,7 @@
             for (var r = 0; r < Rows; r++)
                 for (var c = 0; c < Cols; c++)
                     if (Grid[r, c] == GridValue.Empty)
-                        yield return new(r, c);
+                        yield return new(c, r);
         }
 
         private void AddFood()
