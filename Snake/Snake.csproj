@@ -12,7 +12,6 @@
     <None Remove="Assets\Sprites\all_sprites-Body.png" />
     <None Remove="Assets\Sprites\all_sprites-Body_Dead.png" />
     <None Remove="Assets\Sprites\all_sprites-Empty.png" />
-    <None Remove="Assets\Sprites\all_sprites-Food.png" />
     <None Remove="Assets\Sprites\all_sprites-Head.png" />
     <None Remove="Assets\Sprites\all_sprites-Head_Dead.png" />
     <None Remove="Assets\Sprites\all_sprites-Icon.ico" />
@@ -22,7 +21,6 @@
     <Resource Include="Assets\Sprites\all_sprites-Body.png" />
     <Resource Include="Assets\Sprites\all_sprites-Body_Dead.png" />
     <Resource Include="Assets\Sprites\all_sprites-Empty.png" />
-    <Resource Include="Assets\Sprites\all_sprites-Food.png" />
     <Resource Include="Assets\Sprites\all_sprites-Head.png" />
     <Resource Include="Assets\Sprites\all_sprites-Head_Dead.png" />
     <Resource Include="Assets\Sprites\all_sprites-Icon.ico" />

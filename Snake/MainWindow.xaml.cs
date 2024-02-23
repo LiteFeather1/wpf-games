@@ -16,7 +16,7 @@ namespace Snake
         {
             { GridValue.Empty, Images.Empty },
             { GridValue.Snake, Images.Body },
-            { GridValue.Food, Images.Food },
+            { GridValue.Food, Images.Apple },
         };
 
         private readonly Dictionary<GridCoordinate, int> r_directionToRotation = new()
@@ -53,8 +53,8 @@ namespace Snake
                         Source = Images.Empty,
                         RenderTransformOrigin = new(0.5, 0.5),
                     };
-                    r_gridImages[r, c] = image;
                     GameGrid.Children.Add(image);
+                    r_gridImages[r, c] = image;
                 }
 
             _gameState = new(r_rows, r_cols);
