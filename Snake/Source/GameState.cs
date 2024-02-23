@@ -6,14 +6,14 @@
         public int Cols { get; }
         public GridValue[,] Grid { get; }
 
-        public Direction SnakeDirection { get; private set; }
+        public GridCoordinate SnakeDirection { get; private set; }
 
         public int Score { get; private set; }  
         public bool GameOver { get; private set; }
 
-        private readonly LinkedList<Direction> r_directionChangesBuffer = new();
+        private readonly LinkedList<GridCoordinate> r_directionChangesBuffer = new();
 
-        private readonly LinkedList<Position> r_snakePositions = new();
+        private readonly LinkedList<GridCoordinate> r_snakePositions = new();
 
         private readonly Random r_random = new();
 
@@ -23,7 +23,7 @@
             Cols = cols;
             Grid = new GridValue[Rows, Cols];
 
-            SnakeDirection = Direction.Right;
+            SnakeDirection = GridCoordinate.Right;
 
             AddSnake();
 
@@ -36,30 +36,30 @@
             for (var c = 1; c <= 3; c++)
             {
                 Grid[r, c] = GridValue.Snake;
-                r_snakePositions.AddFirst(new Position(r, c));   
+                r_snakePositions.AddFirst(new GridCoordinate(c, r));   
             }
         }
 
-        public Position HeadPosition() =>  r_snakePositions.First.Value;
+        public GridCoordinate HeadPosition() =>  r_snakePositions.First.Value;
 
-        public Position TailPosition() =>  r_snakePositions.Last.Value;
+        public GridCoordinate TailPosition() =>  r_snakePositions.Last.Value;
 
-        public IEnumerable<Position> SnakePositions() => r_snakePositions;
+        public IEnumerable<GridCoordinate> SnakePositions() => r_snakePositions;
 
-        private void AddHead(Position pos)
+        private void AddHead(GridCoordinate pos)
         {
             r_snakePositions.AddFirst(pos);
-            Grid[pos.Row, pos.Col] = GridValue.Snake;
+            Grid[pos.Y, pos.X] = GridValue.Snake;
         }
 
         private void RemoveTail()
         {
             var tail = TailPosition();
-            Grid[tail.Row, tail.Col] = GridValue.Empty;
+            Grid[tail.Y, tail.X] = GridValue.Empty;
             r_snakePositions.RemoveLast();
         }
 
-        private Direction GetLastDirection()
+        private GridCoordinate GetLastDirection()
         {
             if (r_directionChangesBuffer.Count == 0)
                 return SnakeDirection;
@@ -67,7 +67,7 @@
             return r_directionChangesBuffer.Last.Value;
         }
 
-        private bool CanChangeDirection(Direction newDirection)
+        private bool CanChangeDirection(GridCoordinate newDirection)
         {
             if (r_directionChangesBuffer.Count == 2)
                 return false;
@@ -76,17 +76,17 @@
             return newDirection != lastDir && newDirection != lastDir.Opposite();
         }
 
-        public void ChangeDirection(Direction dir)
+        public void ChangeDirection(GridCoordinate dir)
         {
             if (CanChangeDirection(dir))
                 r_directionChangesBuffer.AddLast(dir);
 
         }
 
-        private bool OutsideGrid(Position pos) 
-            => pos.Row < 0 || pos.Row >= Rows || pos.Col < 0 || pos.Col >= Cols;
+        private bool OutsideGrid(GridCoordinate pos) 
+            => pos.Y < 0 || pos.Y >= Rows || pos.X < 0 || pos.X >= Cols;
 
-        private GridValue WillHit(Position newHeadPos)
+        private GridValue WillHit(GridCoordinate newHeadPos)
         {
             if (OutsideGrid(newHeadPos))
                 return GridValue.Outside;
@@ -95,7 +95,7 @@
             if (newHeadPos == TailPosition())
                 return GridValue.Empty;
 
-            return Grid[newHeadPos.Row, newHeadPos.Col];
+            return Grid[newHeadPos.Y, newHeadPos.X];
         }
 
         public void Move()
@@ -126,7 +126,7 @@
             }
         }
 
-        private IEnumerable<Position> EmptyPositions()
+        private IEnumerable<GridCoordinate> EmptyPositions()
         {
             for (var r = 0; r < Rows; r++)
                 for (var c = 0; c < Cols; c++)
@@ -136,12 +136,12 @@
 
         private void AddFood()
         {
-            var emptyPositions = new List<Position>(EmptyPositions());
-            if (emptyPositions.Count == 0)
+            var emptyPositions = EmptyPositions().ToArray();
+            if (emptyPositions.Length == 0)
                 return;
 
-            var pos = emptyPositions[r_random.Next(emptyPositions.Count)];
-            Grid[pos.Row, pos.Col] = GridValue.Food;
+            var pos = emptyPositions[r_random.Next(emptyPositions.Length)];
+            Grid[pos.Y, pos.X] = GridValue.Food;
         }
     }
 }

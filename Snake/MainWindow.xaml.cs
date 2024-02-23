@@ -19,12 +19,12 @@ namespace Snake
             { GridValue.Food, Images.Food },
         };
 
-        private readonly Dictionary<Direction, int> r_directionToRotation = new()
+        private readonly Dictionary<GridCoordinate, int> r_directionToRotation = new()
         {
-            { Direction.Up, 0 },
-            { Direction.Right, 90 },
-            { Direction.Down, 180 },
-            { Direction.Left, 270 },
+            { GridCoordinate.Up, 0 },
+            { GridCoordinate.Right, 90 },
+            { GridCoordinate.Down, 180 },
+            { GridCoordinate.Left, 270 },
         };
 
         private readonly int r_rows = 32, r_cols = 32;
@@ -88,10 +88,10 @@ namespace Snake
 
             _gameState.ChangeDirection(e.Key switch
             {
-                Key.A or Key.Left => Direction.Left,
-                Key.D or Key.Right => Direction.Right,
-                Key.W or Key.Up => Direction.Up,
-                _ or Key.S or Key.Down => Direction.Down
+                Key.A or Key.Left => GridCoordinate.Left,
+                Key.D or Key.Right => GridCoordinate.Right,
+                Key.W or Key.Up => GridCoordinate.Up,
+                _ or Key.S or Key.Down => GridCoordinate.Down
             });
         }
 
@@ -133,7 +133,7 @@ namespace Snake
         private void DrawSnakeHead()
         {
             var snakeHeadPos = _gameState.HeadPosition();
-            var image = r_gridImages[snakeHeadPos.Row, snakeHeadPos.Col];
+            var image = r_gridImages[snakeHeadPos.Y, snakeHeadPos.X];
             image.Source = Images.Head;
 
             var degrees = r_directionToRotation[_gameState.SnakeDirection];
@@ -155,9 +155,9 @@ namespace Snake
             for (var i = 1; i < positions.Length; i++)
                 await PlacePart(positions[i], Images.BodyDead);
 
-            async Task PlacePart(Position pos, BitmapImage source)
+            async Task PlacePart(GridCoordinate pos, BitmapImage source)
             {
-                r_gridImages[pos.Row, pos.Col].Source = source;
+                r_gridImages[pos.Y, pos.X].Source = source;
                 await Task.Delay(50);
             }
         }
