@@ -86,7 +86,7 @@ namespace Snake
                 // Game Loop
                 while (!_gameState.GameOver)
                 {
-                    var delay = (int)(128f + (32f - 128f) * (_gameState.Score / 64f));
+                    var delay = (int)(128f + (32f - 128f) * (_gameState.Score / 1024f));
                     if (delay < 32)
                         delay = 32;
                     await Task.Delay(delay);
