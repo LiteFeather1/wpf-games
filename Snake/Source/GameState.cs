@@ -2,6 +2,8 @@
 {
     public class GameState
     {
+        private const int MAX_DIRECTION_CHANGE_BUFFER = 2;
+
         public int Rows { get; }
         public int Cols { get; }
         public GridValue[,] Grid { get; }
@@ -11,7 +13,7 @@
         public int Score { get; private set; }  
         public bool GameOver { get; private set; }
 
-        private readonly LinkedList<GridCoordinate> r_directionChangesBuffer = new();
+        private readonly List<GridCoordinate> r_directionChangesBuffer = [];
 
         private readonly LinkedList<GridCoordinate> r_snakePositions = new();
 
@@ -64,12 +66,12 @@
             if (r_directionChangesBuffer.Count == 0)
                 return SnakeDirection;
 
-            return r_directionChangesBuffer.Last.Value;
+            return r_directionChangesBuffer[^1];
         }
 
         private bool CanChangeDirection(GridCoordinate newDirection)
         {
-            if (r_directionChangesBuffer.Count == 2)
+            if (r_directionChangesBuffer.Count == MAX_DIRECTION_CHANGE_BUFFER)
                 return false;
 
             var lastDir = GetLastDirection();
@@ -79,7 +81,7 @@
         public void ChangeDirection(GridCoordinate dir)
         {
             if (CanChangeDirection(dir))
-                r_directionChangesBuffer.AddLast(dir);
+                r_directionChangesBuffer.Add(dir);
 
         }
 
@@ -102,8 +104,8 @@
         {
             if (r_directionChangesBuffer.Count > 0)
             {
-                SnakeDirection = r_directionChangesBuffer.First.Value;
-                r_directionChangesBuffer.RemoveFirst();
+                SnakeDirection = r_directionChangesBuffer[0];
+                r_directionChangesBuffer.RemoveAt(0);
             }
 
             var newHeadPos = HeadPosition().Translate(SnakeDirection);
@@ -126,14 +128,6 @@
             }
         }
 
-        private IEnumerable<GridCoordinate> EmptyPositions()
-        {
-            for (var r = 0; r < Rows; r++)
-                for (var c = 0; c < Cols; c++)
-                    if (Grid[r, c] == GridValue.Empty)
-                        yield return new(c, r);
-        }
-
         private void AddFood()
         {
             var emptyPositions = EmptyPositions().ToArray();
@@ -142,6 +136,14 @@
 
             var pos = emptyPositions[r_random.Next(emptyPositions.Length)];
             Grid[pos.Y, pos.X] = GridValue.Food;
+
+            IEnumerable<GridCoordinate> EmptyPositions()
+            {
+                for (var r = 0; r < Rows; r++)
+                    for (var c = 0; c < Cols; c++)
+                        if (Grid[r, c] == GridValue.Empty)
+                            yield return new(c, r);
+            }
         }
     }
 }
