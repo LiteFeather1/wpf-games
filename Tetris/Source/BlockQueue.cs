@@ -1,18 +1,16 @@
-﻿using Tetris.Source.Blocks;
-
-namespace Tetris.Source
+﻿namespace Tetris.Source
 {
     public class BlockQueue
     {
         private readonly Block[] r_blocks =
         [
-            new IBlock(),
-            new JBlock(),
-            new LBlock(),
-            new OBlock(),
-            new SBlock(),
-            new TBlock(),
-            new ZBlock()
+            Block.IBlock,
+            Block.JBlock,
+            Block.LBlock,
+            Block.OBlock,
+            Block.SBlock,
+            Block.TBlock,
+            Block.ZBlock
         ];
 
         private readonly Random r_random = new();
