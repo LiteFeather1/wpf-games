@@ -8,7 +8,11 @@ namespace Tetris.Source
         public int Rows { get; } = rows;
         public int Cols { get; } = cols;
 
-        public int this[int r, int c] => r_grid[r, c];
+        public int this[int r, int c]
+        {
+            get => r_grid[r, c];
+            set => r_grid[r, c] = value;
+        }
 
         public bool IsInside(int r, int c)
             => r >= 0 && r < Rows && c >= 0 && c < Cols;
