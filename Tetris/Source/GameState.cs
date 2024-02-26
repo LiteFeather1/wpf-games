@@ -2,7 +2,7 @@
 {
     public class GameState
     {
-        private Block _currentBlock;
+        private readonly int[,] r_gameGrid;
 
         private readonly Block[] r_blocks =
         [
@@ -17,6 +17,10 @@
 
         private readonly Random r_random = new();
 
+        private readonly int r_rows;
+        private readonly int r_cols;
+
+        private Block _currentBlock;
         // TODO maybe preview next 3 block instead of just 1
         private Block _nextBlock;
 
@@ -30,14 +34,16 @@
             }
         }
 
-        public GameGrid GameGrid { get; }
         public bool GameOver { get; private set; }
 
-        public GameState() 
+        public GameState(int rows, int cols) 
         {
+            r_gameGrid = new int[rows, cols];
+            r_rows = rows;
+            r_cols = cols;
+
             _nextBlock = GetRandomBlock();
 
-            GameGrid = new(22, 10);
             CurrentBlock = GetAndUpdateNextBlock();
         }
 
@@ -83,15 +89,51 @@
 
                 // Place blocks
                 foreach (var p in CurrentBlock.TilePosition())
-                    GameGrid[p.Row, p.Col] = CurrentBlock.ID;
+                    r_gameGrid[p.Row, p.Col] = CurrentBlock.ID;
 
-                GameGrid.ClearFullRows();
+                // Clear Full Rows
+                var cleared = 0;
+                for (var r = r_rows -1; r > 0; r--)
+                {
+                    var isRowFull = true;
+                    for (var c = 0; c < r_cols; c++)
+                        if (r_gameGrid[r, c] == 0)
+                        {
+                            isRowFull = false;
+                            break;
+                        }
+
+                    if (isRowFull)
+                    {
+                        // Clear Row
+                        for (var c = 0; c < r_cols; c++)
+                            r_gameGrid[r, c] = 0;
+
+                        cleared++;
+                    }
+                    else if (cleared > 0)
+                        // Move Row Down
+                        for (var c = 0; c < r_cols; c++)
+                        {
+                            r_gameGrid[r + cleared, c] = r_gameGrid[r, c];
+                            r_gameGrid[r, c] = 0;
+                        }
+                }
 
                 // Is Game Over
-                if (!(GameGrid.IsRowEmpty(0) && GameGrid.IsRowEmpty(0)))
+                if (!(IsRowEmpty(0) && IsRowEmpty(1)))
                     GameOver = true;
                 else
                     CurrentBlock = GetAndUpdateNextBlock();
+            }
+
+            bool IsRowEmpty(int row)
+            {
+                for (var c = 0; c < r_cols; c++)
+                    if (r_gameGrid[row, c] != 0)
+                        return false;
+
+                return true;
             }
         }
 
@@ -110,8 +152,12 @@
         private bool BlockFits()
         {
             foreach (var p in CurrentBlock.TilePosition())
-                if (!GameGrid.IsEmpty(p.Row, p.Col))
+            {
+                // Check is grid cord is empty
+                if ((p.Row >= 0 && p.Row < r_rows && p.Col >= 0 && p.Col < r_cols) // Is Inside
+                    && r_gameGrid[p.Row, p.Col] == 0) // Is Empty
                     return false;
+            }
 
             return true;
         }
