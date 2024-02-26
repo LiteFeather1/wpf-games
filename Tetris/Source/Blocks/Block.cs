@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-
-namespace Tetris.Source
+﻿
+namespace Tetris.Source.Blocks
 {
     public abstract class Block
     {

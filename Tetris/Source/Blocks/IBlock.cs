@@ -1,5 +1,4 @@
-﻿
-namespace Tetris.Source
+﻿namespace Tetris.Source.Blocks
 {
     public class IBlock : Block
     {
