@@ -8,4 +8,48 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Assets\Background.png" />
+    <None Remove="Assets\C_Tile.png" />
+    <None Remove="Assets\Empty-Block.png" />
+    <None Remove="Assets\Empty_Tile.png" />
+    <None Remove="Assets\I-Block.png" />
+    <None Remove="Assets\Icon.ico" />
+    <None Remove="Assets\I_Tile.png" />
+    <None Remove="Assets\J-Block.png" />
+    <None Remove="Assets\J_Tile.png" />
+    <None Remove="Assets\L-Block.png" />
+    <None Remove="Assets\L_Tile.png" />
+    <None Remove="Assets\O-Block.png" />
+    <None Remove="Assets\O_Tile.png" />
+    <None Remove="Assets\S-Block.png" />
+    <None Remove="Assets\S_Tile.png" />
+    <None Remove="Assets\T-Block.png" />
+    <None Remove="Assets\T_Tile.png" />
+    <None Remove="Assets\Z-Block.png" />
+    <None Remove="Assets\Z_Tile.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Background.png" />
+    <Resource Include="Assets\C_Tile.png" />
+    <Resource Include="Assets\Empty-Block.png" />
+    <Resource Include="Assets\Empty_Tile.png" />
+    <Resource Include="Assets\I-Block.png" />
+    <Resource Include="Assets\Icon.ico" />
+    <Resource Include="Assets\I_Tile.png" />
+    <Resource Include="Assets\J-Block.png" />
+    <Resource Include="Assets\J_Tile.png" />
+    <Resource Include="Assets\L-Block.png" />
+    <Resource Include="Assets\L_Tile.png" />
+    <Resource Include="Assets\O-Block.png" />
+    <Resource Include="Assets\O_Tile.png" />
+    <Resource Include="Assets\S-Block.png" />
+    <Resource Include="Assets\S_Tile.png" />
+    <Resource Include="Assets\T-Block.png" />
+    <Resource Include="Assets\T_Tile.png" />
+    <Resource Include="Assets\Z-Block.png" />
+    <Resource Include="Assets\Z_Tile.png" />
+  </ItemGroup>
+
 </Project>
