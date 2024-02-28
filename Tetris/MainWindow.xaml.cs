@@ -73,21 +73,15 @@ namespace Tetris
 
         private async void GameCanvas_Loaded(object sender, RoutedEventArgs e)
         {
-            Draw();
-
-            // Game Loop
-            while (!_gameState.GameOver)
-            {
-                // TODO await lerp according to score
-                await Task.Delay(500);
-                _gameState.MoveBlockDown();
-                Draw();
-            }
+            await GameLoop();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Playagain_Click(object sender, RoutedEventArgs e)
         {
+            _gameState = new(ROWS, COLS);
+            GameOverMenu.Visibility = Visibility.Hidden;
 
+            await GameLoop();
         }
 
         private void Draw()
@@ -100,6 +94,21 @@ namespace Tetris
             // Draw Block
             foreach (var p in _gameState.CurrentBlock.TilePositions())
                 r_imageControls[p.Row, p.Col].Source = Images.TileImages[_gameState.CurrentBlock.ID];
+        }
+
+        private async Task GameLoop()
+        {
+            Draw();
+
+            while (!_gameState.GameOver)
+            {
+                // TODO await lerp according to score
+                await Task.Delay(500);
+                _gameState.MoveBlockDown();
+                Draw();
+            }
+
+            GameOverMenu.Visibility = Visibility.Visible;
         }
     }
 }
