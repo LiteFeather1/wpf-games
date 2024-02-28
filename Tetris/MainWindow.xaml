@@ -54,11 +54,10 @@
                    VerticalAlignment="Bottom"
                    Margin="0, 0, 32, 48"/>
 
-        <TextBlock x:Name="Combo"
+        <TextBlock x:Name="ComboText"
                    Grid.Row="1"
                    Grid.Column="2"
-                   Visibility="Hidden"
-                   Text="Combo x1"
+                   Text="0"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Bottom"
                    Margin="32, 0, 0, 48"/>

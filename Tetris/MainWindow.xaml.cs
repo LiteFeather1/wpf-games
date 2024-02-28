@@ -101,6 +101,8 @@ namespace Tetris
             ScoreText.Text = $"Score: {_gameState.Score}";
 
             LevelText.Text = $"Level: {_gameState.Level}";
+
+            ComboText.Text = _gameState.ComboChainCount > 1 ? $"Combo x{_gameState.ComboChainCount}" : "";
         }
 
         private async Task GameLoop()
