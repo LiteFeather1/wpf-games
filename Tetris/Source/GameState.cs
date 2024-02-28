@@ -33,6 +33,14 @@
             {
                 _currentBlock = value;
                 _currentBlock.Reset();
+
+                for (var i = 0; i < 2; i++)
+                {
+                    _currentBlock.Move(1, 0);
+
+                    if (!BlockFits())
+                        _currentBlock.Move(-1, 0);
+                }    
             }
         }
 
