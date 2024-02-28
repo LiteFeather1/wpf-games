@@ -26,23 +26,7 @@
 
         public int[,] GameGrid => r_gameGrid;
 
-        public Block CurrentBlock
-        {
-            get => _currentBlock;
-            private set
-            {
-                _currentBlock = value;
-                _currentBlock.Reset();
-
-                for (var i = 0; i < 2; i++)
-                {
-                    _currentBlock.Move(1, 0);
-
-                    if (!BlockFits())
-                        _currentBlock.Move(-1, 0);
-                }    
-            }
-        }
+        public Block CurrentBlock => _currentBlock;
 
         public bool GameOver { get; private set; }
 
@@ -52,9 +36,9 @@
             r_rows = rows;
             r_cols = cols;
 
-            _nextBlock = GetRandomBlock();
+            _nextBlock = r_blocks[r_random.Next(r_blocks.Length)];
 
-            CurrentBlock = GetAndUpdateNextBlock();
+            UpdateNextAndSetCurrentBlock();
         }
 
         public void RotateBlockClockWise()
@@ -134,7 +118,7 @@
                 if (!(IsRowEmpty(0) && IsRowEmpty(1)))
                     GameOver = true;
                 else
-                    CurrentBlock = GetAndUpdateNextBlock();
+                    UpdateNextAndSetCurrentBlock();
             }
 
             bool IsRowEmpty(int row)
@@ -147,16 +131,25 @@
             }
         }
 
-        private Block GetRandomBlock() => r_blocks[r_random.Next(r_blocks.Length)];
-
-        private Block GetAndUpdateNextBlock()
+        private void UpdateNextAndSetCurrentBlock()
         {
+            // Get and next update block
             var block = _nextBlock;
             do
-                _nextBlock = GetRandomBlock();
+                _nextBlock = r_blocks[r_random.Next(r_blocks.Length)];
             while (block.ID == _nextBlock.ID);
 
-            return block;
+            // Set block
+            _currentBlock = block;
+            _currentBlock.Reset();
+
+            for (var i = 0; i < 2; i++)
+            {
+                _currentBlock.Move(1, 0);
+
+                if (!BlockFits())
+                    _currentBlock.Move(-1, 0);
+            }
         }
 
         private bool BlockFits()
