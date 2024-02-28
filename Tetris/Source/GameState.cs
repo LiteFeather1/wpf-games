@@ -2,22 +2,49 @@
 {
     public class GameState
     {
-        private const int MAX_LEVEL = 15;
+        private const int LINES_CLEARED_PER_LEVEL = 10;
 
         #region Scoring
         private const int POINT_SOFT_DROP = 1;
         private const int POINTS_HARD_DROP = 2;
         private const int POINTS_COMBO = 50;
-        // TODO multiple with level
-        private static readonly Dictionary<int, int> sr_linesClearedToPoints = new()
-        {
-            {1, 100},
-            {2, 300},
-            {3, 500},
-            {4, 800}
-        };
-
+        private static readonly int[] sr_linesClearedToPoints =
+        [
+            100,
+            300,
+            500,
+            800
+        ];
         #endregion
+
+        //
+        /// <summary>
+        /// Speed curve in G
+        /// In Which 1G is one block per frame down
+        /// </summary>
+        // Read More here: https://tetris.wiki/Marathon
+        private static readonly float[] sr_leveToSpeedCurve =
+        [
+            0.01667f,
+            0.021017f,
+            0.026977f,
+            0.035256f,
+            0.04693f,
+            0.06361f,
+            0.0879f,
+            0.1236f,
+            0.1775f,
+            0.2598f,
+            0.388f,
+            0.59f,
+            0.92f,
+            1.46f,
+            2.36f,
+            //3.91f,
+            //6.61f,
+            //11.43f,
+            //20f
+        ];
 
         private readonly Block[] r_blocks =
         [
@@ -48,7 +75,7 @@
 
         public int[,] GameGrid => r_gameGrid;
 
-        public int Level => 1 + (_linesCleared / 10);
+        public int Level => 1 + (_linesCleared / LINES_CLEARED_PER_LEVEL);
 
         public GameState(int rows, int cols) 
         {
@@ -134,14 +161,14 @@
                         }
                 }
 
-                if (_linesCleared < MAX_LEVEL * 10)
+                if (_linesCleared < sr_leveToSpeedCurve.Length * LINES_CLEARED_PER_LEVEL)
                     _linesCleared += cleared;
 
                 if (cleared > 0)
                 {
                     var level = Level;
                     Score += ComboChainCount++ * POINTS_COMBO * level;
-                    Score += sr_linesClearedToPoints[cleared] * level;
+                    Score += sr_linesClearedToPoints[cleared - 1] * level;
                 }
                 else
                     ComboChainCount = 0;

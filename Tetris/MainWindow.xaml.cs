@@ -112,7 +112,7 @@ namespace Tetris
             while (!_gameState.GameOver)
             {
                 // TODO await lerp according to score
-                await Task.Delay(500);
+                await Task.Delay(1000);
                 _gameState.MoveBlockDown();
                 Draw();
             }
