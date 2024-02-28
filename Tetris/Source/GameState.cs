@@ -3,8 +3,15 @@
     public class GameState
     {
         #region Scoring
-        private const int POINT_MOVE_DOWN = 1;
-        private const int POINTS_CLEARED_ROW = 100;
+        private const int POINT_SOFT_DROP = 1;
+        private static readonly Dictionary<int, int> sr_linesClearedToPoints = new()
+        {
+            {1, 100},
+            {2, 300},
+            {1, 500},
+            {1, 800}
+        };
+
         #endregion
 
         private readonly int[,] r_gameGrid;
@@ -121,7 +128,7 @@
                         }
                 }
 
-                Score += cleared * POINTS_CLEARED_ROW;
+                Score += sr_linesClearedToPoints[cleared];
 
                 // Is Game Over
                 if (!(IsRowEmpty(0) && IsRowEmpty(1)))
@@ -143,7 +150,7 @@
         public void MoveBlockDownInput()
         {
             MoveBlockDown();
-            Score += POINT_MOVE_DOWN;
+            Score += POINT_SOFT_DROP;
         }
 
         private void UpdateNextAndSetCurrentBlock()
