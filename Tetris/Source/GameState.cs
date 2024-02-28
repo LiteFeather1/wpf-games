@@ -48,7 +48,7 @@
 
         public int[,] GameGrid => r_gameGrid;
 
-        public int Level => _linesCleared / 10;
+        public int Level => 1 + (_linesCleared / 10);
 
         public GameState(int rows, int cols) 
         {

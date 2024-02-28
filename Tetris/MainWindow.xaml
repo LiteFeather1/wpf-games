@@ -49,16 +49,16 @@
         <TextBlock x:Name="LevelText"
                    Grid.Row="1"
                    Grid.Column="0"
-                   Text="Speed 0"
+                   Text="Speed 1"
                    HorizontalAlignment="Right"
                    VerticalAlignment="Bottom"
                    Margin="0, 0, 32, 48"/>
 
         <TextBlock x:Name="Combo"
-                   Visibility="Hidden"
                    Grid.Row="1"
                    Grid.Column="2"
-                   Text="Combo"
+                   Visibility="Hidden"
+                   Text="Combo x1"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Bottom"
                    Margin="32, 0, 0, 48"/>

@@ -99,6 +99,8 @@ namespace Tetris
             NextBlockImage.Source = Images.BlockPreviewImages[_gameState.NextBlock.ID];
 
             ScoreText.Text = $"Score: {_gameState.Score}";
+
+            LevelText.Text = $"Level: {_gameState.Level}";
         }
 
         private async Task GameLoop()
