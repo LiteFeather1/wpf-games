@@ -45,7 +45,24 @@
                    Text="Score: "
                    Margin="0, 10"
                    TextAlignment="Center"/>
+        
+        <TextBlock x:Name="LevelText"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   Text="Speed 0"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Bottom"
+                   Margin="0, 0, 32, 48"/>
 
+        <TextBlock x:Name="Combo"
+                   Visibility="Hidden"
+                   Grid.Row="1"
+                   Grid.Column="2"
+                   Text="Combo"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Bottom"
+                   Margin="32, 0, 0, 48"/>
+        
         <StackPanel Grid.Row="1"
                     Grid.Column="0"
                     VerticalAlignment="Center"
