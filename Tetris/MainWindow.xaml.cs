@@ -1,9 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Input;
 using Tetris.Source;
-using Block = Tetris.Source.Block;
 
 namespace Tetris
 {
@@ -57,7 +55,6 @@ namespace Tetris
                 r_imageControls[p.Row, p.Col].Source = Images.TileImages[_gameState.CurrentBlock.ID];
         }
 
-
         private void Draw()
         {
             DrawGrid();
@@ -66,7 +63,31 @@ namespace Tetris
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
+            if (_gameState.GameOver)
+                return;
 
+            switch (e.Key)
+            {
+                case Key.Left or Key.A:
+                    _gameState.MoveBlockLeft();
+                    break;
+                case Key.Right or Key.D:
+                    _gameState.MoveBlockRight();
+                    break;
+                case Key.Down or Key.S:
+                    _gameState.MoveBlockDown();
+                    break;
+                case Key.Up or Key.W or Key.E:
+                    _gameState.RotateBlockClockWise();
+                    break;
+                case Key.Z or Key.Q:
+                    _gameState.RotateBlockCounterClockWise();
+                    break;
+                default:
+                    return;
+            }
+
+            Draw();
         }
 
         private void GameCanvas_Loaded(object sender, RoutedEventArgs e)

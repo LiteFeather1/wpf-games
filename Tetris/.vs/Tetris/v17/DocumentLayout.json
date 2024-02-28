@@ -3,24 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Tetris\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{334128FC-D5A1-4167-9F65-66B60BF42ADB}|Tetris.csproj|c:\\users\\vange\\onedrive\\documents\\github\\wpf-games\\wpf-games\\tetris\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{334128FC-D5A1-4167-9F65-66B60BF42ADB}|Tetris.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{334128FC-D5A1-4167-9F65-66B60BF42ADB}|Tetris.csproj|c:\\users\\vange\\onedrive\\documents\\github\\wpf-games\\wpf-games\\tetris\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{334128FC-D5A1-4167-9F65-66B60BF42ADB}|Tetris.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{334128FC-D5A1-4167-9F65-66B60BF42ADB}|Tetris.csproj|c:\\users\\vange\\onedrive\\documents\\github\\wpf-games\\wpf-games\\tetris\\source\\block.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{334128FC-D5A1-4167-9F65-66B60BF42ADB}|Tetris.csproj|solutionrelative:source\\block.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{334128FC-D5A1-4167-9F65-66B60BF42ADB}|Tetris.csproj|c:\\users\\vange\\onedrive\\documents\\github\\wpf-games\\wpf-games\\tetris\\source\\gamestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{334128FC-D5A1-4167-9F65-66B60BF42ADB}|Tetris.csproj|solutionrelative:source\\gamestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{334128FC-D5A1-4167-9F65-66B60BF42ADB}|Tetris.csproj|c:\\users\\vange\\onedrive\\documents\\github\\wpf-games\\wpf-games\\tetris\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{334128FC-D5A1-4167-9F65-66B60BF42ADB}|Tetris.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{334128FC-D5A1-4167-9F65-66B60BF42ADB}|Tetris.csproj|c:\\users\\vange\\onedrive\\documents\\github\\wpf-games\\wpf-games\\tetris\\source\\position.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{334128FC-D5A1-4167-9F65-66B60BF42ADB}|Tetris.csproj|solutionrelative:source\\position.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{334128FC-D5A1-4167-9F65-66B60BF42ADB}|Tetris.csproj|c:\\users\\vange\\onedrive\\documents\\github\\wpf-games\\wpf-games\\tetris\\source\\block.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{334128FC-D5A1-4167-9F65-66B60BF42ADB}|Tetris.csproj|solutionrelative:source\\block.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{334128FC-D5A1-4167-9F65-66B60BF42ADB}|Tetris.csproj|c:\\users\\vange\\onedrive\\documents\\github\\wpf-games\\wpf-games\\tetris\\source\\images.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{334128FC-D5A1-4167-9F65-66B60BF42ADB}|Tetris.csproj|solutionrelative:source\\images.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{334128FC-D5A1-4167-9F65-66B60BF42ADB}|Tetris.csproj|c:\\users\\vange\\onedrive\\documents\\github\\wpf-games\\wpf-games\\tetris\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{334128FC-D5A1-4167-9F65-66B60BF42ADB}|Tetris.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,6 +46,29 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Images.cs",
+              "DocumentMoniker": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Tetris\\Source\\Images.cs",
+              "RelativeDocumentMoniker": "Source\\Images.cs",
+              "ToolTip": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Tetris\\Source\\Images.cs",
+              "RelativeToolTip": "Source\\Images.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAArwBEAAABCAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-28T11:27:06.617Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Tetris\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "MainWindow.xaml",
+              "ToolTip": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Tetris\\MainWindow.xaml",
+              "RelativeToolTip": "MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-02-28T11:19:13.234Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
               "Title": "Position.cs",
               "DocumentMoniker": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Tetris\\Source\\Position.cs",
@@ -54,50 +81,39 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "Block.cs",
               "DocumentMoniker": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Tetris\\Source\\Block.cs",
               "RelativeDocumentMoniker": "Source\\Block.cs",
               "ToolTip": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Tetris\\Source\\Block.cs",
               "RelativeToolTip": "Source\\Block.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAFEAAABPAAAA",
+              "ViewState": "AQIAADgAAAAAAAAAAAAQwEsAAAA+AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-26T17:09:11.122Z"
+              "WhenOpened": "2024-02-26T17:09:11.122Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "GameState.cs",
               "DocumentMoniker": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Tetris\\Source\\GameState.cs",
               "RelativeDocumentMoniker": "Source\\GameState.cs",
               "ToolTip": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Tetris\\Source\\GameState.cs",
               "RelativeToolTip": "Source\\GameState.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACUAAAAPAAAA",
+              "ViewState": "AQIAAHMAAAAAAAAAAAAYwJQAAAAwAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-02-26T13:33:01.07Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Tetris\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "MainWindow.xaml",
-              "ToolTip": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Tetris\\MainWindow.xaml",
-              "RelativeToolTip": "MainWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-02-26T11:26:49.293Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Tetris\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\vange\\OneDrive\\Documents\\GitHub\\wpf-games\\wpf-games\\Tetris\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAsAAAA",
+              "ViewState": "AQIAADMAAAAAAAAAAAAowEIAAAAXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-02-26T11:26:47.45Z",
               "EditorCaption": ""

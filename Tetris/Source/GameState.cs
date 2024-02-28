@@ -37,7 +37,7 @@
         }
 
         public bool GameOver { get; private set; }
-        //22 10
+
         public GameState(int rows, int cols) 
         {
             r_gameGrid = new int[rows, cols];
@@ -156,9 +156,11 @@
             foreach (var p in CurrentBlock.TilePositions())
             {
                 // Check is grid cord is empty
-                if ((p.Row >= 0 && p.Row < r_rows && p.Col >= 0 && p.Col < r_cols) // Is Inside
+                if (p.Row >= 0 && p.Row < r_rows && p.Col >= 0 && p.Col < r_cols // Is Inside
                     && r_gameGrid[p.Row, p.Col] == 0) // Is Empty
-                    return false;
+                    continue;
+
+                return false;
             }
 
             return true;
