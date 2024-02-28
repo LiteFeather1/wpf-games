@@ -42,25 +42,6 @@ namespace Tetris
                 }
         }
 
-        private void DrawGrid()
-        {
-            for (var r = 0; r < ROWS; r++)
-                for(var c = 0;c < COLS; c++)
-                    r_imageControls[r, c].Source = Images.TileImages[_gameState.GameGrid[r, c]];
-        }
-
-        private void DrawBlock()
-        {
-            foreach (var p in _gameState.CurrentBlock.TilePositions())
-                r_imageControls[p.Row, p.Col].Source = Images.TileImages[_gameState.CurrentBlock.ID];
-        }
-
-        private void Draw()
-        {
-            DrawGrid();
-            DrawBlock();
-        }
-
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (_gameState.GameOver)
@@ -90,14 +71,35 @@ namespace Tetris
             Draw();
         }
 
-        private void GameCanvas_Loaded(object sender, RoutedEventArgs e)
+        private async void GameCanvas_Loaded(object sender, RoutedEventArgs e)
         {
             Draw();
+
+            // Game Loop
+            while (!_gameState.GameOver)
+            {
+                // TODO await lerp according to score
+                await Task.Delay(500);
+                _gameState.MoveBlockDown();
+                Draw();
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Draw()
+        {
+            // Draw Grid
+            for (var r = 0; r < ROWS; r++)
+                for (var c = 0; c < COLS; c++)
+                    r_imageControls[r, c].Source = Images.TileImages[_gameState.GameGrid[r, c]];
+
+            // Draw Block
+            foreach (var p in _gameState.CurrentBlock.TilePositions())
+                r_imageControls[p.Row, p.Col].Source = Images.TileImages[_gameState.CurrentBlock.ID];
         }
     }
 }
