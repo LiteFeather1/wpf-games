@@ -79,7 +79,7 @@
         public IEnumerable<Position> TilePositions()
         {
             foreach (var tile in r_tiles[_rotationState])
-                yield return new(tile.Row + r_offset.Row, tile.Col + tile.Col);
+                yield return new(tile.Row + r_offset.Row, tile.Col + r_offset.Col);
         }
 
         public void RotateClockWise()
