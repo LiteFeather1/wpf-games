@@ -139,8 +139,9 @@
 
                 if (cleared > 0)
                 {
-                    Score += ComboChainCount++ * POINTS_COMBO;
-                    Score += sr_linesClearedToPoints[cleared];
+                    var level = Level;
+                    Score += ComboChainCount++ * POINTS_COMBO * level;
+                    Score += sr_linesClearedToPoints[cleared] * level;
                 }
                 else
                     ComboChainCount = 0;
