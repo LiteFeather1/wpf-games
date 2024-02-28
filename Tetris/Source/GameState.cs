@@ -35,7 +35,7 @@
         }
 
         public bool GameOver { get; private set; }
-
+        //22 10
         public GameState(int rows, int cols) 
         {
             r_gameGrid = new int[rows, cols];
