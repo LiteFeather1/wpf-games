@@ -51,7 +51,11 @@ namespace Tetris
                     r_imageControls[r, c].Source = Images.TileImages[_gameState.GameGrid[r, c]];
         }
 
-
+        private void DrawBlock()
+        {
+            foreach (var p in _gameState.CurrentBlock.TilePositions())
+                r_imageControls[p.Row, p.Col].Source = Images.TileImages[_gameState.CurrentBlock.ID];
+        }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
