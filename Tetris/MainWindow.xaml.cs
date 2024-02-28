@@ -100,7 +100,7 @@ namespace Tetris
 
             ScoreText.Text = $"Score: {_gameState.Score}";
 
-            LevelText.Text = $"Level: {_gameState.Level}";
+            LevelText.Text = $"Level: {_gameState.Level + 1}";
 
             ComboText.Text = _gameState.ComboChainCount > 1 ? $"Combo x{_gameState.ComboChainCount}" : "";
         }
@@ -111,8 +111,8 @@ namespace Tetris
 
             while (!_gameState.GameOver)
             {
-                // TODO await lerp according to score
-                await Task.Delay(1000);
+                // 16.66 = 1000(1 sec) / 60 FPS
+                await Task.Delay((int)(16.66f / GameState.SpeedCurve[_gameState.Level]));
                 _gameState.MoveBlockDown();
                 Draw();
             }

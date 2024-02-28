@@ -23,7 +23,7 @@
         /// In Which 1G is one block per frame down
         /// </summary>
         // Read More here: https://tetris.wiki/Marathon
-        private static readonly float[] sr_leveToSpeedCurve =
+        private static readonly float[] sr_levelToSpeedCurve =
         [
             0.01667f,
             0.021017f,
@@ -73,9 +73,11 @@
         public int ComboChainCount { get; private set; }
         public bool GameOver { get; private set; }
 
+        public static float[] SpeedCurve => sr_levelToSpeedCurve;
+
         public int[,] GameGrid => r_gameGrid;
 
-        public int Level => 1 + (_linesCleared / LINES_CLEARED_PER_LEVEL);
+        public int Level => _linesCleared / LINES_CLEARED_PER_LEVEL;
 
         public GameState(int rows, int cols) 
         {
@@ -161,7 +163,7 @@
                         }
                 }
 
-                if (_linesCleared < sr_leveToSpeedCurve.Length * LINES_CLEARED_PER_LEVEL)
+                if (_linesCleared < (sr_levelToSpeedCurve.Length - 1) * LINES_CLEARED_PER_LEVEL)
                     _linesCleared += cleared;
 
                 if (cleared > 0)
