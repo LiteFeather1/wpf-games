@@ -56,7 +56,7 @@ namespace Tetris
                     _gameState.MoveBlockRight();
                     break;
                 case Key.Down or Key.S:
-                    _gameState.MoveBlockDown();
+                    _gameState.MoveBlockDownInput();
                     break;
                 case Key.Up or Key.W or Key.E:
                     _gameState.RotateBlockClockWise();
@@ -97,6 +97,8 @@ namespace Tetris
 
             // Draw next block preview
             NextBlockImage.Source = Images.BlockPreviewImages[_gameState.NextBlock.ID];
+
+            ScoreText.Text = $"Score: {_gameState.Score}";
         }
 
         private async Task GameLoop()
@@ -112,6 +114,7 @@ namespace Tetris
             }
 
             GameOverMenu.Visibility = Visibility.Visible;
+            FinalScore.Text = $"Score: {_gameState.Score}";
         }
     }
 }

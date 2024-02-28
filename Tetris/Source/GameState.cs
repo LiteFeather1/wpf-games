@@ -2,6 +2,11 @@
 {
     public class GameState
     {
+        #region Scoring
+        private const int POINT_MOVE_DOWN = 1;
+        private const int POINTS_CLEARED_ROW = 100;
+        #endregion
+
         private readonly int[,] r_gameGrid;
 
         private readonly Block[] r_blocks =
@@ -29,6 +34,7 @@
         public Block CurrentBlock => _currentBlock;
         public Block NextBlock => _nextBlock;
 
+        public int Score { get; private set; }
         public bool GameOver { get; private set; }
 
         public GameState(int rows, int cols) 
@@ -115,6 +121,8 @@
                         }
                 }
 
+                Score += cleared * POINTS_CLEARED_ROW;
+
                 // Is Game Over
                 if (!(IsRowEmpty(0) && IsRowEmpty(1)))
                     GameOver = true;
@@ -130,6 +138,12 @@
 
                 return true;
             }
+        }
+
+        public void MoveBlockDownInput()
+        {
+            MoveBlockDown();
+            Score += POINT_MOVE_DOWN;
         }
 
         private void UpdateNextAndSetCurrentBlock()
