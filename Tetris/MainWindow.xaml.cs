@@ -57,6 +57,13 @@ namespace Tetris
                 r_imageControls[p.Row, p.Col].Source = Images.TileImages[_gameState.CurrentBlock.ID];
         }
 
+
+        private void Draw()
+        {
+            DrawGrid();
+            DrawBlock();
+        }
+
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
 
