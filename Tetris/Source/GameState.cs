@@ -2,9 +2,13 @@
 {
     public class GameState
     {
+        private const int MAX_LEVEL = 15;
+
         #region Scoring
         private const int POINT_SOFT_DROP = 1;
+        private const int POINTS_HARD_DROP = 2;
         private const int POINTS_COMBO = 50;
+        // TODO multiple with level
         private static readonly Dictionary<int, int> sr_linesClearedToPoints = new()
         {
             {1, 100},
@@ -32,7 +36,7 @@
         private readonly int r_rows;
         private readonly int r_cols;
 
-        public int[,] GameGrid => r_gameGrid;
+        private int _linesCleared;
 
         public Block CurrentBlock { get; private set; }
         // TODO maybe preview next 3 block instead of just 1
@@ -41,6 +45,10 @@
         public int Score { get; private set; }
         public int ComboChainCount { get; private set; }
         public bool GameOver { get; private set; }
+
+        public int[,] GameGrid => r_gameGrid;
+
+        public int Level => _linesCleared / 10;
 
         public GameState(int rows, int cols) 
         {
@@ -126,6 +134,9 @@
                         }
                 }
 
+                if (_linesCleared < MAX_LEVEL * 10)
+                    _linesCleared += cleared;
+
                 if (cleared > 0)
                 {
                     Score += ComboChainCount++ * POINTS_COMBO;
@@ -133,7 +144,6 @@
                 }
                 else
                     ComboChainCount = 0;
-
 
                 // Is Game Over
                 if (!(IsRowEmpty(0) && IsRowEmpty(1)))
