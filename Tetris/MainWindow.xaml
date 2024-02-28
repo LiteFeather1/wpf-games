@@ -30,7 +30,7 @@
                  Grid.Column="1"
                  Margin="0, 8, 0, 24">
             <Canvas x:Name="GameCanvas"
-                Background="#101010"
+                Background="#111111"
                 Width="320"
                 Height="640"
                 ClipToBounds="True"
@@ -63,7 +63,7 @@
             <TextBlock Text="Next"
                        TextAlignment="Center"/>
 
-            <Image x:Name="NextBlokcImage"
+            <Image x:Name="NextBlockImage"
                    Margin="20"
                    Width="128"/>
         </StackPanel>

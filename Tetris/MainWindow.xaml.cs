@@ -86,14 +86,17 @@ namespace Tetris
 
         private void Draw()
         {
-            // Draw Grid
+            // Draw grid
             for (var r = 0; r < ROWS; r++)
                 for (var c = 0; c < COLS; c++)
                     r_imageControls[r, c].Source = Images.TileImages[_gameState.GameGrid[r, c]];
 
-            // Draw Block
+            // Draw block
             foreach (var p in _gameState.CurrentBlock.TilePositions())
                 r_imageControls[p.Row, p.Col].Source = Images.TileImages[_gameState.CurrentBlock.ID];
+
+            // Draw next block preview
+            NextBlockImage.Source = Images.BlockPreviewImages[_gameState.NextBlock.ID];
         }
 
         private async Task GameLoop()

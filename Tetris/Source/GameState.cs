@@ -27,6 +27,7 @@
         public int[,] GameGrid => r_gameGrid;
 
         public Block CurrentBlock => _currentBlock;
+        public Block NextBlock => _nextBlock;
 
         public bool GameOver { get; private set; }
 
