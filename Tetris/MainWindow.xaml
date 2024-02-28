@@ -7,8 +7,10 @@
         mc:Ignorable="d"
         Title="Tetris" Height="720" Width="1280"
         MinHeight="360" MinWidth="640"
+        WindowStartupLocation="CenterScreen"
         Foreground="White"
-        FontFamily="Segoe UI Light" FontSize="28"
+        FontSize="28"
+        Icon="Assets/Icon.Ico"
         KeyDown="Window_KeyDown">
     <Grid>
         <Grid.RowDefinitions>
