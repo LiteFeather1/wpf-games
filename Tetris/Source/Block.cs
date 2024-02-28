@@ -76,7 +76,7 @@
         private readonly Position r_offset = new(startOffset.Row, startOffset.Col);
         private int _rotationState;
 
-        public IEnumerable<Position> TilePosition()
+        public IEnumerable<Position> TilePositions()
         {
             foreach (var tile in r_tiles[_rotationState])
                 yield return new(tile.Row + r_offset.Row, tile.Col + tile.Col);

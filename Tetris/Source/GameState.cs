@@ -24,6 +24,8 @@
         // TODO maybe preview next 3 block instead of just 1
         private Block _nextBlock;
 
+        public int[,] GameGrid => r_gameGrid;
+
         public Block CurrentBlock
         {
             get => _currentBlock;
@@ -88,7 +90,7 @@
                 CurrentBlock.Move(-1, 0);
 
                 // Place blocks
-                foreach (var p in CurrentBlock.TilePosition())
+                foreach (var p in CurrentBlock.TilePositions())
                     r_gameGrid[p.Row, p.Col] = CurrentBlock.ID;
 
                 // Clear Full Rows
@@ -151,7 +153,7 @@
 
         private bool BlockFits()
         {
-            foreach (var p in CurrentBlock.TilePosition())
+            foreach (var p in CurrentBlock.TilePositions())
             {
                 // Check is grid cord is empty
                 if ((p.Row >= 0 && p.Row < r_rows && p.Col >= 0 && p.Col < r_cols) // Is Inside

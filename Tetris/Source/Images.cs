@@ -33,7 +33,7 @@ namespace Tetris.Source
             new(new("Assets/Preview_Icons/Z-Block.png", UriKind.Relative))
         ];
 
-        public static BitmapImage[] TileImagers => sr_tileImages;
+        public static BitmapImage[] TileImages => sr_tileImages;
 
         public static BitmapImage[] BlockPreviewImages => sr_BlockPreviewImages;
     }
