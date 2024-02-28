@@ -4,17 +4,16 @@
     {
         #region Scoring
         private const int POINT_SOFT_DROP = 1;
+        private const int POINTS_COMBO = 50;
         private static readonly Dictionary<int, int> sr_linesClearedToPoints = new()
         {
             {1, 100},
             {2, 300},
-            {1, 500},
-            {1, 800}
+            {3, 500},
+            {4, 800}
         };
 
         #endregion
-
-        private readonly int[,] r_gameGrid;
 
         private readonly Block[] r_blocks =
         [
@@ -29,19 +28,18 @@
 
         private readonly Random r_random = new();
 
+        private readonly int[,] r_gameGrid;
         private readonly int r_rows;
         private readonly int r_cols;
 
-        private Block _currentBlock;
-        // TODO maybe preview next 3 block instead of just 1
-        private Block _nextBlock;
-
         public int[,] GameGrid => r_gameGrid;
 
-        public Block CurrentBlock => _currentBlock;
-        public Block NextBlock => _nextBlock;
+        public Block CurrentBlock { get; private set; }
+        // TODO maybe preview next 3 block instead of just 1
+        public Block NextBlock { get; private set; }
 
         public int Score { get; private set; }
+        public int ComboChainCount { get; private set; }
         public bool GameOver { get; private set; }
 
         public GameState(int rows, int cols) 
@@ -50,7 +48,7 @@
             r_rows = rows;
             r_cols = cols;
 
-            _nextBlock = r_blocks[r_random.Next(r_blocks.Length)];
+            NextBlock = r_blocks[r_random.Next(r_blocks.Length)];
 
             UpdateNextAndSetCurrentBlock();
         }
@@ -128,7 +126,14 @@
                         }
                 }
 
-                Score += sr_linesClearedToPoints[cleared];
+                if (cleared > 0)
+                {
+                    Score += ComboChainCount++ * POINTS_COMBO;
+                    Score += sr_linesClearedToPoints[cleared];
+                }
+                else
+                    ComboChainCount = 0;
+
 
                 // Is Game Over
                 if (!(IsRowEmpty(0) && IsRowEmpty(1)))
@@ -156,21 +161,21 @@
         private void UpdateNextAndSetCurrentBlock()
         {
             // Get and next update block
-            var block = _nextBlock;
+            var block = NextBlock;
             do
-                _nextBlock = r_blocks[r_random.Next(r_blocks.Length)];
-            while (block.ID == _nextBlock.ID);
+                NextBlock = r_blocks[r_random.Next(r_blocks.Length)];
+            while (block.ID == NextBlock.ID);
 
             // Set block
-            _currentBlock = block;
-            _currentBlock.Reset();
+            CurrentBlock = block;
+            CurrentBlock.Reset();
 
             for (var i = 0; i < 2; i++)
             {
-                _currentBlock.Move(1, 0);
+                CurrentBlock.Move(1, 0);
 
                 if (!BlockFits())
-                    _currentBlock.Move(-1, 0);
+                    CurrentBlock.Move(-1, 0);
             }
         }
 
