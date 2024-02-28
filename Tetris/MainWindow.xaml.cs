@@ -1,14 +1,9 @@
-﻿using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Tetris.Source;
+using Block = Tetris.Source.Block;
 
 namespace Tetris
 {
@@ -17,19 +12,20 @@ namespace Tetris
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly Image[,] _imageControls;
+        private const int ROWS = 22, COLS = 10;
+
+        private readonly Image[,] r_imageControls;
 
         private GameState _gameState;
 
         public MainWindow()
         {
             InitializeComponent();
-            const int ROWS = 22, COLS = 10;
 
             _gameState = new(ROWS, COLS);
 
             // Setup Game Canvas
-            _imageControls = new Image[ROWS, COLS];
+            r_imageControls = new Image[ROWS, COLS];
             int cellSize = (int)(GameCanvas.Width / COLS); 
             for (var r = 0; r < ROWS; r++)
                 for (var c = 0; c < COLS; c++)
@@ -44,9 +40,18 @@ namespace Tetris
                     Canvas.SetTop(imageControl, (r - 2) * cellSize);
                     Canvas.SetLeft(imageControl, c * cellSize);
                     GameCanvas.Children.Add(imageControl);
-                    _imageControls[r, c] = imageControl;
+                    r_imageControls[r, c] = imageControl;
                 }
         }
+
+        private void DrawGrid()
+        {
+            for (var r = 0; r < ROWS; r++)
+                for(var c = 0;c < COLS; c++)
+                    r_imageControls[r, c].Source = Images.TileImages[_gameState.GameGrid[r, c]];
+        }
+
+
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
@@ -55,7 +60,7 @@ namespace Tetris
 
         private void GameCanvas_Loaded(object sender, RoutedEventArgs e)
         {
-
+            Draw();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
