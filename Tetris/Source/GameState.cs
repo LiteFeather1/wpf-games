@@ -143,11 +143,11 @@
             Score += POINT_SOFT_DROP;
         }
 
-        public void HardDropInput()
+        public int HardDropDistance()
         {
             var hardDropDistance = r_rows;
             foreach (var p in CurrentBlock.TilePositions())
-            {            
+            {
                 // Tile drop distance
                 var drop = 0;
                 while (IsEmptyPosition(p.Row + drop + 1, p.Col))
@@ -156,6 +156,13 @@
                 if (drop < hardDropDistance)
                     hardDropDistance = drop;
             }
+
+            return hardDropDistance;
+        }
+
+        public void HardDropInput()
+        {
+            var hardDropDistance = HardDropDistance();
 
             // Hard drop block
             CurrentBlock.Move(hardDropDistance, 0);
@@ -183,7 +190,7 @@
         }
 
         private bool IsEmptyPosition(int row, int col)
-            => row >= 0 && row < r_rows && col >= 0 && col < r_rows // Is inside
+            => row >= 0 && row < r_rows && col >= 0 && col < r_cols // Is inside
                 && r_gameGrid[row, col] == 0; // Is empty tiles
 
         private bool BlockFits()

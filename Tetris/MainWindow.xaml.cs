@@ -93,11 +93,30 @@ namespace Tetris
             // Draw grid
             for (var r = 0; r < ROWS; r++)
                 for (var c = 0; c < COLS; c++)
-                    r_imageControls[r, c].Source = Images.TileImages[_gameState.GameGrid[r, c]];
+                {
+                    var image = r_imageControls[r, c];
+                    image.Source = Images.TileImages[_gameState.GameGrid[r, c]];
+                    image.Opacity = 1.0;
+                }
 
-            // Draw block
+            var dropDistance = _gameState.HardDropDistance();
             foreach (var p in _gameState.CurrentBlock.TilePositions())
-                r_imageControls[p.Row, p.Col].Source = Images.TileImages[_gameState.CurrentBlock.ID];
+            {
+                var tileImage = Images.TileImages[_gameState.CurrentBlock.ID];
+
+
+                // Draw current block
+                var currentBlockImage = r_imageControls[p.Row, p.Col];
+                currentBlockImage.Opacity = 1.0;
+                currentBlockImage.Source = tileImage;
+                // Draw ghost block
+                var ghostBlockImage = r_imageControls[p.Row + dropDistance, p.Col];
+                ghostBlockImage.Opacity = .25;
+                ghostBlockImage.Source = tileImage;
+
+
+            }
+
 
             // Draw next block preview
             NextBlockImage.Source = Images.BlockPreviewImages[_gameState.NextBlock.ID];
