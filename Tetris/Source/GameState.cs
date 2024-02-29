@@ -93,7 +93,7 @@
             UpdateNextAndSetCurrentBlock();
         }
 
-        public void RotateBlockClockWise()
+        public void RotateBlockClockWiseInput()
         {
             CurrentBlock.RotateClockWise();
 
@@ -101,7 +101,7 @@
                 CurrentBlock.RotateCounterClockWise();
         }
 
-        public void RotateBlockCounterClockWise()
+        public void RotateBlockCounterClockWiseInput()
         {
             CurrentBlock.RotateCounterClockWise();
 
@@ -109,7 +109,7 @@
                 CurrentBlock.RotateClockWise();
         }
 
-        public void MoveBlockLeft()
+        public void MoveBlockLeftInput()
         {
             CurrentBlock.Move(0, -1);
 
@@ -117,7 +117,7 @@
                 CurrentBlock.Move(0, 1);
         }
 
-        public void MoveBlockRight()
+        public void MoveBlockRightInput()
         {
             CurrentBlock.Move(0, 1);
 

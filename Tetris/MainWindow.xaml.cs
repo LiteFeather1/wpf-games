@@ -50,19 +50,19 @@ namespace Tetris
             switch (e.Key)
             {
                 case Key.Left or Key.A:
-                    _gameState.MoveBlockLeft();
+                    _gameState.MoveBlockLeftInput();
                     break;
                 case Key.Right or Key.D:
-                    _gameState.MoveBlockRight();
+                    _gameState.MoveBlockRightInput();
                     break;
                 case Key.Down or Key.S:
                     _gameState.MoveBlockDownInput();
                     break;
                 case Key.Up or Key.W or Key.E:
-                    _gameState.RotateBlockClockWise();
+                    _gameState.RotateBlockClockWiseInput();
                     break;
                 case Key.Z or Key.Q:
-                    _gameState.RotateBlockCounterClockWise();
+                    _gameState.RotateBlockCounterClockWiseInput();
                     break;
                 case Key.C or Key.F:
                     _gameState.HoldBlockInput();
