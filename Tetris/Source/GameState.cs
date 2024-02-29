@@ -68,6 +68,9 @@
         public Block CurrentBlock { get; private set; }
         // TODO maybe preview next 3 block instead of just 1
         public Block NextBlock { get; private set; }
+        public Block HeldBlock { get; private set; }
+
+        public bool CanHoldBlock { get; private set; } = true;
 
         public int Score { get; private set; }
         public int ComboChainCount { get; private set; }
@@ -136,7 +139,7 @@
 
                 // Clear Full Rows
                 var cleared = 0;
-                for (var r = r_rows -1; r > 0; r--)
+                for (var r = r_rows - 1; r > 0; r--)
                 {
                     var isRowFull = true;
                     for (var c = 0; c < r_cols; c++)
@@ -179,7 +182,10 @@
                 if (!(IsRowEmpty(0) && IsRowEmpty(1)))
                     GameOver = true;
                 else
+                {
                     UpdateNextAndSetCurrentBlock();
+                    CanHoldBlock = true;
+                }
             }
 
             bool IsRowEmpty(int row)
@@ -196,6 +202,22 @@
         {
             MoveBlockDown();
             Score += POINT_SOFT_DROP;
+        }
+
+        public void HoldBlockInput()
+        {
+            if (!CanHoldBlock)
+                return;
+
+            CanHoldBlock = false;
+
+            if (HeldBlock == null)
+            {
+                HeldBlock = CurrentBlock;
+                UpdateNextAndSetCurrentBlock();
+            }
+            else
+                (CurrentBlock, HeldBlock) = (HeldBlock, CurrentBlock);
         }
 
         private void UpdateNextAndSetCurrentBlock()

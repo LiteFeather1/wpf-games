@@ -64,6 +64,9 @@ namespace Tetris
                 case Key.Z or Key.Q:
                     _gameState.RotateBlockCounterClockWise();
                     break;
+                case Key.C or Key.F:
+                    _gameState.HoldBlockInput();
+                    break;
                 default:
                     return;
             }
@@ -71,10 +74,8 @@ namespace Tetris
             Draw();
         }
 
-        private async void GameCanvas_Loaded(object sender, RoutedEventArgs e)
-        {
-            await GameLoop();
-        }
+        private async void GameCanvas_Loaded(object sender, RoutedEventArgs e) 
+            => await GameLoop();
 
         private async void Playagain_Click(object sender, RoutedEventArgs e)
         {
@@ -97,6 +98,10 @@ namespace Tetris
 
             // Draw next block preview
             NextBlockImage.Source = Images.BlockPreviewImages[_gameState.NextBlock.ID];
+
+            // Draw held block
+            HeldBlockImage.Source = Images.BlockPreviewImages[
+                _gameState.HeldBlock == null ? 0 : _gameState.HeldBlock.ID];
 
             ScoreText.Text = $"Score: {_gameState.Score}";
 

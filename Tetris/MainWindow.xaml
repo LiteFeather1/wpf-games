@@ -69,7 +69,7 @@
             <TextBlock Text="Hold"
                        TextAlignment="Center"/>
             
-            <Image x:Name="HoldBlockImage"
+            <Image x:Name="HeldBlockImage"
                    Margin="20"
                    Width="128"/>
         </StackPanel>
