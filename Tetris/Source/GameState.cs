@@ -168,7 +168,7 @@
 
                 if (cleared > 0)
                 {
-                    var level = Level;
+                    var level = Level + 1;
                     Score += ComboChainCount++ * POINTS_COMBO * level;
                     Score += sr_linesClearedToPoints[cleared - 1] * level;
                 }
