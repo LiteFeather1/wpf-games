@@ -67,6 +67,9 @@ namespace Tetris
                 case Key.C or Key.F:
                     _gameState.HoldBlockInput();
                     break;
+                case Key.Space:
+                    _gameState.HardDropInput();
+                    break;
                 default:
                     return;
             }

@@ -133,68 +133,7 @@
             {
                 CurrentBlock.Move(-1, 0);
 
-                // Place blocks
-                foreach (var p in CurrentBlock.TilePositions())
-                    r_gameGrid[p.Row, p.Col] = CurrentBlock.ID;
-
-                // Clear Full Rows
-                var cleared = 0;
-                for (var r = r_rows - 1; r > 0; r--)
-                {
-                    var isRowFull = true;
-                    for (var c = 0; c < r_cols; c++)
-                        if (r_gameGrid[r, c] == 0)
-                        {
-                            isRowFull = false;
-                            break;
-                        }
-
-                    if (isRowFull)
-                    {
-                        // Clear Row
-                        for (var c = 0; c < r_cols; c++)
-                            r_gameGrid[r, c] = 0;
-
-                        cleared++;
-                    }
-                    else if (cleared > 0)
-                        // Move Row Down
-                        for (var c = 0; c < r_cols; c++)
-                        {
-                            r_gameGrid[r + cleared, c] = r_gameGrid[r, c];
-                            r_gameGrid[r, c] = 0;
-                        }
-                }
-
-                if (_linesCleared < (sr_levelToSpeedCurve.Length - 1) * LINES_CLEARED_PER_LEVEL)
-                    _linesCleared += cleared;
-
-                if (cleared > 0)
-                {
-                    var level = Level + 1;
-                    Score += ComboChainCount++ * POINTS_COMBO * level;
-                    Score += sr_linesClearedToPoints[cleared - 1] * level;
-                }
-                else
-                    ComboChainCount = 0;
-
-                // Is Game Over
-                if (!(IsRowEmpty(0) && IsRowEmpty(1)))
-                    GameOver = true;
-                else
-                {
-                    UpdateNextAndSetCurrentBlock();
-                    CanHoldBlock = true;
-                }
-            }
-
-            bool IsRowEmpty(int row)
-            {
-                for (var c = 0; c < r_cols; c++)
-                    if (r_gameGrid[row, c] != 0)
-                        return false;
-
-                return true;
+                PlaceBlock();  
             }
         }
 
@@ -202,6 +141,25 @@
         {
             MoveBlockDown();
             Score += POINT_SOFT_DROP;
+        }
+
+        public void HardDropInput()
+        {
+            var hardDropDistance = r_rows;
+            foreach (var p in CurrentBlock.TilePositions())
+            {            
+                // Tile drop distance
+                var drop = 0;
+                while (IsEmptyPosition(p.Row + drop + 1, p.Col))
+                    drop++;
+
+                if (drop < hardDropDistance)
+                    hardDropDistance = drop;
+            }
+
+            // Hard drop block
+            CurrentBlock.Move(hardDropDistance, 0);
+            PlaceBlock();
         }
 
         public void HoldBlockInput()
@@ -219,6 +177,87 @@
             {
                 (CurrentBlock, HeldBlock) = (HeldBlock, CurrentBlock);
                 FixCurrentBockSpawnPostion();
+            }
+        }
+
+        private bool IsEmptyPosition(int row, int col)
+            => row >= 0 && row < r_rows && col >= 0 && col < r_rows // Is inside
+                && r_gameGrid[row, col] == 0; // Is empty tiles
+
+        private bool BlockFits()
+        {
+            foreach (var p in CurrentBlock.TilePositions())
+            {
+                if (!IsEmptyPosition(p.Row, p.Col))
+                    return false;
+            }
+
+            return true;
+        }
+
+        private void PlaceBlock()
+        {
+            // Place blocks
+            foreach (var p in CurrentBlock.TilePositions())
+                r_gameGrid[p.Row, p.Col] = CurrentBlock.ID;
+
+            // Clear Full Rows
+            var cleared = 0;
+            for (var r = r_rows - 1; r > 0; r--)
+            {
+                var isRowFull = true;
+                for (var c = 0; c < r_cols; c++)
+                    if (r_gameGrid[r, c] == 0)
+                    {
+                        isRowFull = false;
+                        break;
+                    }
+
+                if (isRowFull)
+                {
+                    // Clear Row
+                    for (var c = 0; c < r_cols; c++)
+                        r_gameGrid[r, c] = 0;
+
+                    cleared++;
+                }
+                else if (cleared > 0)
+                    // Move Row Down
+                    for (var c = 0; c < r_cols; c++)
+                    {
+                        r_gameGrid[r + cleared, c] = r_gameGrid[r, c];
+                        r_gameGrid[r, c] = 0;
+                    }
+            }
+
+            if (_linesCleared < (sr_levelToSpeedCurve.Length - 1) * LINES_CLEARED_PER_LEVEL)
+                _linesCleared += cleared;
+
+            if (cleared > 0)
+            {
+                var level = Level + 1;
+                Score += ComboChainCount++ * POINTS_COMBO * level;
+                Score += sr_linesClearedToPoints[cleared - 1] * level;
+            }
+            else
+                ComboChainCount = 0;
+
+            // Is Game Over
+            if (!(IsRowEmpty(0) && IsRowEmpty(1)))
+                GameOver = true;
+            else
+            {
+                UpdateNextAndSetCurrentBlock();
+                CanHoldBlock = true;
+            }
+
+            bool IsRowEmpty(int row)
+            {
+                for (var c = 0; c < r_cols; c++)
+                    if (r_gameGrid[row, c] != 0)
+                        return false;
+
+                return true;
             }
         }
 
@@ -247,21 +286,6 @@
             CurrentBlock = block;
 
             FixCurrentBockSpawnPostion();
-        }
-
-        private bool BlockFits()
-        {
-            foreach (var p in CurrentBlock.TilePositions())
-            {
-                // Check is grid cord is empty
-                if (p.Row >= 0 && p.Row < r_rows && p.Col >= 0 && p.Col < r_cols // Is Inside
-                    && r_gameGrid[p.Row, p.Col] == 0) // Is Empty
-                    continue;
-
-                return false;
-            }
-
-            return true;
         }
     }
 }
