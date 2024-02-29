@@ -160,6 +160,8 @@
             // Hard drop block
             CurrentBlock.Move(hardDropDistance, 0);
             PlaceBlock();
+
+            Score += hardDropDistance * POINTS_HARD_DROP;
         }
 
         public void HoldBlockInput()
