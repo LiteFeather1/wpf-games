@@ -34,7 +34,7 @@ namespace Tetris
                         Height = cellSize,
                     };
 
-                    // The top 2 rows are invisible/ not visible
+                    // The top 2 rows are invisible/ not to be seen
                     Canvas.SetTop(imageControl, (r - 2) * cellSize);
                     Canvas.SetLeft(imageControl, c * cellSize);
                     GameCanvas.Children.Add(imageControl);
@@ -80,7 +80,7 @@ namespace Tetris
         private async void GameCanvas_Loaded(object sender, RoutedEventArgs e) 
             => await GameLoop();
 
-        private async void Playagain_Click(object sender, RoutedEventArgs e)
+        private async void PlayAgain_Click(object sender, RoutedEventArgs e)
         {
             _gameState = new(ROWS, COLS);
             GameOverMenu.Visibility = Visibility.Hidden;
@@ -104,19 +104,16 @@ namespace Tetris
             {
                 var tileImage = Images.TileImages[_gameState.CurrentBlock.ID];
 
-
-                // Draw current block
-                var currentBlockImage = r_imageControls[p.Row, p.Col];
-                currentBlockImage.Opacity = 1.0;
-                currentBlockImage.Source = tileImage;
                 // Draw ghost block
                 var ghostBlockImage = r_imageControls[p.Row + dropDistance, p.Col];
                 ghostBlockImage.Opacity = .25;
                 ghostBlockImage.Source = tileImage;
 
-
+                // Draw current block
+                var currentBlockImage = r_imageControls[p.Row, p.Col];
+                currentBlockImage.Opacity = 1.0;
+                currentBlockImage.Source = tileImage;
             }
-
 
             // Draw next block preview
             NextBlockImage.Source = Images.BlockPreviewImages[_gameState.NextBlock.ID];

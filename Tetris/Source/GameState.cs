@@ -60,8 +60,6 @@
         private readonly Random r_random = new();
 
         private readonly int[,] r_gameGrid;
-        private readonly int r_rows;
-        private readonly int r_cols;
 
         private int _linesCleared;
 
@@ -85,8 +83,6 @@
         public GameState(int rows, int cols) 
         {
             r_gameGrid = new int[rows, cols];
-            r_rows = rows;
-            r_cols = cols;
 
             NextBlock = r_blocks[r_random.Next(r_blocks.Length)];
 
@@ -145,7 +141,7 @@
 
         public int HardDropDistance()
         {
-            var hardDropDistance = r_rows;
+            var hardDropDistance = r_gameGrid.GetLength(0);
             foreach (var p in CurrentBlock.TilePositions())
             {
                 // Tile drop distance
@@ -185,21 +181,19 @@
             else
             {
                 (CurrentBlock, HeldBlock) = (HeldBlock, CurrentBlock);
-                FixCurrentBockSpawnPostion();
+                FixCurrentBlockSpawnPosition();
             }
         }
 
         private bool IsEmptyPosition(int row, int col)
-            => row >= 0 && row < r_rows && col >= 0 && col < r_cols // Is inside
+            => row >= 0 && row < r_gameGrid.GetLength(0) && col >= 0 && col < r_gameGrid.GetLength(1) // Is inside
                 && r_gameGrid[row, col] == 0; // Is empty tiles
 
         private bool BlockFits()
         {
             foreach (var p in CurrentBlock.TilePositions())
-            {
                 if (!IsEmptyPosition(p.Row, p.Col))
                     return false;
-            }
 
             return true;
         }
@@ -211,11 +205,13 @@
                 r_gameGrid[p.Row, p.Col] = CurrentBlock.ID;
 
             // Clear Full Rows
+            var rows = r_gameGrid.GetLength(0);
+            var cols = r_gameGrid.GetLength(1);
             var cleared = 0;
-            for (var r = r_rows - 1; r > 0; r--)
+            for (var r = rows - 1; r > 0; r--)
             {
                 var isRowFull = true;
-                for (var c = 0; c < r_cols; c++)
+                for (var c = 0; c < cols; c++)
                     if (r_gameGrid[r, c] == 0)
                     {
                         isRowFull = false;
@@ -225,14 +221,14 @@
                 if (isRowFull)
                 {
                     // Clear Row
-                    for (var c = 0; c < r_cols; c++)
+                    for (var c = 0; c < cols; c++)
                         r_gameGrid[r, c] = 0;
 
                     cleared++;
                 }
                 else if (cleared > 0)
                     // Move Row Down
-                    for (var c = 0; c < r_cols; c++)
+                    for (var c = 0; c < cols; c++)
                     {
                         r_gameGrid[r + cleared, c] = r_gameGrid[r, c];
                         r_gameGrid[r, c] = 0;
@@ -262,7 +258,7 @@
 
             bool IsRowEmpty(int row)
             {
-                for (var c = 0; c < r_cols; c++)
+                for (var c = 0; c < cols; c++)
                     if (r_gameGrid[row, c] != 0)
                         return false;
 
@@ -270,7 +266,7 @@
             }
         }
 
-        private void FixCurrentBockSpawnPostion()
+        private void FixCurrentBlockSpawnPosition()
         {
             CurrentBlock.Reset();
 
@@ -285,16 +281,12 @@
 
         private void UpdateNextAndSetCurrentBlock()
         {
-            // Get and next update block
-            var block = NextBlock;
+            CurrentBlock = NextBlock;
             do
                 NextBlock = r_blocks[r_random.Next(r_blocks.Length)];
-            while (block.ID == NextBlock.ID);
+            while (CurrentBlock.ID == NextBlock.ID);
 
-            // Set block
-            CurrentBlock = block;
-
-            FixCurrentBockSpawnPostion();
+            FixCurrentBlockSpawnPosition();
         }
     }
 }

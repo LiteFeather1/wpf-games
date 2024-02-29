@@ -10,7 +10,6 @@
         WindowStartupLocation="CenterScreen"
         Foreground="White"
         FontSize="28"
-        Icon="Assets/Icon.Ico"
         KeyDown="Window_KeyDown">
     <Grid>
         <Grid.RowDefinitions>
@@ -106,7 +105,7 @@
                         Margin="0, 128, 0, 0"
                         Background="LightGreen"
                         Padding="5"
-                        Click="Playagain_Click"/>
+                        Click="PlayAgain_Click"/>
             </StackPanel>
             
         </Grid>
