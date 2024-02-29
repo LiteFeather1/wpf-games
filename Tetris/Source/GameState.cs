@@ -210,14 +210,29 @@
                 return;
 
             CanHoldBlock = false;
-
             if (HeldBlock == null)
             {
                 HeldBlock = CurrentBlock;
                 UpdateNextAndSetCurrentBlock();
             }
             else
+            {
                 (CurrentBlock, HeldBlock) = (HeldBlock, CurrentBlock);
+                FixCurrentBockSpawnPostion();
+            }
+        }
+
+        private void FixCurrentBockSpawnPostion()
+        {
+            CurrentBlock.Reset();
+
+            for (var i = 0; i < 2; i++)
+            {
+                CurrentBlock.Move(1, 0);
+
+                if (!BlockFits())
+                    CurrentBlock.Move(-1, 0);
+            }
         }
 
         private void UpdateNextAndSetCurrentBlock()
@@ -230,15 +245,8 @@
 
             // Set block
             CurrentBlock = block;
-            CurrentBlock.Reset();
 
-            for (var i = 0; i < 2; i++)
-            {
-                CurrentBlock.Move(1, 0);
-
-                if (!BlockFits())
-                    CurrentBlock.Move(-1, 0);
-            }
+            FixCurrentBockSpawnPostion();
         }
 
         private bool BlockFits()
