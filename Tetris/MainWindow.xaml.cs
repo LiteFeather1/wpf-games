@@ -16,6 +16,8 @@ namespace Tetris
 
         private GameState _gameState;
 
+        private bool _paused;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -69,6 +71,10 @@ namespace Tetris
                     break;
                 case Key.Space:
                     _gameState.HardDropInput();
+                    break;
+                case Key.Escape or Key.P:
+                    _paused = !_paused;
+                    PauseOverlay.Visibility = _paused ? Visibility.Visible : Visibility.Hidden;
                     break;
                 default:
                     return;
@@ -135,6 +141,9 @@ namespace Tetris
 
             while (!_gameState.GameOver)
             {
+                while(_paused)
+                    await Task.Delay(100);
+
                 // 16.66 = 1000(1 sec) / 60 FPS
                 await Task.Delay((int)(16.66f / GameState.SpeedCurve[_gameState.Level]));
                 _gameState.MoveBlockDown();
