@@ -85,6 +85,25 @@
                    Width="128"/>
         </StackPanel>
 
+        <Border x:Name="PauseOverlay"
+                Grid.RowSpan="3"
+                Grid.ColumnSpan="3"
+                Background="#101010"
+                Opacity=".75"
+                Visibility="Hidden">
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock Text="PAUSED"
+                           FontSize="48"
+                           TextAlignment="Center"
+                           Margin="0, 0, 0, 32"/>
+                
+                <TextBlock Text="Press esc to unpause"
+                           FontSize="24"
+                           TextAlignment="Center"
+                           Margin="0, 32, 0, 0"/>
+            </StackPanel>
+        </Border>
+
         <Grid x:Name="GameOverMenu"
               Background="#CC000000"
               Grid.RowSpan="2"

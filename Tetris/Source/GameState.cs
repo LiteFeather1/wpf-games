@@ -205,10 +205,9 @@
                 r_gameGrid[p.Row, p.Col] = CurrentBlock.ID;
 
             // Clear Full Rows
-            var rows = r_gameGrid.GetLength(0);
             var cols = r_gameGrid.GetLength(1);
             var cleared = 0;
-            for (var r = rows - 1; r > 0; r--)
+            for (var r = r_gameGrid.GetLength(0) - 1; r > 0; r--)
             {
                 var isRowFull = true;
                 for (var c = 0; c < cols; c++)
