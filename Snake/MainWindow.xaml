@@ -53,12 +53,20 @@
                     Height="{Binding Path=ActualHeight, ElementName=GridBorder}"
                     Margin="{Binding Path=Margin, ElementName=GridBorder}"
                     RenderOptions.EdgeMode="Aliased">
-                <TextBlock x:Name="OverlayText"
-                           Text="PRESS ANY KEY TO START"
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock x:Name="OverlayText"
+                           Text="CHOOSE A LEVEL"
                            FontSize="26"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            TextWrapping="Wrap"/>
+
+                    <StackPanel x:Name="StartButtons"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Center">
+                    </StackPanel>
+                </StackPanel>
+
             </Border>
         </Grid>
     </Viewbox>

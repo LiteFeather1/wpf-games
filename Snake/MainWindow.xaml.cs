@@ -4,6 +4,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Snake.Source;
+using Colors = System.Windows.Media.Colors;
 
 namespace Snake
 {
@@ -12,6 +13,8 @@ namespace Snake
     /// </summary>
     public partial class MainWindow : Window
     {
+        private const string OVERLAY_TEXT = "CHOOSE A LEVEL";
+
         private readonly Dictionary<GridValue, BitmapSource> r_gridValToImage = new()
         {
             { GridValue.Food, Images.Empty },
@@ -30,6 +33,7 @@ namespace Snake
         private readonly int r_rows = 16, r_cols = 16;
         private readonly Image[,] r_gridImages;
 
+        private int _minDelay, _maxDelay; 
         private GameState _gameState;
 
         private bool _gameRunning;
@@ -57,62 +61,81 @@ namespace Snake
                     r_gridImages[r, c] = image;
                 }
 
+            string[] names = ["Easy", "Medium", "Hard"];
+            Color[] color = [Colors.LightGreen, Colors.LightGoldenrodYellow, Colors.IndianRed];
+            for (var i = 0; i < 3; i++)
+            {
+                var b = new Button()
+                {
+                    Content = names[i],
+                    FontWeight = FontWeights.DemiBold,
+                    FontSize = 18,
+                    Margin = new(32.0, 16.0, 32.0, 16.0),
+                    Width = 128.0,
+                    Height = 48.0,
+                    Foreground = new SolidColorBrush(new() { R = 45, G = 45, B = 45, A = 255 }),
+                    Background = new SolidColorBrush(color[i]),
+                };
+                StartButtons.Children.Add(b);
+            }
+
             _gameState = new(r_rows, r_cols);
         }
 
         private async void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (Overlay.Visibility == Visibility.Visible)
-            {
                 e.Handled = true;
-            }
 
-            if (!_gameRunning)
+            if (_gameRunning)
+                return;
+
+            _gameRunning = true;
+
+            StartButtons.Visibility = Visibility.Hidden;
+            // Run game
+
+            Draw();
+
+            // Count down
+            for (var i = 3; i >= 1; i--)
             {
-                _gameRunning = true;
-                // Run game
-
-                Draw();
-
-                // Count down
-                for (var i = 3; i >= 1; i--)
-                {
-                    OverlayText.Text = i.ToString();
-                    await Task.Delay(500);
-                }
-
-                Overlay.Visibility = Visibility.Hidden;
-
-                // Game Loop
-                while (!_gameState.GameOver)
-                {
-                    var delay = (int)(128f + (32f - 128f) * (_gameState.Score / 1024f));
-                    if (delay < 32)
-                        delay = 32;
-                    await Task.Delay(delay);
-                    _gameState.Move();
-                    Draw();
-                }
-
-                // Show game Over
-
-                // Draw Snake dead body
-                var positions = _gameState.SnakePositions().ToArray();
-
-                await PlacePart(positions[0], Images.HeadDead);
-                for (var i = 1; i < positions.Length; i++)
-                    await PlacePart(positions[i], Images.BodyDead);
-
-                // Replay
-                await Task.Delay(333);
-                Overlay.Visibility = Visibility.Visible;
-                OverlayText.Text = "PRESS ANY KEY TO START";
-
-                // New Game
-                _gameState = new(r_rows, r_cols);
-
-                _gameRunning = false;
+                OverlayText.Text = i.ToString();
+                await Task.Delay(500);
             }
+
+            Overlay.Visibility = Visibility.Hidden;
+
+            // Game Loop
+            while (!_gameState.GameOver)
+            {
+                var delay = (int)(128f + (32f - 128f) * (_gameState.Score / 1024f));
+                if (delay < 32)
+                    delay = 32;
+                await Task.Delay(delay);
+                _gameState.Move();
+                Draw();
+            }
+
+            // Show game Over
+
+            // Draw Snake dead body
+            var positions = _gameState.SnakePositions().ToArray();
+
+            await PlacePart(positions[0], Images.HeadDead);
+            for (var i = 1; i < positions.Length; i++)
+                await PlacePart(positions[i], Images.BodyDead);
+
+            // Replay
+            await Task.Delay(333);
+            OverlayText.Text = OVERLAY_TEXT;
+            Overlay.Visibility = Visibility.Visible;
+            StartButtons.Visibility = Visibility.Visible;
+
+            // New Game
+            _gameState = new(r_rows, r_cols);
+
+            _gameRunning = false;
 
             void Draw()
             {
