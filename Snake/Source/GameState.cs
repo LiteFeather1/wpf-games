@@ -25,7 +25,7 @@
         {
             Rows = rows;
             Cols = cols;
-            Grid = new GridValue[Rows, Cols];
+            Grid = new GridValue[rows, cols];
 
             SnakeDirection = GridCoordinate.Right;
 

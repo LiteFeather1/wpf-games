@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Assets\Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\Background.png" />
+    <None Remove="Assets\C_Tile.png" />
+    <None Remove="Assets\Empty-Block.png" />
+    <None Remove="Assets\Empty_Tile.png" />
+    <None Remove="Assets\I-Block.png" />
+    <None Remove="Assets\Icon.ico" />
+    <None Remove="Assets\I_Tile.png" />
+    <None Remove="Assets\J-Block.png" />
+    <None Remove="Assets\J_Tile.png" />
+    <None Remove="Assets\L-Block.png" />
+    <None Remove="Assets\L_Tile.png" />
+    <None Remove="Assets\O-Block.png" />
+    <None Remove="Assets\O_Tile.png" />
+    <None Remove="Assets\S-Block.png" />
+    <None Remove="Assets\S_Tile.png" />
+    <None Remove="Assets\T-Block.png" />
+    <None Remove="Assets\T_Tile.png" />
+    <None Remove="Assets\Z-Block.png" />
+    <None Remove="Assets\Z_Tile.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\Icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Background.png" />
+    <Resource Include="Assets\Tiles\C_Tile.png" />
+    <Resource Include="Assets\Preview_Icons\Empty-Block.png" />
+    <Resource Include="Assets\Tiles\Empty_Tile.png" />
+    <Resource Include="Assets\Preview_Icons\I-Block.png" />
+    <Resource Include="Assets\Icon.ico" />
+    <Resource Include="Assets\Tiles\I_Tile.png" />
+    <Resource Include="Assets\Preview_Icons\J-Block.png" />
+    <Resource Include="Assets\Tiles\J_Tile.png" />
+    <Resource Include="Assets\Preview_Icons\L-Block.png" />
+    <Resource Include="Assets\Tiles\L_Tile.png" />
+    <Resource Include="Assets\Preview_Icons\O-Block.png" />
+    <Resource Include="Assets\Tiles\O_Tile.png" />
+    <Resource Include="Assets\Preview_Icons\S-Block.png" />
+    <Resource Include="Assets\Tiles\S_Tile.png" />
+    <Resource Include="Assets\Preview_Icons\T-Block.png" />
+    <Resource Include="Assets\Tiles\T_Tile.png" />
+    <Resource Include="Assets\Preview_Icons\Z-Block.png" />
+    <Resource Include="Assets\Tiles\Z_Tile.png" />
+  </ItemGroup>
+
+</Project>
