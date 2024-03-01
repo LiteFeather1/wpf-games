@@ -46,7 +46,7 @@ namespace Tetris
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (_gameState.GameOver)
+            if (_gameState.GameOver || _paused)
                 return;
 
             switch (e.Key)
