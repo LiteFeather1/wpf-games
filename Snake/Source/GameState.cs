@@ -30,7 +30,7 @@
             for (var c = 1; c <= 3; c++)
             {
                 Grid[r, c] = GridValue.Snake;
-                r_snakePositions.AddFirst(new GridCoordinate(c, r));
+                r_snakePositions.AddFirst(new GridCoordinate(r, c));
             }
 
             AddFood();
@@ -42,19 +42,17 @@
 
         public void ChangeDirection(GridCoordinate dir)
         {
-            bool canChangeDirection;
             if (r_directionChangesBuffer.Count == MAX_DIRECTION_CHANGE_BUFFER)
-                canChangeDirection = false;
+                return;
             else
             {
                 var lastDir = r_directionChangesBuffer.Count == 0
                     ? SnakeDirection : r_directionChangesBuffer.Last.Value;
-
-                canChangeDirection =  dir != lastDir && dir != lastDir.Opposite();
+                if (dir == lastDir || dir == lastDir.Opposite())
+                    return;
             }
 
-            if (canChangeDirection)
-                r_directionChangesBuffer.AddLast(dir);
+            r_directionChangesBuffer.AddLast(dir);
         }
 
         public void Move()
@@ -69,21 +67,21 @@
 
             GridValue willHit;
             // Outside grid
-            if (newHeadPos.Y < 0 || newHeadPos.Y >= Grid.GetLength(0) 
-                || newHeadPos.X < 0 || newHeadPos.X >= Grid.GetLength(1))
+            if (newHeadPos.Row < 0 || newHeadPos.Row >= Grid.GetLength(0) 
+                || newHeadPos.Col < 0 || newHeadPos.Col >= Grid.GetLength(1))
                 willHit = GridValue.Outside;
             // Especial case if the next tile the snake will hit is the tail
             else if (newHeadPos == r_snakePositions.Last.Value)
                 willHit = GridValue.Empty;
             else 
-                willHit = Grid[newHeadPos.Y, newHeadPos.X];
+                willHit = Grid[newHeadPos.Row, newHeadPos.Col];
 
             switch (willHit)
             {
                 case GridValue.Empty:
                     // Remove tail
                     var tail = r_snakePositions.Last.Value;
-                    Grid[tail.Y, tail.X] = GridValue.Empty;
+                    Grid[tail.Row, tail.Col] = GridValue.Empty;
                     r_snakePositions.RemoveLast();
 
                     AddHead(newHeadPos);
@@ -102,7 +100,7 @@
         private void AddHead(GridCoordinate pos)
         {
             r_snakePositions.AddFirst(pos);
-            Grid[pos.Y, pos.X] = GridValue.Snake;
+            Grid[pos.Row, pos.Col] = GridValue.Snake;
         }
 
         private void AddFood()
@@ -112,7 +110,7 @@
                 return;
 
             var pos = emptyPositions[r_random.Next(emptyPositions.Length)];
-            Grid[pos.Y, pos.X] = GridValue.Food;
+            Grid[pos.Row, pos.Col] = GridValue.Food;
             Food = new(r_random, pos);
 
             IEnumerable<GridCoordinate> EmptyPositions()
@@ -120,7 +118,7 @@
                 for (var r = 0; r < Grid.GetLength(0); r++)
                     for (var c = 0; c < Grid.GetLength(1); c++)
                         if (Grid[r, c] == GridValue.Empty)
-                            yield return new(c, r);
+                            yield return new(r, c);
             }
         }
     }

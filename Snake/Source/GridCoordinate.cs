@@ -3,26 +3,26 @@ namespace Snake.Source
 {
     public readonly struct GridCoordinate
     {
-        public readonly static GridCoordinate Left = new(-1, 0);
-        public readonly static GridCoordinate Right = new(1, 0);
-        public readonly static GridCoordinate Up = new(0, -1);
-        public readonly static GridCoordinate Down = new(0, 1);
+        public readonly static GridCoordinate Left = new(0, -1);
+        public readonly static GridCoordinate Right = new(0, 1);
+        public readonly static GridCoordinate Up = new(-1, 0);
+        public readonly static GridCoordinate Down = new(1, 0);
 
-        public readonly int X { get; }
-        public readonly int Y { get; }
+        public readonly int Row { get; }
+        public readonly int Col { get; }
 
-        public GridCoordinate(int x, int y) => (X, Y) = (x, y);
+        public GridCoordinate(int row, int col) => (Row, Col) = (row, col);
 
-        public readonly GridCoordinate Translate(GridCoordinate dir) => new(X + dir.X, Y + dir.Y);
+        public readonly GridCoordinate Translate(GridCoordinate dir) => new(Row + dir.Row, Col + dir.Col);
 
-        public readonly GridCoordinate Opposite() => new(-X, -Y);
+        public readonly GridCoordinate Opposite() => new(-Row, -Col);
 
         public override readonly bool Equals(object obj)
             => obj is GridCoordinate gridCord &&
-                   Y == gridCord.Y &&
-                   X == gridCord.X;
+                   Row == gridCord.Row &&
+                   Col == gridCord.Col;
 
-        public override readonly int GetHashCode() => HashCode.Combine(X, Y);
+        public override readonly int GetHashCode() => HashCode.Combine(Row, Col);
 
         public static bool operator ==(GridCoordinate left, GridCoordinate right) 
             => EqualityComparer<GridCoordinate>.Default.Equals(left, right);

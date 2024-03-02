@@ -206,7 +206,7 @@ namespace Snake
 
                 // Draw Snake Head
                 var snakeHeadPos = _gameState.HeadPosition();
-                var snakeHeadImage = r_gridImages[snakeHeadPos.Y, snakeHeadPos.X];
+                var snakeHeadImage = r_gridImages[snakeHeadPos.Row, snakeHeadPos.Col];
                 snakeHeadImage.Source = Images.Head;
 
                 // Rotate snake head
@@ -215,7 +215,7 @@ namespace Snake
 
                 // Draw Food
                 var foodPos = _gameState.Food.Position;
-                var foodImage = r_gridImages[foodPos.Y, foodPos.X];
+                var foodImage = r_gridImages[foodPos.Row, foodPos.Col];
                 foodImage.Source = _gameState.Food.Image;
 
                 ScoreText.Text = $"SCORE {_gameState.Score}";
@@ -223,7 +223,7 @@ namespace Snake
 
             async Task PlacePart(GridCoordinate pos, BitmapImage source)
             {
-                r_gridImages[pos.Y, pos.X].Source = source;
+                r_gridImages[pos.Row, pos.Col].Source = source;
                 await Task.Delay(50);
             }
         }
