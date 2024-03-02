@@ -41,8 +41,7 @@
                          Height="512"
                          Background="{StaticResource GridBackgroundColour}"
                          SnapsToDevicePixels="True"
-                         RenderOptions.BitmapScalingMode="NearestNeighbor"
-                         UseLayoutRounding="True">
+                         RenderOptions.BitmapScalingMode="HighQuality">
                 </UniformGrid>
             </Border>
 
