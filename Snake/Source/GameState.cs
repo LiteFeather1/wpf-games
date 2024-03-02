@@ -8,7 +8,7 @@
 
         public GridCoordinate SnakeDirection { get; private set; }
 
-        private readonly List<GridCoordinate> r_directionChangesBuffer = [];    
+        private readonly LinkedList<GridCoordinate> r_directionChangesBuffer = new();    
 
         private readonly LinkedList<GridCoordinate> r_snakePositions = new();
 
@@ -47,23 +47,22 @@
                 canChangeDirection = false;
             else
             {
-                GridCoordinate lastDir = r_directionChangesBuffer.Count == 0
-                    ? SnakeDirection : r_directionChangesBuffer[^1];
+                var lastDir = r_directionChangesBuffer.Count == 0
+                    ? SnakeDirection : r_directionChangesBuffer.Last.Value;
 
                 canChangeDirection =  dir != lastDir && dir != lastDir.Opposite();
             }
 
             if (canChangeDirection)
-                r_directionChangesBuffer.Add(dir);
-
+                r_directionChangesBuffer.AddLast(dir);
         }
 
         public void Move()
         {
             if (r_directionChangesBuffer.Count > 0)
             {
-                SnakeDirection = r_directionChangesBuffer[0];
-                r_directionChangesBuffer.RemoveAt(0);
+                SnakeDirection = r_directionChangesBuffer.First.Value;
+                r_directionChangesBuffer.RemoveFirst();
             }
 
             var newHeadPos = r_snakePositions.First.Value.Translate(SnakeDirection);
