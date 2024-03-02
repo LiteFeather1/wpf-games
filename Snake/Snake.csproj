@@ -9,27 +9,29 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Assets\Sprites\all_sprites-Body.png" />
-    <None Remove="Assets\Sprites\all_sprites-Body_Dead.png" />
-    <None Remove="Assets\Sprites\all_sprites-Empty.png" />
-    <None Remove="Assets\Sprites\all_sprites-Head.png" />
-    <None Remove="Assets\Sprites\all_sprites-Head_Dead.png" />
     <None Remove="Assets\Sprites\all_sprites-Icon.ico" />
-    <None Remove="Assets\Sprites\Foods\Foods-Apple.png" />
-    <None Remove="Assets\Sprites\Foods\Foods-Banana.png" />
-    <None Remove="Assets\Sprites\Foods\Foods-Cherry.png" />
+    <None Remove="Assets\Sprites\Body.png" />
+    <None Remove="Assets\Sprites\Body_Dead.png" />
+    <None Remove="Assets\Sprites\Foods\Apple.png" />
+    <None Remove="Assets\Sprites\Foods\Banana.png" />
+    <None Remove="Assets\Sprites\Foods\Cherry.png" />
+    <None Remove="Assets\Sprites\Head.png" />
+    <None Remove="Assets\Sprites\Head_Dead.png" />
+    <None Remove="Assets\Sprites\Tile-Empty.png" />
+    <None Remove="Assets\Sprites\Tile.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\Sprites\all_sprites-Body.png" />
-    <Resource Include="Assets\Sprites\all_sprites-Body_Dead.png" />
-    <Resource Include="Assets\Sprites\all_sprites-Empty.png" />
-    <Resource Include="Assets\Sprites\all_sprites-Head.png" />
-    <Resource Include="Assets\Sprites\all_sprites-Head_Dead.png" />
     <Resource Include="Assets\Sprites\all_sprites-Icon.ico" />
-    <Resource Include="Assets\Sprites\Foods\Foods-Apple.png" />
-    <Resource Include="Assets\Sprites\Foods\Foods-Banana.png" />
-    <Resource Include="Assets\Sprites\Foods\Foods-Cherry.png" />
+    <Resource Include="Assets\Sprites\Body.png" />
+    <Resource Include="Assets\Sprites\Body_Dead.png" />
+    <Resource Include="Assets\Sprites\Foods\Apple.png" />
+    <Resource Include="Assets\Sprites\Foods\Banana.png" />
+    <Resource Include="Assets\Sprites\Foods\Cherry.png" />
+    <Resource Include="Assets\Sprites\Head.png" />
+    <Resource Include="Assets\Sprites\Head_Dead.png" />
+    <Resource Include="Assets\Sprites\Tile-Empty.png" />
+    <Resource Include="Assets\Sprites\Tile.png" />
   </ItemGroup>
 
 </Project>

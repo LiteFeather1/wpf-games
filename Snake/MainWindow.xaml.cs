@@ -59,7 +59,10 @@ namespace Snake
                 }
 
             string[] names = ["Easy", "Medium", "Hard"];
-            Color[] colors = [Colors.LightGreen, Colors.Wheat, Colors.IndianRed];
+            SolidColorBrush[] colors = [
+                new(Colors.LightGreen), 
+                new(new Color() { R = 190, G = 177, B = 58, A = 255 }), 
+                new(Colors.IndianRed)];
             for (var i = 0; i < 3; i++)
             {
                 var b = new Button()
@@ -69,23 +72,23 @@ namespace Snake
                     FontWeight = FontWeights.DemiBold,
                     FontSize = 18,
                     Margin = new(32.0, 16.0, 32.0, 16.0),
-                    BorderThickness = new(2.0),
-                    BorderBrush = new SolidColorBrush(Colors.DarkSlateGray),
+                    BorderThickness = new(4.0),
+                    BorderBrush = new SolidColorBrush(new Color{ R = 51, G = 31, B = 80, A = 255}),
                     Width = 96.0,
                     Height = 48.0,
-                    Foreground = new SolidColorBrush(Colors.White),
-                    Background = new SolidColorBrush(Colors.Transparent),
+                    Foreground = colors[i],
+                    Background = new SolidColorBrush(new Color() { R = 25, G = 18, B = 64, A = 127}),
                 };
                 var id = i;
                 b.MouseEnter += (o, m) =>
                 { 
                     b.Foreground = new SolidColorBrush(Colors.Black);
-                    b.Background = new SolidColorBrush(colors[id]);
+                    b.Background = colors[id];
                 };
                 b.MouseLeave += (o, m) =>
                 {
-                    b.Foreground = new SolidColorBrush(Colors.White);
-                    b.Background = new SolidColorBrush(Colors.Transparent);
+                    b.Foreground = colors[id];
+                    b.Background = new SolidColorBrush(new Color() { R = 25, G = 18, B = 64, A = 127});
                 };
                 b.Click += async (o, _) => await GameLoop(b.Name[^1] - '0');
                 StartButtons.Children.Add(b);

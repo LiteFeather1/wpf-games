@@ -22,27 +22,24 @@
             </Grid.RowDefinitions>
 
             <TextBlock x:Name="ScoreText"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Text="SCORE 0"
-                   FontSize="42"
-                   Margin="16"/>
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Text="SCORE 0"
+                       FontSize="42"
+                       Margin="16"/>
 
             <Border x:Name="GridBorder"
-                Grid.Row="1"
-                BorderBrush="{StaticResource GridLineColour}"
-                BorderThickness="1.5"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                RenderOptions.EdgeMode="Aliased"
-                Margin="20, 0, 20, 20">
+                    Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    RenderOptions.EdgeMode="Aliased"
+                    Margin="20, 0, 20, 20">
                 <UniformGrid x:Name="GameGrid"
-                         Width="512"
-                         Height="512"
-                         Background="{StaticResource GridBackgroundColour}"
-                         SnapsToDevicePixels="True"
-                         RenderOptions.BitmapScalingMode="NearestNeighbor"
-                         UseLayoutRounding="True">
+                             Width="512"
+                             Height="512"
+                             Background="{StaticResource GridBackgroundColour}"
+                             SnapsToDevicePixels="True"
+                             RenderOptions.BitmapScalingMode="HighQuality">
                 </UniformGrid>
             </Border>
 
@@ -55,18 +52,17 @@
                     RenderOptions.EdgeMode="Aliased">
                 <StackPanel VerticalAlignment="Center">
                     <TextBlock x:Name="OverlayText"
-                           Text="CHOOSE A LEVEL"
-                           FontSize="26"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           TextWrapping="Wrap"/>
+                               Text="CHOOSE A LEVEL"
+                               FontSize="26"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               TextWrapping="Wrap"/>
 
                     <StackPanel x:Name="StartButtons"
                                 Orientation="Horizontal"
                                 HorizontalAlignment="Center">
                     </StackPanel>
                 </StackPanel>
-
             </Border>
         </Grid>
     </Viewbox>
