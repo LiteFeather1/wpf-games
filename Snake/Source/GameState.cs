@@ -4,16 +4,9 @@
     {
         private const int MAX_DIRECTION_CHANGE_BUFFER = 2;
 
-        public int Rows { get; }
-        public int Cols { get; }
         public GridValue[,] Grid { get; }
 
         public GridCoordinate SnakeDirection { get; private set; }
-
-        public Food Food { get; private set; }
-
-        public int Score { get; private set; }  
-        public bool GameOver { get; private set; }
 
         private readonly List<GridCoordinate> r_directionChangesBuffer = [];    
 
@@ -21,16 +14,19 @@
 
         private readonly Random r_random = new();
 
+        public Food Food { get; private set; }
+
+        public int Score { get; private set; }  
+        public bool GameOver { get; private set; }
+
         public GameState(int rows, int cols)
         {
-            Rows = rows;
-            Cols = cols;
             Grid = new GridValue[rows, cols];
 
             SnakeDirection = GridCoordinate.Right;
 
             // Add Snake
-            var r = Rows / 2;
+            var r = rows / 2;
             for (var c = 1; c <= 3; c++)
             {
                 Grid[r, c] = GridValue.Snake;
@@ -74,7 +70,8 @@
 
             GridValue willHit;
             // Outside grid
-            if (newHeadPos.Y < 0 || newHeadPos.Y >= Rows || newHeadPos.X < 0 || newHeadPos.X >= Cols)
+            if (newHeadPos.Y < 0 || newHeadPos.Y >= Grid.GetLength(0) 
+                || newHeadPos.X < 0 || newHeadPos.X >= Grid.GetLength(1))
                 willHit = GridValue.Outside;
             // Especial case if the next tile the snake will hit is the tail
             else if (newHeadPos == r_snakePositions.Last.Value)
@@ -121,8 +118,8 @@
 
             IEnumerable<GridCoordinate> EmptyPositions()
             {
-                for (var r = 0; r < Rows; r++)
-                    for (var c = 0; c < Cols; c++)
+                for (var r = 0; r < Grid.GetLength(0); r++)
+                    for (var c = 0; c < Grid.GetLength(1); c++)
                         if (Grid[r, c] == GridValue.Empty)
                             yield return new(c, r);
             }
