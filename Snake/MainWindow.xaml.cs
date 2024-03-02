@@ -13,13 +13,11 @@ namespace Snake
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const string OVERLAY_TEXT = "CHOOSE A LEVEL";
-
         private readonly Dictionary<GridValue, BitmapSource> r_gridValToImage = new()
         {
             { GridValue.Food, Images.Empty },
             { GridValue.Empty, Images.Empty },
-            { GridValue.Snake, Images.Body },
+            { GridValue.Snake, Images.Body }
         };
 
         private readonly Dictionary<GridCoordinate, int> r_directionToRotation = new()
@@ -27,13 +25,12 @@ namespace Snake
             { GridCoordinate.Up, 0 },
             { GridCoordinate.Right, 90 },
             { GridCoordinate.Down, 180 },
-            { GridCoordinate.Left, 270 },
+            { GridCoordinate.Left, 270 }
         };
 
         private readonly int r_rows = 16, r_cols = 16;
         private readonly Image[,] r_gridImages;
 
-        private int _minDelay, _maxDelay; 
         private GameState _gameState;
 
         private bool _gameRunning;
@@ -62,20 +59,35 @@ namespace Snake
                 }
 
             string[] names = ["Easy", "Medium", "Hard"];
-            Color[] color = [Colors.LightGreen, Colors.LightGoldenrodYellow, Colors.IndianRed];
+            Color[] colors = [Colors.LightGreen, Colors.Wheat, Colors.IndianRed];
             for (var i = 0; i < 3; i++)
             {
                 var b = new Button()
                 {
+                    Name = $"Name_{i}",
                     Content = names[i],
                     FontWeight = FontWeights.DemiBold,
                     FontSize = 18,
                     Margin = new(32.0, 16.0, 32.0, 16.0),
-                    Width = 128.0,
+                    BorderThickness = new(2.0),
+                    BorderBrush = new SolidColorBrush(Colors.DarkSlateGray),
+                    Width = 96.0,
                     Height = 48.0,
-                    Foreground = new SolidColorBrush(new() { R = 45, G = 45, B = 45, A = 255 }),
-                    Background = new SolidColorBrush(color[i]),
+                    Foreground = new SolidColorBrush(Colors.White),
+                    Background = new SolidColorBrush(Colors.Transparent),
                 };
+                var id = i;
+                b.MouseEnter += (o, m) =>
+                { 
+                    b.Foreground = new SolidColorBrush(Colors.Black);
+                    b.Background = new SolidColorBrush(colors[id]);
+                };
+                b.MouseLeave += (o, m) =>
+                {
+                    b.Foreground = new SolidColorBrush(Colors.White);
+                    b.Background = new SolidColorBrush(Colors.Transparent);
+                };
+                b.Click += async (o, _) => await GameLoop(b.Name[^1] - '0');
                 StartButtons.Children.Add(b);
             }
 
@@ -84,13 +96,55 @@ namespace Snake
 
         private async void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if (Overlay.Visibility == Visibility.Visible)
-                e.Handled = true;
-
             if (_gameRunning)
                 return;
 
+            int difficulty;
+            switch (e.Key)
+            {
+                case Key.D1:
+                    difficulty = 0;
+                    break;
+                case Key.D2:
+                    difficulty = 1;
+                    break;
+                case Key.D3:
+                    difficulty = 2;
+                    break;
+                default:
+                    return;
+            }
+
+            if (Overlay.Visibility == Visibility.Visible)
+                e.Handled = true;
+
+            await GameLoop(difficulty);
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (_gameState.GameOver)
+                return;
+
+            _gameState.ChangeDirection(e.Key switch
+            {
+                Key.A or Key.Left => GridCoordinate.Left,
+                Key.D or Key.Right => GridCoordinate.Right,
+                Key.W or Key.Up => GridCoordinate.Up,
+                _ or Key.S or Key.Down => GridCoordinate.Down
+            });
+        }
+
+        private async Task GameLoop(int difficultyIndex)
+        {
             _gameRunning = true;
+
+            Difficulty difficulty = difficultyIndex switch
+            {
+                0 => new(64, 192f, 1536f),
+                1 => new(32, 128f, 1024f),
+                _ => new(16, 64f, 512f)
+            };
 
             StartButtons.Visibility = Visibility.Hidden;
             // Run game
@@ -109,11 +163,10 @@ namespace Snake
             // Game Loop
             while (!_gameState.GameOver)
             {
-                var delay = (int)(128f + (32f - 128f) * (_gameState.Score / 1024f));
-                if (delay < 32)
-                    delay = 32;
-                await Task.Delay(delay);
+                await Task.Delay(difficulty.Delay(_gameState.Score));
+
                 _gameState.Move();
+
                 Draw();
             }
 
@@ -128,7 +181,7 @@ namespace Snake
 
             // Replay
             await Task.Delay(333);
-            OverlayText.Text = OVERLAY_TEXT;
+            OverlayText.Text = "CHOOSE A LEVEL";
             Overlay.Visibility = Visibility.Visible;
             StartButtons.Visibility = Visibility.Visible;
 
@@ -172,18 +225,16 @@ namespace Snake
             }
         }
 
-        private void Window_KeyDown(object sender, KeyEventArgs e)
+        private readonly struct Difficulty(int minDelay, float maxDelay, float scoreToMin)
         {
-            if (_gameState.GameOver)
-                return;
-
-            _gameState.ChangeDirection(e.Key switch
+            public readonly int Delay(int score)
             {
-                Key.A or Key.Left => GridCoordinate.Left,
-                Key.D or Key.Right => GridCoordinate.Right,
-                Key.W or Key.Up => GridCoordinate.Up,
-                _ or Key.S or Key.Down => GridCoordinate.Down
-            });
-        }
+                var delay = (int)(maxDelay + (minDelay - maxDelay) * (score / scoreToMin));
+                if (delay < minDelay)
+                    return minDelay;
+
+                return delay;
+            }
+        };
     }
 }
