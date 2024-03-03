@@ -4,22 +4,22 @@
     {
         private const int MAX_DIRECTION_CHANGE_BUFFER = 2;
 
-        public GridValue[,] Grid { get; }
-
-        public GridCoordinate SnakeDirection { get; private set; }
+        private readonly Difficulty _difficulty;
 
         private readonly LinkedList<GridCoordinate> r_directionChangesBuffer = new();    
-
         private readonly LinkedList<GridCoordinate> r_snakePositions = new();
 
         private readonly Random r_random = new();
 
-        public Food Food { get; private set; }
+        public GridValue[,] Grid { get; }
+        public GridCoordinate SnakeDirection { get; private set; }
 
+        public Food Food { get; private set; }
         public int Score { get; private set; }  
         public bool GameOver { get; private set; }
 
-        public GameState(int rows, int cols)
+
+        public GameState(int rows, int cols, int difficultyIndex)
         {
             Grid = new GridValue[rows, cols];
 
@@ -32,6 +32,13 @@
                 Grid[r, c] = GridValue.Snake;
                 r_snakePositions.AddFirst(new GridCoordinate(r, c));
             }
+
+            _difficulty = difficultyIndex switch
+            {
+                0 => new(64, 192f, 1536f),
+                1 => new(32, 128f, 1024f),
+                _ => new(16, 64f, 512f)
+            };
 
             AddFood();
         }
@@ -55,8 +62,10 @@
             r_directionChangesBuffer.AddLast(dir);
         }
 
-        public void Move()
+        public async Task Move()
         {
+            await Task.Delay(_difficulty.Delay(Score));
+
             if (r_directionChangesBuffer.Count > 0)
             {
                 SnakeDirection = r_directionChangesBuffer.First.Value;
@@ -119,6 +128,18 @@
                     for (var c = 0; c < Grid.GetLength(1); c++)
                         if (Grid[r, c] == GridValue.Empty)
                             yield return new(r, c);
+            }
+        }
+
+        private readonly struct Difficulty(int minDelay, float maxDelay, float scoreToMin)
+        {
+            public readonly int Delay(int score)
+            {
+                var delay = (int)(maxDelay + (minDelay - maxDelay) * (score / scoreToMin));
+                if (delay < minDelay)
+                    return minDelay;
+
+                return delay;
             }
         }
     }
