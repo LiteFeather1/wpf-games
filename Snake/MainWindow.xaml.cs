@@ -34,8 +34,6 @@ namespace Snake
 
         private GameState _gameState;
 
-        private bool _gameRunning;
-
         public MainWindow()
         {
             InitializeComponent();
@@ -97,13 +95,11 @@ namespace Snake
                 b.Click += async (o, _) => await GameLoop(b.Name[^1] - '0');
                 StartButtons.Children.Add(b);
             }
-
-            _gameState = new(ROWS, COLS);
         }
 
         private async void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if (_gameRunning)
+            if (_gameState != null)
                 return;
 
             int difficultyIndex;
@@ -144,9 +140,7 @@ namespace Snake
 
         private async Task GameLoop(int difficultyIndex)
         {
-            _gameRunning = true;
-
-            _gameState.SetDifficulty(difficultyIndex);
+            _gameState = new(ROWS, COLS, difficultyIndex);
 
             StartButtons.Visibility = Visibility.Hidden;
             // Run game
@@ -185,10 +179,8 @@ namespace Snake
             Overlay.Visibility = Visibility.Visible;
             StartButtons.Visibility = Visibility.Visible;
 
-            // New Game
-            _gameState = new(ROWS, COLS);
-
-            _gameRunning = false;
+            // End game
+            _gameState = null;
 
             void Draw()
             {

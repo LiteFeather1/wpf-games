@@ -4,24 +4,22 @@
     {
         private const int MAX_DIRECTION_CHANGE_BUFFER = 2;
 
-        public GridValue[,] Grid { get; }
-
-        public GridCoordinate SnakeDirection { get; private set; }
+        private readonly Difficulty _difficulty;
 
         private readonly LinkedList<GridCoordinate> r_directionChangesBuffer = new();    
-
         private readonly LinkedList<GridCoordinate> r_snakePositions = new();
 
         private readonly Random r_random = new();
 
-        private Difficulty _difficulty;
+        public GridValue[,] Grid { get; }
+        public GridCoordinate SnakeDirection { get; private set; }
 
         public Food Food { get; private set; }
-
         public int Score { get; private set; }  
         public bool GameOver { get; private set; }
 
-        public GameState(int rows, int cols)
+
+        public GameState(int rows, int cols, int difficultyIndex)
         {
             Grid = new GridValue[rows, cols];
 
@@ -35,15 +33,15 @@
                 r_snakePositions.AddFirst(new GridCoordinate(r, c));
             }
 
+            _difficulty = difficultyIndex switch
+            {
+                0 => new(64, 192f, 1536f),
+                1 => new(32, 128f, 1024f),
+                _ => new(16, 64f, 512f)
+            };
+
             AddFood();
         }
-
-        public void SetDifficulty(int difficultyIndex) => _difficulty = difficultyIndex switch
-        {
-            0 => new(64, 192f, 1536f),
-            1 => new(32, 128f, 1024f),
-            _ => new(16, 64f, 512f)
-        };
 
         public GridCoordinate HeadPosition() =>  r_snakePositions.First.Value;
 
