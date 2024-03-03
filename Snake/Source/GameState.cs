@@ -14,6 +14,8 @@
 
         private readonly Random r_random = new();
 
+        private Difficulty _difficulty;
+
         public Food Food { get; private set; }
 
         public int Score { get; private set; }  
@@ -36,6 +38,13 @@
             AddFood();
         }
 
+        public void SetDifficulty(int difficultyIndex) => _difficulty = difficultyIndex switch
+        {
+            0 => new(64, 192f, 1536f),
+            1 => new(32, 128f, 1024f),
+            _ => new(16, 64f, 512f)
+        };
+
         public GridCoordinate HeadPosition() =>  r_snakePositions.First.Value;
 
         public IEnumerable<GridCoordinate> SnakePositions() => r_snakePositions;
@@ -55,8 +64,10 @@
             r_directionChangesBuffer.AddLast(dir);
         }
 
-        public void Move()
+        public async Task Move()
         {
+            await Task.Delay(_difficulty.Delay(Score));
+
             if (r_directionChangesBuffer.Count > 0)
             {
                 SnakeDirection = r_directionChangesBuffer.First.Value;
@@ -119,6 +130,18 @@
                     for (var c = 0; c < Grid.GetLength(1); c++)
                         if (Grid[r, c] == GridValue.Empty)
                             yield return new(r, c);
+            }
+        }
+
+        private readonly struct Difficulty(int minDelay, float maxDelay, float scoreToMin)
+        {
+            public readonly int Delay(int score)
+            {
+                var delay = (int)(maxDelay + (minDelay - maxDelay) * (score / scoreToMin));
+                if (delay < minDelay)
+                    return minDelay;
+
+                return delay;
             }
         }
     }
