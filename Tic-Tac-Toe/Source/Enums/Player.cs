@@ -1,5 +1,4 @@
-﻿
-namespace Tic_Tac_Toe.Source
+﻿namespace Tic_Tac_Toe.Source.Enums
 {
     public enum Player
     {
