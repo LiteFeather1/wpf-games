@@ -2,4 +2,9 @@
 
 namespace Tic_Tac_Toe.Source;
 
-public record WinInfo(WinType WinType, int Number);
+public class WinInfo(WinType winType, int number = 0)
+{
+    public WinType WinType { get; } = winType;
+
+    public int Number { get; } = number;
+}
