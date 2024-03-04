@@ -1,9 +1,8 @@
-﻿namespace Tic_Tac_Toe.Source.Enums
+﻿namespace Tic_Tac_Toe.Source.Enums;
+
+public enum Player
 {
-    public enum Player
-    {
-        None,
-        X,
-        O
-    }
+    None,
+    X,
+    O
 }

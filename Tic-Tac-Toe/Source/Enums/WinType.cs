@@ -1,10 +1,9 @@
-﻿namespace Tic_Tac_Toe.Source.Enums
+﻿namespace Tic_Tac_Toe.Source.Enums;
+
+public enum WinType
 {
-    public enum WinType
-    {
-        Row,
-        Column,
-        MainDiagonal,
-        AntiDiagonal
-    }
+    Row,
+    Column,
+    MainDiagonal,
+    AntiDiagonal
 }
