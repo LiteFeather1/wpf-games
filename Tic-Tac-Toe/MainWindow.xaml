@@ -48,14 +48,17 @@
             <Image Source="Assets/Board.png"
                    Height="512"
                    Width="512"
-                   MouseDown="GameGrid_MouseDown"/>
+                   MouseDown="GameGrid_MouseDown"
+                   Margin="-8, 8, 0, 0"/>
 
             <UniformGrid x:Name="GameGridSquare"
                          Height="512"
                          Width="512"
                          Rows="3"
                          Columns="3"
-                         IsHitTestVisible="False"/>
+                         IsHitTestVisible="False"
+                         Margin="-2, 6, 0, 0"
+                         />
 
             <UniformGrid x:Name="GameGrid"
                          Height="512"

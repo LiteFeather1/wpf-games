@@ -41,7 +41,7 @@ public partial class MainWindow : Window
         r_gameState.GameRestarted += OnGameRestarted;
 
         // Set up GameGrid
-        var thickness = new Thickness(16.0);
+        var thickness = new Thickness(18.0);
         for (var r = 0; r < 3; r++)
             for (var c = 0; c < 3; c++)
             {
@@ -85,6 +85,7 @@ public partial class MainWindow : Window
     #region WindowEvents
     private void GameGrid_MouseDown(object sender, MouseButtonEventArgs e)
     {
+        // FIXME Game is breaking when placing on the first spot
         var squareSize = GameGrid.Width / 3.0;
         var clickPosition = e.GetPosition(GameGrid);
         r_gameState.MakeMove(new(row: (int)(clickPosition.Y / squareSize),
