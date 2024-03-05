@@ -15,10 +15,7 @@ namespace Tic_Tac_Toe;
 
 public partial class MainWindow : Window
 {
-    private readonly SolidColorBrush sr_xColour;
-    private readonly SolidColorBrush sr_oColour;
-    private readonly Color sr_xDropShadowColour;
-    private readonly Color sr_oDropShadowColour;
+    private static readonly Dictionary<Player, SolidColorBrush> sr_playerToColour = new(2)S;
 
     private readonly Image[,] r_imageControls = new Image[3, 3];
 
@@ -31,10 +28,8 @@ public partial class MainWindow : Window
         var app = Application.Current as App;
         app.InitializeComponent();
 
-        sr_xColour = app.Resources["XColour"] as SolidColorBrush;
-        sr_oColour = app.Resources["OColour"] as SolidColorBrush;
-        sr_xDropShadowColour = (Color)app.Resources["XDropShadowColour"];
-        sr_oDropShadowColour = (Color)app.Resources["ODropShadowColour"];  
+        sr_playerToColour.Add(Player.X, app.Resources["XColour"] as SolidColorBrush);
+        sr_playerToColour.Add(Player.O, app.Resources["OColour"] as SolidColorBrush);
 
         r_gameState.MoveMade += OnMoveMade;
         r_gameState.GameEnded += OnGameEnded;
@@ -68,6 +63,7 @@ public partial class MainWindow : Window
         r_imageControls[square.Row, square.Col].Source = 
             Images.PlayerCompleteImages[r_gameState.GameGrid[square.Row, square.Col]];
 
+        PlayerText.Foreground =
         PlayerImage.Source = Images.PlayerCompleteImages[r_gameState.CurrentPlayer];
     }
     
