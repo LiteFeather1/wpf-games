@@ -28,10 +28,10 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
 
-        sr_oColour = Resources["OColour"] as SolidColorBrush;
         sr_xColour = Resources["XColour"] as SolidColorBrush;
+        sr_oColour = Resources["OColour"] as SolidColorBrush;
+        sr_xDropShadowColour = (Color)Resources["XDropShadowColour"];
         sr_oDropShadowColour = (Color)Resources["ODropShadowColour"];
-        sr_oDropShadowColour = (Color)Resources["XDropShadowColour"];
 
         r_gameState.MoveMade += OnMoveMade;
         r_gameState.GameEnded += OnGameEnded;
@@ -50,7 +50,10 @@ public partial class MainWindow : Window
     #region GameState Events
     private void OnMoveMade(SquareCoordinate square)
     {
+        r_imageControls[square.Row, square.Col].Source = 
+            Images.PlayerCompleteImages[r_gameState.GameGrid[square.Row, square.Col]];
 
+        PlayerImage.Source = Images.PlayerCompleteImages[r_gameState.CurrentPlayer];
     }
     
     private void  OnGameEnded(GameResult gameResult)
