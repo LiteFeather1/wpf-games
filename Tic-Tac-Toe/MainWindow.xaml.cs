@@ -8,37 +8,48 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Tic_Tac_Toe.Source;
+using Tic_Tac_Toe.Source.Enums;
 
-namespace Tic_Tac_Toe
+namespace Tic_Tac_Toe;
+
+public partial class MainWindow : Window
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    private readonly SolidColorBrush sr_xColour;
+    private readonly SolidColorBrush sr_oColour;
+    private readonly Color sr_xDropShadowColour;
+    private readonly Color sr_oDropShadowColour;
+
+    private readonly Image[,] r_imageControls = new Image[3, 3];
+
+    private readonly GameState r_gameState = new();
+
+    public MainWindow()
     {
-        private readonly SolidColorBrush sr_xColour;
-        private readonly SolidColorBrush sr_oColour;
-        private readonly Color sr_xDropShadowColour;
-        private readonly Color sr_oDropShadowColour;
+        InitializeComponent();
 
-        public MainWindow()
-        {
-            InitializeComponent();
+        sr_oColour = Resources["OColour"] as SolidColorBrush;
+        sr_xColour = Resources["XColour"] as SolidColorBrush;
+        sr_oDropShadowColour = (Color)Resources["ODropShadowColour"];
+        sr_oDropShadowColour = (Color)Resources["XDropShadowColour"];
 
-            sr_oColour = Resources["OColour"] as SolidColorBrush;
-            sr_xColour = Resources["XColour"] as SolidColorBrush;
-            sr_oDropShadowColour = (Color)Resources["ODropShadowColour"];
-            sr_oDropShadowColour = (Color)Resources["XDropShadowColour"];
-        }
+        // Set up GameGrid
+        for (var r = 0; r < 3; r++)
+            for (var c = 0; c < 3; c++)
+            {
+                var image = new Image();
+                r_imageControls[r, c] = image;
+                GameGrid.Children.Add(image);
+            }
+    }
 
-        private void GameGrid_MouseDown(object sender, MouseButtonEventArgs e)
-        {
+    private void GameGrid_MouseDown(object sender, MouseButtonEventArgs e)
+    {
 
-        }
+    }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
 
-        }
     }
 }
