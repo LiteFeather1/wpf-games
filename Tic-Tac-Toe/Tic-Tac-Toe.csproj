@@ -10,7 +10,79 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Assets\" />
+    <None Remove="Assets\Board.png" />
+    <None Remove="Assets\Icon.ico" />
+    <None Remove="Assets\Os\O_00.png" />
+    <None Remove="Assets\Os\O_01.png" />
+    <None Remove="Assets\Os\O_02.png" />
+    <None Remove="Assets\Os\O_03.png" />
+    <None Remove="Assets\Os\O_04.png" />
+    <None Remove="Assets\Os\O_05.png" />
+    <None Remove="Assets\Os\O_06.png" />
+    <None Remove="Assets\Os\O_07.png" />
+    <None Remove="Assets\Os\O_08.png" />
+    <None Remove="Assets\Os\O_09.png" />
+    <None Remove="Assets\Os\O_10.png" />
+    <None Remove="Assets\Os\O_11.png" />
+    <None Remove="Assets\Os\O_12.png" />
+    <None Remove="Assets\Os\O_13.png" />
+    <None Remove="Assets\Os\O_14.png" />
+    <None Remove="Assets\Os\O_15.png" />
+    <None Remove="Assets\Square.png" />
+    <None Remove="Assets\Xs\X_00.png" />
+    <None Remove="Assets\Xs\X_01.png" />
+    <None Remove="Assets\Xs\X_02.png" />
+    <None Remove="Assets\Xs\X_03.png" />
+    <None Remove="Assets\Xs\X_04.png" />
+    <None Remove="Assets\Xs\X_05.png" />
+    <None Remove="Assets\Xs\X_06.png" />
+    <None Remove="Assets\Xs\X_07.png" />
+    <None Remove="Assets\Xs\X_08.png" />
+    <None Remove="Assets\Xs\X_09.png" />
+    <None Remove="Assets\Xs\X_10.png" />
+    <None Remove="Assets\Xs\X_11.png" />
+    <None Remove="Assets\Xs\X_12.png" />
+    <None Remove="Assets\Xs\X_13.png" />
+    <None Remove="Assets\Xs\X_14.png" />
+    <None Remove="Assets\Xs\X_15.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Board.png" />
+    <Resource Include="Assets\Icon.ico" />
+    <Resource Include="Assets\Os\O_00.png" />
+    <Resource Include="Assets\Os\O_01.png" />
+    <Resource Include="Assets\Os\O_10.png" />
+    <Resource Include="Assets\Os\O_11.png" />
+    <Resource Include="Assets\Os\O_12.png" />
+    <Resource Include="Assets\Os\O_13.png" />
+    <Resource Include="Assets\Os\O_14.png" />
+    <Resource Include="Assets\Os\O_15.png" />
+    <Resource Include="Assets\Os\O_02.png" />
+    <Resource Include="Assets\Os\O_03.png" />
+    <Resource Include="Assets\Os\O_04.png" />
+    <Resource Include="Assets\Os\O_05.png" />
+    <Resource Include="Assets\Os\O_06.png" />
+    <Resource Include="Assets\Os\O_07.png" />
+    <Resource Include="Assets\Os\O_08.png" />
+    <Resource Include="Assets\Os\O_09.png" />
+    <Resource Include="Assets\Square.png" />
+    <Resource Include="Assets\Xs\X_00.png" />
+    <Resource Include="Assets\Xs\X_01.png" />
+    <Resource Include="Assets\Xs\X_10.png" />
+    <Resource Include="Assets\Xs\X_11.png" />
+    <Resource Include="Assets\Xs\X_12.png" />
+    <Resource Include="Assets\Xs\X_13.png" />
+    <Resource Include="Assets\Xs\X_14.png" />
+    <Resource Include="Assets\Xs\X_15.png" />
+    <Resource Include="Assets\Xs\X_02.png" />
+    <Resource Include="Assets\Xs\X_03.png" />
+    <Resource Include="Assets\Xs\X_04.png" />
+    <Resource Include="Assets\Xs\X_05.png" />
+    <Resource Include="Assets\Xs\X_06.png" />
+    <Resource Include="Assets\Xs\X_07.png" />
+    <Resource Include="Assets\Xs\X_08.png" />
+    <Resource Include="Assets\Xs\X_09.png" />
   </ItemGroup>
 
 </Project>
