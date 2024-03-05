@@ -20,9 +20,9 @@
         <StackPanel x:Name="TurnPanel"
                     Orientation="Horizontal"
                     HorizontalAlignment="Center"
-                    Margin="0, 4, 0, 0">
+                    Margin="0, 12, 0, 0">
             <TextBlock x:Name="PlayerText"
-                       Text="Player:"
+                       Text="Player: "
                        FontSize="54"
                        VerticalAlignment="Center"
                        Foreground="{StaticResource XColour}">

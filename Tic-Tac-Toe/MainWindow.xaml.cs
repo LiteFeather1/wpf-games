@@ -44,7 +44,10 @@ public partial class MainWindow : Window
         for (var r = 0; r < 3; r++)
             for (var c = 0; c < 3; c++)
             {
-                var image = new Image();
+                var image = new Image()
+                { 
+                    Margin = new Thickness(16.0)
+                };
                 r_imageControls[r, c] = image;
                 GameGrid.Children.Add(image);
             }
