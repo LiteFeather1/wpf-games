@@ -28,10 +28,13 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
 
-        sr_xColour = Resources["XColour"] as SolidColorBrush;
-        sr_oColour = Resources["OColour"] as SolidColorBrush;
-        sr_xDropShadowColour = (Color)Resources["XDropShadowColour"];
-        sr_oDropShadowColour = (Color)Resources["ODropShadowColour"];
+        var app = Application.Current as App;
+        app.InitializeComponent();
+
+        sr_xColour = app.Resources["XColour"] as SolidColorBrush;
+        sr_oColour = app.Resources["OColour"] as SolidColorBrush;
+        sr_xDropShadowColour = (Color)app.Resources["XDropShadowColour"];
+        sr_oDropShadowColour = (Color)app.Resources["ODropShadowColour"];  
 
         r_gameState.MoveMade += OnMoveMade;
         r_gameState.GameEnded += OnGameEnded;
