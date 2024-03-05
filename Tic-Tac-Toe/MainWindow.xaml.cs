@@ -33,6 +33,10 @@ public partial class MainWindow : Window
         sr_oDropShadowColour = (Color)Resources["ODropShadowColour"];
         sr_oDropShadowColour = (Color)Resources["XDropShadowColour"];
 
+        r_gameState.MoveMade += OnMoveMade;
+        r_gameState.GameEnded += OnGameEnded;
+        r_gameState.GameRestarted += OnGameRestarted;
+
         // Set up GameGrid
         for (var r = 0; r < 3; r++)
             for (var c = 0; c < 3; c++)
@@ -43,6 +47,24 @@ public partial class MainWindow : Window
             }
     }
 
+    #region GameState Events
+    private void OnMoveMade(SquareCoordinate square)
+    {
+
+    }
+    
+    private void  OnGameEnded(GameResult gameResult)
+    {
+
+    }
+
+    private void OnGameRestarted()
+    {
+
+    }
+    #endregion
+
+    #region WindowEvents
     private void GameGrid_MouseDown(object sender, MouseButtonEventArgs e)
     {
 
@@ -52,4 +74,5 @@ public partial class MainWindow : Window
     {
 
     }
+    #endregion
 }
