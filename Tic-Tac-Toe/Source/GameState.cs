@@ -75,13 +75,12 @@ public class GameState
             GameEnded?.Invoke(gameResult);
         }
         else
-            // Swap Player
             CurrentPlayer = CurrentPlayer == Player.X ? Player.O : Player.X;
 
-        bool AreSquaresMarked(SquareCoordinate[] squares)
+        bool AreSquaresMarked(SquareCoordinate[] s)
         {
-            foreach (var s in squares)
-                if (GameGrid[s.Row, s.Col] != CurrentPlayer)
+            for (var i = 0; i < s.Length; i++)
+                if (GameGrid[s[i].Row, s[i].Col] != CurrentPlayer)
                     return false;
 
             return true;
