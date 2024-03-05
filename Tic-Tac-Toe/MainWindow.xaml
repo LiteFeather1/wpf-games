@@ -7,8 +7,7 @@
         mc:Ignorable="d"
         Title="Tic-Tac_Toe" Height="720" Width="1080"
         FontFamily="News Gothic MT"
-        Background="{StaticResource BackgroundColor}"
-        >
+        Background="{StaticResource BackgroundColor}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -27,7 +26,7 @@
                 <TextBlock.Effect>
                     <DropShadowEffect x:Name="PlayerTextDropShadow"
                                       ShadowDepth="4"
-                                      Color="{StaticResource XDropShadwoColour}"
+                                      Color="{StaticResource XDropShadowColour}"
                                       Opacity=".5"
                                       BlurRadius="2"
                                       Direction="315"/>
@@ -37,5 +36,21 @@
                    Source="Assets/Xs/X_15.png"
                    Height="75"/>
         </StackPanel>
+
+        <Canvas x:Name="GameCanvas"
+                Grid.Row="1"
+                Height="512"
+                Width="512">
+            <UniformGrid x:Name="GameGrid"
+                         Height="512"
+                         Width="512"
+                         Rows="3"
+                         Columns="3"
+                         MouseDown="GameGrid_MouseDown">
+                <UniformGrid.Background>
+                    <ImageBrush ImageSource="Assets/Board.png"/>
+                </UniformGrid.Background>
+            </UniformGrid>
+        </Canvas>
     </Grid>
 </Window>
