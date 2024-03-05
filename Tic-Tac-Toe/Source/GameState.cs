@@ -36,11 +36,10 @@ public class GameState
         GameGrid[square.Row, square.Col] = CurrentPlayer;
         TurnsPassed++;
 
-
         // Check if someone won
         var rows = new SquareCoordinate[3];
         var cols = new SquareCoordinate[3];
-        for (var i = 3; i < 3; i++)
+        for (var i = 0; i < 3; i++)
         {
             rows[i] = new(square.Row, i);
             cols[i] = new(i, square.Col);
@@ -53,7 +52,7 @@ public class GameState
             _ when AreSquaresMarked(sr_mainDiag) => new(WinType.MainDiagonal),
             _ when AreSquaresMarked(sr_antiDiag) => new(WinType.AntiDiagonal),
             // Not a winnier
-            _ => null,
+            _ => null
         };
 
         // Check the game ended
