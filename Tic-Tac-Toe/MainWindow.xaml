@@ -8,6 +8,7 @@
         Title="Tic-Tac_Toe" Height="720" Width="1280"
         MinHeight="360" MinWidth="640"
         WindowStartupLocation="CenterOwner"
+        Icon="Assets/Icon.ico"
         FontFamily="News Gothic MT"
         RenderOptions.BitmapScalingMode="HighQuality"
         Background="{StaticResource BackgroundColor}">
