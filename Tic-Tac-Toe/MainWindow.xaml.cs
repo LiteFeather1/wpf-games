@@ -5,6 +5,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -15,7 +16,7 @@ namespace Tic_Tac_Toe;
 
 public partial class MainWindow : Window
 {
-    private static readonly Dictionary<Player, SolidColorBrush> sr_playerToColour = new(2)S;
+    private static readonly Dictionary<Player, SolidColorBrush> sr_playerToColour = new(2);
 
     private readonly Image[,] r_imageControls = new Image[3, 3];
 
@@ -60,10 +61,11 @@ public partial class MainWindow : Window
     #region GameState Events
     private void OnMoveMade(SquareCoordinate square)
     {
-        r_imageControls[square.Row, square.Col].Source = 
-            Images.PlayerCompleteImages[r_gameState.GameGrid[square.Row, square.Col]];
+        var prevPlayer = r_gameState.GameGrid[square.Row, square.Col];
+        r_imageControls[square.Row, square.Col].Source = Images.PlayerCompleteImages[prevPlayer];
 
-        PlayerText.Foreground =
+        PlayerText.Foreground = sr_playerToColour[r_gameState.CurrentPlayer];
+        (PlayerText.Effect as DropShadowEffect).Color = sr_playerToColour[prevPlayer].Color;
         PlayerImage.Source = Images.PlayerCompleteImages[r_gameState.CurrentPlayer];
     }
     

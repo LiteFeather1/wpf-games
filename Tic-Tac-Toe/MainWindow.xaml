@@ -56,9 +56,7 @@
                          Width="512"
                          Rows="3"
                          Columns="3"
-                         IsHitTestVisible="False"
-                         Margin="-2, 6, 0, 0"
-                         />
+                         Margin="-2, 6, 0, 0"/>
 
             <UniformGrid x:Name="GameGrid"
                          Height="512"
