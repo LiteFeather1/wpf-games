@@ -36,7 +36,6 @@ public class GameState
         GameGrid[square.Row, square.Col] = CurrentPlayer;
         TurnsPassed++;
 
-        MoveMade?.Invoke(square);
 
         // Check if someone won
         var rows = new SquareCoordinate[3];
@@ -74,6 +73,8 @@ public class GameState
         }
         else
             CurrentPlayer = CurrentPlayer == Player.X ? Player.O : Player.X;
+
+        MoveMade?.Invoke(square);
 
         bool AreSquaresMarked(SquareCoordinate[] s)
         {
