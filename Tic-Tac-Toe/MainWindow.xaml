@@ -28,7 +28,7 @@
                                       ShadowDepth="4"
                                       Color="{StaticResource XDropShadowColour}"
                                       Opacity=".5"
-                                      BlurRadius="2"
+                                      BlurRadius="4"
                                       Direction="315"/>
                 </TextBlock.Effect>
             </TextBlock>
@@ -51,6 +51,53 @@
                     <ImageBrush ImageSource="Assets/Board.png"/>
                 </UniformGrid.Background>
             </UniformGrid>
+
+            <Line x:Name="Line"
+                  Stroke="{StaticResource LineColour}"
+                  StrokeThickness="16"
+                  StrokeStartLineCap="Round"
+                  StrokeEndLineCap="Round"
+                  Visibility="Hidden"/>
         </Canvas>
+
+        <Grid x:Name="EndScreen"
+              Grid.RowSpan="2"
+              Background="{StaticResource BackgroundColor}"
+              Visibility="Hidden">
+            <StackPanel Orientation="Vertical"
+                        VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+                    <TextBlock x:Name="ResultText"
+                               Text="Winner: "
+                               TextAlignment="Center"
+                               FontSize="64"
+                               Foreground="{StaticResource XColour}">
+                        <TextBlock.Effect>
+                            <DropShadowEffect x:Name="ResultTextDropShadow"
+                                              ShadowDepth="4"
+                                              Color="{StaticResource XDropShadowColour}"
+                                              Opacity=".5"
+                                              BlurRadius="4"
+                                              Direction="315"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+                    
+                    <Image x:Name="WinnerIamge"
+                           Height="75"
+                           Source="Assets/Xs/X_15.png"/>
+                </StackPanel>
+
+                <Button Content="Play Again"
+                        Background="{StaticResource ButtonColour}"
+                        FontSize="34"
+                        Width="256"
+                        Margin="0, 32, 0, 0"
+                        Padding="0, 0, 0, 4"
+                        BorderThickness="3"
+                        BorderBrush="Black"
+                        Click="Button_Click"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>
