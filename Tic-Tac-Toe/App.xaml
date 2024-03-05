@@ -8,7 +8,10 @@
         <SolidColorBrush x:Key="ButtonColour" Color="#ffb966"/>
         <SolidColorBrush x:Key="LineColour" Color="#FF36E23C"/>
 
-        <SolidColorBrush x:Key="OColour" Color="#0F0F0F"/>
-        <SolidColorBrush x:Key="XColour" Color="#FDFFF5"/>
+        <Color x:Key="XDropShadwoColour">#0F0F0F</Color>
+        <Color x:Key="ODropShadwoColour">#FDFFF5</Color>
+        <SolidColorBrush x:Key="OColour" Color="{StaticResource ODropShadwoColour}"/>
+        <SolidColorBrush x:Key="XColour" Color="{StaticResource XDropShadwoColour}"/>
+
     </Application.Resources>
 </Application>

@@ -5,8 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tic_Tac_Toe"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Tic-Tac_Toe" Height="720" Width="1080"
+        FontFamily="News Gothic MT"
+        Background="{StaticResource BackgroundColor}"
+        >
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
+        <StackPanel x:Name="TurnPanel"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0, 4, 0, 0">
+            <TextBlock x:Name="PlayerText"
+                       Text="Player:"
+                       FontSize="54"
+                       VerticalAlignment="Center"
+                       Foreground="{StaticResource XColour}">
+                <TextBlock.Effect>
+                    <DropShadowEffect x:Name="PlayerTextDropShadow"
+                                      ShadowDepth="4"
+                                      Color="{StaticResource XDropShadwoColour}"
+                                      Opacity=".5"
+                                      BlurRadius="2"
+                                      Direction="315"/>
+                </TextBlock.Effect>
+            </TextBlock>
+            <Image x:Name="PlayerImage"
+                   Source="Assets/Xs/X_15.png"
+                   Height="75"/>
+        </StackPanel>
     </Grid>
 </Window>
