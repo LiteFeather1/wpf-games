@@ -67,7 +67,10 @@ public partial class MainWindow : Window
     #region WindowEvents
     private void GameGrid_MouseDown(object sender, MouseButtonEventArgs e)
     {
-
+        var squareSize = GameGrid.Width / 3.0;
+        var clickPosition = e.GetPosition(GameGrid);
+        r_gameState.MakeMove(new(row: (int)(clickPosition.Y / squareSize),
+            col: (int)(clickPosition.X / squareSize)));
     }
 
     private void Button_Click(object sender, RoutedEventArgs e)
