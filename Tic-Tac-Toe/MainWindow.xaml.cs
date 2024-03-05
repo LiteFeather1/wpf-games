@@ -41,15 +41,24 @@ public partial class MainWindow : Window
         r_gameState.GameRestarted += OnGameRestarted;
 
         // Set up GameGrid
+        var thickness = new Thickness(16.0);
         for (var r = 0; r < 3; r++)
             for (var c = 0; c < 3; c++)
             {
-                var image = new Image()
+                var playerImage = new Image()
                 { 
-                    Margin = new Thickness(16.0)
+                    Margin = thickness,
                 };
-                r_imageControls[r, c] = image;
-                GameGrid.Children.Add(image);
+
+                r_imageControls[r, c] = playerImage;
+                GameGrid.Children.Add(playerImage);
+
+                GameGridSquare.Children.Add(new Image()
+                {
+                    Margin = thickness,
+                    Source = Images.Square,
+                    IsHitTestVisible = false,
+                });
             }
     }
 

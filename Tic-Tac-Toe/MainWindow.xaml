@@ -44,16 +44,24 @@
                 Grid.Row="1"
                 Height="512"
                 Width="512">
-            <UniformGrid x:Name="GameGrid"
+            
+            <Image Source="Assets/Board.png"
+                   Height="512"
+                   Width="512"
+                   MouseDown="GameGrid_MouseDown"/>
+
+            <UniformGrid x:Name="GameGridSquare"
                          Height="512"
                          Width="512"
                          Rows="3"
                          Columns="3"
-                         MouseDown="GameGrid_MouseDown">
-                <UniformGrid.Background>
-                    <ImageBrush ImageSource="Assets/Board.png"/>
-                </UniformGrid.Background>
-            </UniformGrid>
+                         IsHitTestVisible="False"/>
+
+            <UniformGrid x:Name="GameGrid"
+                         Height="512"
+                         Width="512"
+                         Rows="3"
+                         Columns="3"/>
 
             <Line x:Name="Line"
                   Stroke="{StaticResource LineColour}"
