@@ -83,6 +83,13 @@ public partial class MainWindow : Window
         else
         {
             ResultText.Text = "It\'s a tie";
+            SetPlayerPanel(ResultText,
+                WinnerImage,
+                null,
+                r_gameState.OppositePlayer,
+                r_gameState.CurrentPlayer);
+            PlayAgainButton.Foreground = sr_playerToColour[r_gameState.CurrentPlayer];
+            PlayAgainButton.BorderBrush = sr_playerToColour[r_gameState.OppositePlayer];
             WinnerImage.Source = null;
         }
         EndScreen.Visibility = Visibility.Visible;
@@ -106,7 +113,6 @@ public partial class MainWindow : Window
 
     private void Button_Click(object sender, RoutedEventArgs e)
     {
-        
     }
     #endregion
 
