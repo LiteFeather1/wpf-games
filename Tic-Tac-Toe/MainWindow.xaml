@@ -76,7 +76,7 @@
         <Grid x:Name="EndScreen"
               Grid.RowSpan="2"
               Background="{StaticResource BackgroundColor}"
-              Visibility="Visible">
+              Visibility="Hidden">
             <StackPanel Orientation="Vertical"
                         VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal"

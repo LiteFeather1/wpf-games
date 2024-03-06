@@ -88,16 +88,29 @@ public partial class MainWindow : Window
                 null,
                 r_gameState.OppositePlayer,
                 r_gameState.CurrentPlayer);
-            PlayAgainButton.Foreground = sr_playerToColour[r_gameState.CurrentPlayer];
-            PlayAgainButton.BorderBrush = sr_playerToColour[r_gameState.OppositePlayer];
-            WinnerImage.Source = null;
         }
+
+        PlayAgainButton.Foreground = sr_playerToColour[r_gameState.CurrentPlayer];
+        PlayAgainButton.BorderBrush = sr_playerToColour[r_gameState.OppositePlayer];
+
         EndScreen.Visibility = Visibility.Visible;
     }
 
     private void OnGameRestarted()
     {
+        for (var r = 0; r < 3; r++)
+            for (var c = 0; c < 3; c++)
+                r_imageControls[r, c].Source = null;
 
+        var player = r_gameState.CurrentPlayer;
+        SetPlayerPanel(
+            PlayerText, 
+            PlayerImage, 
+            Images.PlayerCompleteImages[player],
+            player,
+            GameState.GetOppositePlayer(player));
+
+        EndScreen.Visibility = Visibility.Hidden;
     }
     #endregion
 
@@ -112,8 +125,7 @@ public partial class MainWindow : Window
     }
 
     private void Button_Click(object sender, RoutedEventArgs e)
-    {
-    }
+        => r_gameState.Reset();
     #endregion
 
     private static void SetPlayerPanel(TextBlock text,
