@@ -5,11 +5,10 @@ namespace Tic_Tac_Toe.Source;
 
 public static class Images
 {
-
     private static readonly Dictionary<Player, BitmapImage> r_playerCompleteImages = new()
     {
         { Player.X, LoadImageInAssets("Xs/X_15") },
-        { Player.O, LoadImageInAssets("Os/O_15") },
+        { Player.O, LoadImageInAssets("Os/O_15") }
     };
 
     public static BitmapImage Square => LoadImageInAssets("Square");

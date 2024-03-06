@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
+using System.Windows.Media.Imaging;
 using Tic_Tac_Toe.Source;
 using Tic_Tac_Toe.Source.Enums;
 
@@ -58,7 +59,11 @@ public partial class MainWindow : Window
         var prevPlayer = r_gameState.GameGrid[square.Row, square.Col];
         r_imageControls[square.Row, square.Col].Source = Images.PlayerCompleteImages[prevPlayer];
 
-        SetPlayerPanel(PlayerText, PlayerImage, r_gameState.CurrentPlayer, prevPlayer);
+        SetPlayerPanel(PlayerText, 
+            PlayerImage,
+            Images.PlayerCompleteImages[r_gameState.CurrentPlayer],
+            r_gameState.CurrentPlayer, 
+            prevPlayer);
     }
     
     private async void OnGameEnded(GameResult gameResult)
@@ -69,7 +74,11 @@ public partial class MainWindow : Window
         if (gameResult.Winner != Player.None)
         {
             ResultText.Text = "Winner: ";
-            SetPlayerPanel(ResultText, WinnerImage, gameResult.Winner, r_gameState.CurrentPlayer);
+            SetPlayerPanel(ResultText, 
+                WinnerImage, 
+                Images.PlayerCompleteImages[gameResult.Winner], 
+                gameResult.Winner, 
+                r_gameState.CurrentPlayer);
         }
         else
         {
@@ -97,14 +106,18 @@ public partial class MainWindow : Window
 
     private void Button_Click(object sender, RoutedEventArgs e)
     {
-
+        
     }
     #endregion
 
-    private static void SetPlayerPanel(TextBlock text, Image image, Player currentPlayer, Player oppositePlayer)
+    private static void SetPlayerPanel(TextBlock text,
+        Image image,
+        BitmapImage source, 
+        Player currentPlayer,
+        Player oppositePlayer)
     {
         text.Foreground = sr_playerToColour[currentPlayer];
         (text.Effect as DropShadowEffect).Color = sr_playerToColour[oppositePlayer].Color;
-        image.Source = Images.PlayerCompleteImages[currentPlayer];
+        image.Source = source;
     }
 }

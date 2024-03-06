@@ -4,6 +4,12 @@ namespace Tic_Tac_Toe.Source;
 
 public class GameState
 {
+    private static readonly Dictionary<Player, Player> sr_playerToOppositePlayer = new(2)
+    {
+        {Player.X, Player.O },
+        {Player.O, Player.X }
+    };
+
     private static readonly SquareCoordinate[] sr_mainDiag = [new(0, 0), new(1, 1), new(2, 2)];
     private static readonly SquareCoordinate[] sr_antiDiag = [new(0, 2), new(1, 1), new(2, 0)];
 
@@ -21,11 +27,15 @@ public class GameState
 
     public event Action GameRestarted;
 
+    public Player OppositePlayer => sr_playerToOppositePlayer[CurrentPlayer];
+
     public GameState()
     {
         GameGrid = new Player[3, 3];
         CurrentPlayer = Player.X;
     }
+
+    public static Player GetOppositePlayer(Player player) => sr_playerToOppositePlayer[player];
 
     public void MakeMove(SquareCoordinate square)
     {
@@ -65,7 +75,7 @@ public class GameState
             _ => null
         };
 
-        CurrentPlayer = CurrentPlayer == Player.X ? Player.O : Player.X;
+        CurrentPlayer = OppositePlayer;
         MoveMade?.Invoke(square);
 
         if (gameResult != null)
