@@ -65,15 +65,14 @@ public class GameState
             _ => null
         };
 
+        CurrentPlayer = CurrentPlayer == Player.X ? Player.O : Player.X;
+        MoveMade?.Invoke(square);
+
         if (gameResult != null)
         {
             GameOver = true;
             GameEnded?.Invoke(gameResult);
         }
-        else
-            CurrentPlayer = CurrentPlayer == Player.X ? Player.O : Player.X;
-
-        MoveMade?.Invoke(square);
 
         bool AreSquaresMarked(SquareCoordinate[] s)
         {

@@ -58,14 +58,25 @@ public partial class MainWindow : Window
         var prevPlayer = r_gameState.GameGrid[square.Row, square.Col];
         r_imageControls[square.Row, square.Col].Source = Images.PlayerCompleteImages[prevPlayer];
 
-        PlayerText.Foreground = sr_playerToColour[r_gameState.CurrentPlayer];
-        (PlayerText.Effect as DropShadowEffect).Color = sr_playerToColour[prevPlayer].Color;
-        PlayerImage.Source = Images.PlayerCompleteImages[r_gameState.CurrentPlayer];
+        SetPlayerPanel(PlayerText, PlayerImage, r_gameState.CurrentPlayer, prevPlayer);
     }
     
-    private void  OnGameEnded(GameResult gameResult)
+    private async void OnGameEnded(GameResult gameResult)
     {
+        await Task.Delay(1000);
 
+        // Trasition to end screen
+        if (gameResult.Winner != Player.None)
+        {
+            ResultText.Text = "Winner: ";
+            SetPlayerPanel(ResultText, WinnerImage, gameResult.Winner, r_gameState.CurrentPlayer);
+        }
+        else
+        {
+            ResultText.Text = "It\'s a tie";
+            WinnerImage.Source = null;
+        }
+        EndScreen.Visibility = Visibility.Visible;
     }
 
     private void OnGameRestarted()
@@ -89,4 +100,11 @@ public partial class MainWindow : Window
 
     }
     #endregion
+
+    private static void SetPlayerPanel(TextBlock text, Image image, Player currentPlayer, Player oppositePlayer)
+    {
+        text.Foreground = sr_playerToColour[currentPlayer];
+        (text.Effect as DropShadowEffect).Color = sr_playerToColour[oppositePlayer].Color;
+        image.Source = Images.PlayerCompleteImages[currentPlayer];
+    }
 }

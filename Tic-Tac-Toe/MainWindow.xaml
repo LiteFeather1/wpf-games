@@ -96,7 +96,7 @@
                         </TextBlock.Effect>
                     </TextBlock>
                     
-                    <Image x:Name="WinnerIamge"
+                    <Image x:Name="WinnerImage"
                            Height="75"
                            Source="Assets/Xs/X_15.png"/>
                 </StackPanel>
