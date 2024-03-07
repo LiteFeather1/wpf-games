@@ -145,7 +145,7 @@ public partial class MainWindow : Window
         // Reset board
         for (var r = 0; r < 3; r++)
             for (var c = 0; c < 3; c++)
-                r_imageControls[r, c].Source = null;
+                r_imageControls[r, c].BeginAnimation(Image.SourceProperty, null);
 
         // Transion to game screen
         SetPlayerPanel(
