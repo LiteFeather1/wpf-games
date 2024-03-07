@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using Tic_Tac_Toe.Source;
@@ -12,6 +13,9 @@ namespace Tic_Tac_Toe;
 public partial class MainWindow : Window
 {
     private static readonly Dictionary<Player, SolidColorBrush> sr_playerToColour = new(2);
+
+    private static readonly DoubleAnimation sr_fadeOutAnimation = new(1.0, 0.0, TimeSpan.FromSeconds(0.5));
+    private static readonly DoubleAnimation sr_fadeInAnimation = new(0.0, 1.0, TimeSpan.FromSeconds(0.5));
 
     private readonly Image[,] r_imageControls = new Image[3, 3];
 
@@ -69,6 +73,9 @@ public partial class MainWindow : Window
     
     private async void OnGameEnded(GameResult gameResult)
     {
+        PlayAgainButton.Foreground = sr_playerToColour[r_gameState.CurrentPlayer];
+        PlayAgainButton.BorderBrush = sr_playerToColour[r_gameState.OppositePlayer];
+
         await Task.Delay(500);
 
         // Trasition to end screen
@@ -134,13 +141,12 @@ public partial class MainWindow : Window
                 r_gameState.CurrentPlayer);
         }
 
-        PlayAgainButton.Foreground = sr_playerToColour[r_gameState.CurrentPlayer];
-        PlayAgainButton.BorderBrush = sr_playerToColour[r_gameState.OppositePlayer];
+        await Task.WhenAll(FadeOut(TurnPanel), FadeOut(GameCanvas));
 
-        EndScreen.Visibility = Visibility.Visible;
+        await FadeIn(EndScreen);
     }
 
-    private void OnGameRestarted()
+    private async void OnGameRestarted()
     {
         // Reset board
         for (var r = 0; r < 3; r++)
@@ -155,8 +161,9 @@ public partial class MainWindow : Window
             r_gameState.CurrentPlayer,
             r_gameState.OppositePlayer);
 
+        await FadeOut(EndScreen);
         Line.Visibility = Visibility.Hidden;
-        EndScreen.Visibility = Visibility.Hidden;
+        await Task.WhenAll(FadeIn(TurnPanel), FadeIn(GameCanvas));
     }
     #endregion
 
@@ -183,5 +190,19 @@ public partial class MainWindow : Window
         text.Foreground = sr_playerToColour[currentPlayer];
         (text.Effect as DropShadowEffect).Color = sr_playerToColour[oppositePlayer].Color;
         image.Source = source;
+    }
+
+    private static async Task FadeOut(UIElement element)
+    {
+        element.BeginAnimation(OpacityProperty, sr_fadeOutAnimation);
+        await Task.Delay(sr_fadeInAnimation.Duration.TimeSpan);
+        element.Visibility = Visibility.Hidden;
+    }
+
+    private static async Task FadeIn(UIElement element)
+    {
+        element.Visibility= Visibility.Visible;
+        element.BeginAnimation(OpacityProperty, sr_fadeInAnimation);
+        await Task.Delay(sr_fadeInAnimation.Duration.TimeSpan);
     }
 }
