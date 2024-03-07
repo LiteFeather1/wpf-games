@@ -76,7 +76,11 @@ public partial class MainWindow : Window
             // Draw line stroke
             var squareSize = GameGrid.Width / 3.0;
             var margin = squareSize * .5;
-
+            const double GRID_OFFSET = 32.0;
+            var left = 0.0 + GRID_OFFSET;
+            var right = GameGrid.Width - GRID_OFFSET;
+            var top = 0.0 + GRID_OFFSET;
+            var bot = GameGrid.Height - GRID_OFFSET;
             // Find line points
             Point startPoint;
             Point endPoint;
@@ -84,21 +88,21 @@ public partial class MainWindow : Window
             {
                 case WinType.Row:
                     var y = gameResult.WinInfo.Number * squareSize + margin;
-                    startPoint = new(0.0, y);
-                    endPoint = new(GameGrid.Width, y);
+                    startPoint = new(left, y);
+                    endPoint = new(right, y);
                     break;
                 case WinType.Column:
                     var x = gameResult.WinInfo.Number * squareSize + margin;
-                    startPoint = new(x, 0.0);
-                    endPoint = new(x, GameGrid.Height);
+                    startPoint = new(x, top);
+                    endPoint = new(x, bot);
                     break;
                 case WinType.MainDiagonal:
-                    startPoint = new(0.0, 0.0);
-                    endPoint = new(GameGrid.Width, GameGrid.Height);
+                    startPoint = new(left , top);
+                    endPoint = new(right, bot);
                     break;
                 default:
-                    startPoint = new(GameGrid.Width, 0.0);
-                    endPoint = new(0.0, GameGrid.Height);
+                    startPoint = new(right, top);
+                    endPoint = new(left, bot);
                     break;
             }
 
