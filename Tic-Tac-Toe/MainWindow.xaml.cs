@@ -141,17 +141,18 @@ public partial class MainWindow : Window
 
     private void OnGameRestarted()
     {
+        // Reset board
         for (var r = 0; r < 3; r++)
             for (var c = 0; c < 3; c++)
                 r_imageControls[r, c].Source = null;
 
-        var player = r_gameState.CurrentPlayer;
+        // Transion to game screen
         SetPlayerPanel(
             PlayerText, 
             PlayerImage, 
-            Images.PlayerCompleteImages[player],
-            player,
-            GameState.GetOppositePlayer(player));
+            Images.PlayerCompleteImages[r_gameState.CurrentPlayer],
+            r_gameState.CurrentPlayer,
+            r_gameState.OppositePlayer);
 
         Line.Visibility = Visibility.Hidden;
         EndScreen.Visibility = Visibility.Hidden;
