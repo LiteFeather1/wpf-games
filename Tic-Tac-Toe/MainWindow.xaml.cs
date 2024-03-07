@@ -68,11 +68,49 @@ public partial class MainWindow : Window
     
     private async void OnGameEnded(GameResult gameResult)
     {
-        await Task.Delay(1000);
+        await Task.Delay(500);
 
         // Trasition to end screen
         if (gameResult.Winner != Player.None)
         {
+            // Draw line stroke
+            var squareSize = GameGrid.Width / 3.0;
+            var margin = squareSize * .5;
+
+            // Find line points
+            Point startPoint;
+            Point endPoint;
+            switch (gameResult.WinInfo.WinType)
+            {
+                case WinType.Row:
+                    var y = gameResult.WinInfo.Number * squareSize + margin;
+                    startPoint = new(0.0, y);
+                    endPoint = new(GameGrid.Width, y);
+                    break;
+                case WinType.Column:
+                    var x = gameResult.WinInfo.Number * squareSize + margin;
+                    startPoint = new(x, 0.0);
+                    endPoint = new(x, GameGrid.Height);
+                    break;
+                case WinType.MainDiagonal:
+                    startPoint = new(0.0, 0.0);
+                    endPoint = new(GameGrid.Width, GameGrid.Height);
+                    break;
+                default:
+                    startPoint = new(GameGrid.Width, 0.0);
+                    endPoint = new(0.0, GameGrid.Height);
+                    break;
+            }
+
+            // Show line
+            Line.X1 = startPoint.X;
+            Line.Y1 = startPoint.Y;
+            Line.X2 = endPoint.X;
+            Line.Y2 = endPoint.Y;
+            Line.Visibility = Visibility.Visible;
+
+            await Task.Delay(1000);
+
             ResultText.Text = "Winner: ";
             SetPlayerPanel(ResultText, 
                 WinnerImage, 
@@ -110,6 +148,7 @@ public partial class MainWindow : Window
             player,
             GameState.GetOppositePlayer(player));
 
+        Line.Visibility = Visibility.Hidden;
         EndScreen.Visibility = Visibility.Hidden;
     }
     #endregion
