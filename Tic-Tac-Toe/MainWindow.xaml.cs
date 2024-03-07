@@ -5,6 +5,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 using Tic_Tac_Toe.Source;
 using Tic_Tac_Toe.Source.Enums;
 
@@ -14,8 +15,8 @@ public partial class MainWindow : Window
 {
     private static readonly Dictionary<Player, SolidColorBrush> sr_playerToColour = new(2);
 
-    private static readonly DoubleAnimation sr_fadeOutAnimation = new(1.0, 0.0, TimeSpan.FromSeconds(0.5));
-    private static readonly DoubleAnimation sr_fadeInAnimation = new(0.0, 1.0, TimeSpan.FromSeconds(0.5));
+    private static readonly DoubleAnimation sr_fadeOutAnimation = new(1.0, 0.0, TimeSpan.FromSeconds(0.33));
+    private static readonly DoubleAnimation sr_fadeInAnimation = new(0.0, 1.0, TimeSpan.FromSeconds(0.33));
 
     private readonly Image[,] r_imageControls = new Image[3, 3];
 
@@ -81,7 +82,7 @@ public partial class MainWindow : Window
         // Trasition to end screen
         if (gameResult.Winner != Player.None)
         {
-            // Draw line stroke
+            // Draw LineStreak stroke
             var squareSize = GameGrid.Width / 3.0;
             var margin = squareSize * .5;
             const double GRID_OFFSET = 42;
@@ -89,40 +90,48 @@ public partial class MainWindow : Window
             var right = GameGrid.Width - GRID_OFFSET;
             var top = 0.0 + GRID_OFFSET;
             var bot = GameGrid.Height - GRID_OFFSET;
-            // Find line points
+            double endPointX, endPointY;
+            // Find LineStreak points
             switch (gameResult.WinInfo.WinType)
             {
                 case WinType.Row:
                     var y = gameResult.WinInfo.Number * squareSize + margin;
-                    Line.X1 = left;
-                    Line.Y1 = y;
-                    Line.X2 = right;
-                    Line.Y2 = y;
+                    LineStreak.X1 = left;
+                    LineStreak.Y1 = y;
+                    endPointX = right;
+                    endPointY = y;
                     break;
                 case WinType.Column:
                     var x = gameResult.WinInfo.Number * squareSize + margin;
-                    Line.X1 = x;
-                    Line.Y1 = top;
-                    Line.X2 = x;
-                    Line.Y2 = bot;
+                    LineStreak.X1 = x;
+                    LineStreak.Y1 = top;
+                    endPointX = x;
+                    endPointY = bot;
                     break;
                 case WinType.MainDiagonal:
-                    Line.X1 = left;
-                    Line.Y1 = top;
-                    Line.X2 = right;
-                    Line.Y2 = bot;
+                    LineStreak.X1 = left;
+                    LineStreak.Y1 = top;
+                    endPointX = right;
+                    endPointY = bot;
                     break;
                 default:
-                    Line.X1 = right;
-                    Line.Y1 = top;
-                    Line.X2 = left;
-                    Line.Y2 = bot;
+                    LineStreak.X1 = right;
+                    LineStreak.Y1 = top;
+                    endPointX = left;
+                    endPointY = bot;
                     break;
             }
 
-            Line.Visibility = Visibility.Visible;
+            var animEndX = new DoubleAnimation(LineStreak.X1, endPointX, TimeSpan.FromSeconds(.33));
+            var animEndY = new DoubleAnimation(LineStreak.Y1, endPointY, TimeSpan.FromSeconds(.33));
 
-            await Task.Delay(1000);
+            LineStreak.BeginAnimation(Line.X2Property, animEndX);
+            LineStreak.BeginAnimation(Line.Y2Property, animEndY);
+
+            LineStreak.Visibility = Visibility.Visible;
+
+            await Task.Delay(animEndX.Duration.TimeSpan);
+            await Task.Delay(500);
 
             ResultText.Text = "Winner: ";
             SetPlayerPanel(ResultText, 
@@ -162,7 +171,7 @@ public partial class MainWindow : Window
             r_gameState.OppositePlayer);
 
         await FadeOut(EndScreen);
-        Line.Visibility = Visibility.Hidden;
+        LineStreak.Visibility = Visibility.Hidden;
         await Task.WhenAll(FadeIn(TurnPanel), FadeIn(GameCanvas));
     }
     #endregion
@@ -170,7 +179,6 @@ public partial class MainWindow : Window
     #region WindowEvents
     private void GameGrid_MouseDown(object sender, MouseButtonEventArgs e)
     {
-        // FIXME Game is breaking when placing on the first spot
         var squareSize = GameGrid.Width / 3.0;
         var clickPosition = e.GetPosition(GameGrid);
         r_gameState.MakeMove(new(row: (int)(clickPosition.Y / squareSize),
@@ -178,7 +186,7 @@ public partial class MainWindow : Window
     }
 
     private void Button_Click(object sender, RoutedEventArgs e)
-        => r_gameState.Reset();
+    => r_gameState.Reset();
     #endregion
 
     private static void SetPlayerPanel(TextBlock text,
