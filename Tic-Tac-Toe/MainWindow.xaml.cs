@@ -186,7 +186,12 @@ public partial class MainWindow : Window
     }
 
     private void Button_Click(object sender, RoutedEventArgs e)
-    => r_gameState.Reset();
+    {
+        if (!r_gameState.GameOver)
+            return;
+
+        r_gameState.Reset();
+    }
     #endregion
 
     private static void SetPlayerPanel(TextBlock text,
