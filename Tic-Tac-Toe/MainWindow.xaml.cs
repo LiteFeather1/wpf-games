@@ -57,7 +57,8 @@ public partial class MainWindow : Window
     private void OnMoveMade(SquareCoordinate square)
     {
         var prevPlayer = r_gameState.GameGrid[square.Row, square.Col];
-        r_imageControls[square.Row, square.Col].Source = Images.PlayerCompleteImages[prevPlayer];
+        r_imageControls[square.Row, square.Col]
+            .BeginAnimation(Image.SourceProperty, Images.PlayerAnimations[prevPlayer]);
 
         SetPlayerPanel(PlayerText, 
             PlayerImage,
