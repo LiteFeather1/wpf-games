@@ -1,0 +1,120 @@
+﻿<Window x:Class="Tic_Tac_Toe.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tic_Tac_Toe"
+        mc:Ignorable="d"
+        Title="Tic-Tac_Toe" Height="720" Width="1280"
+        MinHeight="360" MinWidth="640"
+        WindowStartupLocation="CenterScreen"
+        FontFamily="News Gothic MT"
+        RenderOptions.BitmapScalingMode="HighQuality"
+        Background="{StaticResource BackgroundColor}">
+    <Viewbox>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel x:Name="TurnPanel"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="0, 12, 0, 0">
+                <TextBlock x:Name="PlayerText"
+                           Text="Player: "
+                           FontSize="54"
+                           VerticalAlignment="Center"
+                           Foreground="{StaticResource XColour}">
+                    <TextBlock.Effect>
+                        <DropShadowEffect x:Name="PlayerTextDropShadow"
+                                          ShadowDepth="4"
+                                          Color="{StaticResource XDropShadowColour}"
+                                          Opacity=".5"
+                                          BlurRadius="4"
+                                          Direction="315"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+                <Image x:Name="PlayerImage"
+                       Source="Assets/Xs/X_15.png"
+                       Height="75"/>
+            </StackPanel>
+
+            <Canvas x:Name="GameCanvas"
+                    Grid.Row="1"
+                    Height="512"
+                    Width="512"
+                    Margin="32">
+
+                <Image Source="Assets/Board.png"
+                       Height="512"
+                       Width="512"
+                       MouseDown="GameGrid_MouseDown"
+                       Margin="-8, 8, 0, 0"/>
+
+                <UniformGrid x:Name="GameGridSquare"
+                             Height="512"
+                             Width="512"
+                             Rows="3"
+                             Columns="3"
+                             Margin="-2, 6, 0, 0"/>
+
+                <UniformGrid x:Name="GameGrid"
+                             Height="512"
+                             Width="512"
+                             Rows="3"
+                             Columns="3"/>
+
+                <Line x:Name="LineStreak"
+                      Stroke="{StaticResource LineColour}"
+                      StrokeThickness="16"
+                      StrokeStartLineCap="Round"
+                      StrokeEndLineCap="Round"
+                      Visibility="Hidden"/>
+            </Canvas>
+
+            <Grid x:Name="EndScreen"
+                  Grid.RowSpan="2"
+                  Background="{StaticResource BackgroundColor}"
+                  Visibility="Hidden">
+                <StackPanel Orientation="Vertical"
+                            VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center">
+                        <TextBlock x:Name="ResultText"
+                                   Text="Winner: "
+                                   TextAlignment="Center"
+                                   FontSize="64"
+                                   Foreground="{StaticResource XColour}">
+                            <TextBlock.Effect>
+                                <DropShadowEffect x:Name="ResultTextDropShadow"
+                                                  ShadowDepth="4"
+                                                  Color="{StaticResource XDropShadowColour}"
+                                                  Opacity=".5"
+                                                  BlurRadius="4"
+                                                  Direction="315"/>
+                            </TextBlock.Effect>
+                        </TextBlock>
+
+                        <Image x:Name="WinnerImage"
+                               Height="75"
+                               Source="Assets/Xs/X_15.png"/>
+                    </StackPanel>
+
+                    <Button x:Name="PlayAgainButton"
+                            Content="Play Again"
+                            Background="{StaticResource ButtonColour}"
+                            FontSize="34"
+                            FontWeight="DemiBold"
+                            Width="256"
+                            Margin="0, 32, 0, 0"
+                            Padding="0, 0, 0, 4"
+                            BorderThickness="3"
+                            BorderBrush="Black"
+                            Click="Button_Click"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Viewbox>
+</Window>
