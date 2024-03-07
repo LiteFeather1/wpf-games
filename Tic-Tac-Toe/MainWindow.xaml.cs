@@ -76,41 +76,42 @@ public partial class MainWindow : Window
             // Draw line stroke
             var squareSize = GameGrid.Width / 3.0;
             var margin = squareSize * .5;
-            const double GRID_OFFSET = 32.0;
+            const double GRID_OFFSET = 42;
             var left = 0.0 + GRID_OFFSET;
             var right = GameGrid.Width - GRID_OFFSET;
             var top = 0.0 + GRID_OFFSET;
             var bot = GameGrid.Height - GRID_OFFSET;
             // Find line points
-            Point startPoint;
-            Point endPoint;
             switch (gameResult.WinInfo.WinType)
             {
                 case WinType.Row:
                     var y = gameResult.WinInfo.Number * squareSize + margin;
-                    startPoint = new(left, y);
-                    endPoint = new(right, y);
+                    Line.X1 = left;
+                    Line.Y1 = y;
+                    Line.X2 = right;
+                    Line.Y2 = y;
                     break;
                 case WinType.Column:
                     var x = gameResult.WinInfo.Number * squareSize + margin;
-                    startPoint = new(x, top);
-                    endPoint = new(x, bot);
+                    Line.X1 = x;
+                    Line.Y1 = top;
+                    Line.X2 = x;
+                    Line.Y2 = bot;
                     break;
                 case WinType.MainDiagonal:
-                    startPoint = new(left , top);
-                    endPoint = new(right, bot);
+                    Line.X1 = left;
+                    Line.Y1 = top;
+                    Line.X2 = right;
+                    Line.Y2 = bot;
                     break;
                 default:
-                    startPoint = new(right, top);
-                    endPoint = new(left, bot);
+                    Line.X1 = right;
+                    Line.Y1 = top;
+                    Line.X2 = left;
+                    Line.Y2 = bot;
                     break;
             }
 
-            // Show line
-            Line.X1 = startPoint.X;
-            Line.Y1 = startPoint.Y;
-            Line.X2 = endPoint.X;
-            Line.Y2 = endPoint.Y;
             Line.Visibility = Visibility.Visible;
 
             await Task.Delay(1000);
